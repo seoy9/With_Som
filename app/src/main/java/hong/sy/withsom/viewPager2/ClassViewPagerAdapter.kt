@@ -1,19 +1,21 @@
-package hong.sy.withsom
+package hong.sy.withsom.viewPager2
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import hong.sy.withsom.ClassData
+import hong.sy.withsom.R
 
-class ClassViewPagerAdapter(classBannerList: ArrayList<Class>) : RecyclerView.Adapter<ClassViewPagerAdapter.PagerViewHolder>() {
-    var item = classBannerList
+class ClassViewPagerAdapter(classDataBannerList: ArrayList<ClassData>) : RecyclerView.Adapter<ClassViewPagerAdapter.PagerViewHolder>() {
+    var item = classDataBannerList
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = PagerViewHolder((parent))
 
     override fun getItemCount(): Int = item.size
 
-    override fun onBindViewHolder(holder: ClassViewPagerAdapter.PagerViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: PagerViewHolder, position: Int) {
         holder.imgLeader.setImageResource (item[position].imgLeader)
         holder.classTitle.text = item[position].title
         holder.classType.text = item[position].type

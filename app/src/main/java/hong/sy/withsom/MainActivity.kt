@@ -1,11 +1,13 @@
 package hong.sy.withsom
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import android.widget.Toast
 import androidx.viewpager2.widget.ViewPager2
 import hong.sy.withsom.databinding.ActivityMainBinding
+import hong.sy.withsom.viewPager2.ClassViewPagerAdapter
+import hong.sy.withsom.viewPager2.NoticeViewPagerAdapter
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -48,17 +50,22 @@ class MainActivity : AppCompatActivity() {
                 }
             })
         }
+
+        binding.btnSearch.setOnClickListener{
+            val intent = Intent(this, SearchActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun getNoticeList(): ArrayList<Int> {
         return arrayListOf<Int>(R.drawable.notice_banner1, R.drawable.notice_banner2, R.drawable.notice_banner3)
     }
 
-    private fun getClassList(): ArrayList<Class> {
-        val class1 = Class(R.drawable.foundation, "솜솜덕질", "취미", "솜솜이를 덕질해보자!")
-        val class2 = Class(R.drawable.simbol, "정보처리기사", "자격증", "컴퓨터학과 졸업요건 달성")
-        val class3 = Class(R.drawable.vision, "만 보 걷기", "운동", "건강해지자!!")
+    private fun getClassList(): ArrayList<ClassData> {
+        val classData1 = ClassData(R.drawable.foundation, "솜솜덕질", "취미", "솜솜이를 덕질해보자!")
+        val classData2 = ClassData(R.drawable.simbol, "정보처리기사", "자격증", "컴퓨터학과 졸업요건 달성")
+        val classData3 = ClassData(R.drawable.vision, "만 보 걷기", "운동", "건강해지자!!")
 
-        return arrayListOf<Class>(class1, class2, class3)
+        return arrayListOf<ClassData>(classData1, classData2, classData3)
     }
 }

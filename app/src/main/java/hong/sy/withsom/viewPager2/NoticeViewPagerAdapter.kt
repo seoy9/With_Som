@@ -1,9 +1,10 @@
-package hong.sy.withsom
+package hong.sy.withsom.viewPager2
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
+import hong.sy.withsom.R
 
 class NoticeViewPagerAdapter(noticeBannerList: ArrayList<Int>) : RecyclerView.Adapter<NoticeViewPagerAdapter.PagerViewHolder>() {
     var item = noticeBannerList

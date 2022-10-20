@@ -3,14 +3,17 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/my/WithSom/app/src/main/res/drawable/gray_ellipse.xml" value="0.234" />
         <entry key="..\:/my/WithSom/app/src/main/res/drawable/main_logo.xml" value="0.234" />
         <entry key="..\:/my/WithSom/app/src/main/res/drawable/round_box.xml" value="0.2385" />
+        <entry key="..\:/my/WithSom/app/src/main/res/drawable/white_gray_box.xml" value="0.234" />
         <entry key="..\:/my/WithSom/app/src/main/res/layout-v26/activity_sign_up.xml" value="0.2504528985507246" />
         <entry key="..\:/my/WithSom/app/src/main/res/layout/activity_loading.xml" value="0.2504528985507246" />
         <entry key="..\:/my/WithSom/app/src/main/res/layout/activity_login.xml" value="0.2504528985507246" />
         <entry key="..\:/my/WithSom/app/src/main/res/layout/activity_main.xml" value="0.2504528985507246" />
         <entry key="..\:/my/WithSom/app/src/main/res/layout/activity_sign_up.xml" value="0.2504528985507246" />
         <entry key="..\:/my/WithSom/app/src/main/res/layout/activity_sign_up_image.xml" value="0.2504528985507246" />
+        <entry key="..\:/my/WithSom/app/src/main/res/layout/class_banner_item.xml" value="0.2504528985507246" />
         <entry key="..\:/my/WithSom/app/src/main/res/layout/notice_banner_item.xml" value="0.2504528985507246" />
       </map>
     </option>

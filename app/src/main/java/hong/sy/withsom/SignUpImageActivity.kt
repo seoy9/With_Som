@@ -18,5 +18,21 @@ class SignUpImageActivity : AppCompatActivity() {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
+
+        binding.imgFoundation.setOnClickListener {
+            binding.imgSelected.setImageResource(R.drawable.foundation)
+        }
+
+        binding.imgVision.setOnClickListener {
+            binding.imgSelected.setImageResource(R.drawable.foundation)
+        }
+
+        binding.imgSince.setOnClickListener {
+            binding.imgSelected.setImageResource(R.drawable.foundation)
+        }
+
+        binding.imgSimbol.setOnClickListener {
+            binding.imgSelected.setImageResource(R.drawable.foundation)
+        }
     }
 }

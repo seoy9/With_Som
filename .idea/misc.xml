@@ -8,6 +8,7 @@
         <entry key="..\:/my/WithSom/app/src/main/res/drawable/round_box.xml" value="0.2385" />
         <entry key="..\:/my/WithSom/app/src/main/res/drawable/white_gray_box.xml" value="0.234" />
         <entry key="..\:/my/WithSom/app/src/main/res/layout-v26/activity_sign_up.xml" value="0.2504528985507246" />
+        <entry key="..\:/my/WithSom/app/src/main/res/layout/activity_class_detail.xml" value="0.2504528985507246" />
         <entry key="..\:/my/WithSom/app/src/main/res/layout/activity_classes.xml" value="0.2504528985507246" />
         <entry key="..\:/my/WithSom/app/src/main/res/layout/activity_loading.xml" value="0.2504528985507246" />
         <entry key="..\:/my/WithSom/app/src/main/res/layout/activity_login.xml" value="0.2504528985507246" />
@@ -16,6 +17,10 @@
         <entry key="..\:/my/WithSom/app/src/main/res/layout/activity_sign_up.xml" value="0.2504528985507246" />
         <entry key="..\:/my/WithSom/app/src/main/res/layout/activity_sign_up_image.xml" value="0.2504528985507246" />
         <entry key="..\:/my/WithSom/app/src/main/res/layout/class_banner_item.xml" value="0.2504528985507246" />
+        <entry key="..\:/my/WithSom/app/src/main/res/layout/class_recycler_search.xml" value="0.2504528985507246" />
+        <entry key="..\:/my/WithSom/app/src/main/res/layout/fragment_introduce_class.xml" value="0.2504528985507246" />
+        <entry key="..\:/my/WithSom/app/src/main/res/layout/fragment_introduce_leader.xml" value="0.2504528985507246" />
+        <entry key="..\:/my/WithSom/app/src/main/res/layout/fragment_schedule_class.xml" value="0.2504528985507246" />
         <entry key="..\:/my/WithSom/app/src/main/res/layout/item_recycler_class.xml" value="0.2504528985507246" />
         <entry key="..\:/my/WithSom/app/src/main/res/layout/item_recycler_search.xml" value="0.2504528985507246" />
         <entry key="..\:/my/WithSom/app/src/main/res/layout/notice_banner_item.xml" value="0.2504528985507246" />

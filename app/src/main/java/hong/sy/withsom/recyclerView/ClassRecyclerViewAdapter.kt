@@ -36,7 +36,7 @@ class ClassRecyclerViewAdapter(private val context: Context) : RecyclerView.Adap
         }
 
         fun bind(item: ClassData) {
-            type.text = item.type
+            type.text = "#" + item.type
         }
     }
 

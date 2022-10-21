@@ -3,6 +3,7 @@ package hong.sy.withsom
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Button
 import android.widget.Toast
 import androidx.viewpager2.widget.ViewPager2
 import hong.sy.withsom.databinding.ActivityMainBinding
@@ -53,6 +54,11 @@ class MainActivity : AppCompatActivity() {
 
         binding.btnSearch.setOnClickListener{
             val intent = Intent(this, SearchActivity::class.java)
+            startActivity(intent)
+        }
+
+        binding.btnClasses.setOnClickListener {
+            val intent = Intent(this, ClassesActivity::class.java)
             startActivity(intent)
         }
     }

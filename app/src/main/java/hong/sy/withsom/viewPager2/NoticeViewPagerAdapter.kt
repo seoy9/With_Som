@@ -11,10 +11,10 @@ class NoticeViewPagerAdapter(noticeBannerList: ArrayList<Int>) : RecyclerView.Ad
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = PagerViewHolder((parent))
 
-    override fun getItemCount() : Int = item.size
+    override fun getItemCount() : Int = Int.MAX_VALUE
 
     override fun onBindViewHolder(holder: PagerViewHolder, position: Int) {
-        holder.notice.setImageResource(item[position])
+        holder.notice.setImageResource(item[position%3])
     }
 
     inner class PagerViewHolder(parent: ViewGroup) : RecyclerView.ViewHolder

@@ -57,57 +57,14 @@
         app:srcCompat="@drawable/circle_green" />
 
     <ImageView
-        android:id="@+id/img_foundation"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        app:layout_constraintBottom_toTopOf="@+id/img_vision"
-        app:layout_constraintEnd_toStartOf="@+id/img_simbol"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
-        app:srcCompat="@drawable/foundation" />
-
-    <ImageView
-        android:id="@+id/img_simbol"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        app:layout_constraintBottom_toTopOf="@+id/img_since"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/img_foundation"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
-        app:srcCompat="@drawable/simbol" />
-
-    <ImageView
-        android:id="@+id/img_since"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        app:layout_constraintBottom_toTopOf="@+id/btn_signup_done"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/img_vision"
-        app:layout_constraintTop_toBottomOf="@+id/img_simbol"
-        app:srcCompat="@drawable/since" />
-
-    <ImageView
-        android:id="@+id/img_vision"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        app:layout_constraintBottom_toTopOf="@+id/btn_signup_done"
-        app:layout_constraintEnd_toStartOf="@+id/img_since"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/img_foundation"
-        app:srcCompat="@drawable/vision" />
-
-    <ImageView
         android:id="@+id/img_selected"
         android:layout_width="150dp"
         android:layout_height="150dp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView"
         app:layout_constraintEnd_toEndOf="@+id/imageView"
         app:layout_constraintStart_toStartOf="@+id/imageView"
-        app:layout_constraintTop_toTopOf="@+id/imageView" />
+        app:layout_constraintTop_toTopOf="@+id/imageView"
+        app:srcCompat="@drawable/foundation" />
 
     <Button
         android:id="@+id/btn_signup_done"
@@ -117,9 +74,53 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/guideline2"
         app:layout_constraintEnd_toStartOf="@+id/guideline4"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="@+id/guideline3"
         app:layout_constraintTop_toBottomOf="@+id/imageView"
-        app:layout_constraintVertical_bias="0.95"
-        app:layout_constraintHorizontal_bias="0.5"/>
+        app:layout_constraintVertical_bias="0.95" />
+
+    <ImageButton
+        android:id="@+id/btn_foundation"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        app:layout_constraintBottom_toTopOf="@+id/btn_since"
+        app:layout_constraintEnd_toStartOf="@+id/btn_simbol"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/guideline3"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        android:background="@drawable/foundation" />
+
+    <ImageButton
+        android:id="@+id/btn_simbol"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        app:layout_constraintBottom_toTopOf="@+id/btn_vision"
+        app:layout_constraintEnd_toEndOf="@+id/imageView8"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/btn_foundation"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        android:background="@drawable/simbol" />
+
+    <ImageButton
+        android:id="@+id/btn_since"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        app:layout_constraintBottom_toTopOf="@+id/btn_signup_done"
+        app:layout_constraintEnd_toStartOf="@+id/btn_vision"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/guideline3"
+        app:layout_constraintTop_toBottomOf="@+id/btn_foundation"
+        android:background="@drawable/since" />
+
+    <ImageButton
+        android:id="@+id/btn_vision"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        app:layout_constraintBottom_toTopOf="@+id/btn_signup_done"
+        app:layout_constraintEnd_toStartOf="@+id/guideline4"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/btn_since"
+        app:layout_constraintTop_toBottomOf="@+id/btn_simbol"
+        android:background="@drawable/vision" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

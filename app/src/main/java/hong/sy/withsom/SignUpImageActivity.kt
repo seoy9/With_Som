@@ -21,28 +21,20 @@ class SignUpImageActivity : AppCompatActivity() {
             finish()
         }
 
-        binding.imgFoundation.setOnClickListener {
-            binding.imgSelected.setImageResource(0)
+        binding.btnFoundation.setOnClickListener {
             binding.imgSelected.setImageResource(R.drawable.foundation)
-            Toast.makeText(this, "F Click!", Toast.LENGTH_SHORT).show()
         }
 
-        binding.imgVision.setOnClickListener {
-            binding.imgSelected.setImageResource(0)
-            binding.imgSelected.setImageResource(R.drawable.foundation)
-            Toast.makeText(this, "V Click!", Toast.LENGTH_SHORT).show()
+        binding.btnVision.setOnClickListener {
+            binding.imgSelected.setImageResource(R.drawable.vision)
         }
 
-        binding.imgSince.setOnClickListener {
-            binding.imgSelected.setImageResource(0)
-            binding.imgSelected.setImageResource(R.drawable.foundation)
-            Toast.makeText(this, "S Click!", Toast.LENGTH_SHORT).show()
+        binding.btnSince.setOnClickListener {
+            binding.imgSelected.setImageResource(R.drawable.since)
         }
 
-        binding.imgSimbol.setOnClickListener {
-            binding.imgSelected.setImageResource(0)
-            binding.imgSelected.setImageResource(R.drawable.foundation)
-            Toast.makeText(this, "B Click!", Toast.LENGTH_SHORT).show()
+        binding.btnSimbol.setOnClickListener {
+            binding.imgSelected.setImageResource(R.drawable.simbol)
         }
     }
 }

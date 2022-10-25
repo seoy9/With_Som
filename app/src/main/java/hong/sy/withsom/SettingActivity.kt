@@ -18,13 +18,22 @@ class SettingActivity : AppCompatActivity() {
         binding = ActivitySettingBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        buttonSetting()
+    }
+
+    private fun buttonSetting() {
+        binding.btnLogout.setOnClickListener {
+            val intent = Intent(this, LoadingActivity::class.java)
+            startActivity(intent)
+        }
+
         binding.btnCorrection.setOnClickListener {
             val intent = Intent(this, CorrectionActivity::class.java)
             startActivity(intent)
         }
 
-        binding.btnSecession.setOnClickListener {
-            val intent = Intent(this, SecessionActivity::class.java)
+        binding.btnNotice.setOnClickListener {
+            val intent = Intent(this, NoticeActivity::class.java)
             startActivity(intent)
         }
 
@@ -38,13 +47,8 @@ class SettingActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        binding.btnClassesSetting.setOnClickListener {
-            val intent = Intent(this, ClassesActivity::class.java)
-            startActivity(intent)
-        }
-
-        binding.btnSearchSetting.setOnClickListener {
-            val intent = Intent(this, SearchActivity::class.java)
+        binding.btnSecession.setOnClickListener {
+            val intent = Intent(this, SecessionActivity::class.java)
             startActivity(intent)
         }
 
@@ -53,8 +57,13 @@ class SettingActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        binding.btnSettingSetting.setOnClickListener {
-            val intent = Intent(this, SettingActivity::class.java)
+        binding.btnClassesSetting.setOnClickListener {
+            val intent = Intent(this, ClassesActivity::class.java)
+            startActivity(intent)
+        }
+
+        binding.btnSearchSetting.setOnClickListener {
+            val intent = Intent(this, SearchActivity::class.java)
             startActivity(intent)
         }
     }

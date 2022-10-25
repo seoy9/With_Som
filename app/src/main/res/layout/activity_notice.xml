@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ClassesActivity">
+    tools:context=".NoticeActivity">
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline1"
@@ -33,8 +33,8 @@
         app:srcCompat="@drawable/logo" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_classes"
-        android:layout_width="match_parent"
+        android:id="@+id/rv_notice"
+        android:layout_width="0dp"
         android:layout_height="0dp"
         android:orientation="vertical"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
@@ -42,38 +42,38 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="@id/guideline1"
-        tools:listitem="@layout/class_recycler_classes" />
+        tools:listitem="@layout/notice_recycler_item" />
 
     <ImageButton
-        android:id="@+id/btn_search_classes"
+        android:id="@+id/btn_search_notice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btn_setting_classes"
+        app:layout_constraintEnd_toStartOf="@+id/btn_setting_notice"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/btn_classes_classes"
+        app:layout_constraintStart_toEndOf="@+id/btn_classes_notice"
         app:layout_constraintTop_toTopOf="@+id/guideline4"
         app:srcCompat="@android:drawable/ic_menu_search"
         app:layout_constraintVertical_bias="0.5"/>
 
     <ImageButton
-        android:id="@+id/btn_classes_classes"
+        android:id="@+id/btn_classes_notice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btn_search_classes"
+        app:layout_constraintEnd_toStartOf="@+id/btn_search_notice"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/btn_home_classes"
+        app:layout_constraintStart_toEndOf="@+id/btn_home_notice"
         app:layout_constraintTop_toTopOf="@+id/guideline4"
         app:srcCompat="@android:drawable/ic_menu_add"
         app:layout_constraintVertical_bias="0.5"/>
 
     <ImageButton
-        android:id="@+id/btn_home_classes"
+        android:id="@+id/btn_home_notice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btn_classes_classes"
+        app:layout_constraintEnd_toStartOf="@+id/btn_classes_notice"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline4"
@@ -81,15 +81,15 @@
         app:layout_constraintVertical_bias="0.5"/>
 
     <ImageButton
-        android:id="@+id/btn_setting_classes"
+        android:id="@+id/btn_setting_notice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/btn_search_classes"
+        app:layout_constraintStart_toEndOf="@+id/btn_search_notice"
         app:layout_constraintTop_toTopOf="@+id/guideline4"
-        app:srcCompat="@android:drawable/ic_menu_manage"
+        app:srcCompat="@android:drawable/ic_menu_preferences"
         app:layout_constraintVertical_bias="0.5"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

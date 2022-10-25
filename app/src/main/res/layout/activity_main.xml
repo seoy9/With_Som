@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.1" />
+        app:layout_constraintGuide_percent="0.09" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2"
@@ -158,14 +158,14 @@
         android:textSize="13sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/guideline2"
-        app:layout_constraintEnd_toStartOf="@+id/textView11"
+        app:layout_constraintEnd_toStartOf="@+id/tv_more"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@id/textView12"
         app:layout_constraintTop_toTopOf="@+id/guideline1"
         app:layout_constraintVertical_bias="0.5" />
 
     <TextView
-        android:id="@+id/textView11"
+        android:id="@+id/tv_more"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="더보기 ▶"

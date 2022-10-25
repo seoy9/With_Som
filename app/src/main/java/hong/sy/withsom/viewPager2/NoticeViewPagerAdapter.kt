@@ -6,19 +6,23 @@ import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import hong.sy.withsom.R
 
-class NoticeViewPagerAdapter(noticeBannerList: ArrayList<Int>) : RecyclerView.Adapter<NoticeViewPagerAdapter.PagerViewHolder>() {
+class NoticeViewPagerAdapter(noticeBannerList: ArrayList<Int>) : RecyclerView.Adapter<NoticeViewPagerAdapter.NoticeViewHolder>() {
     var item = noticeBannerList
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = PagerViewHolder((parent))
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = NoticeViewHolder((parent))
 
     override fun getItemCount() : Int = Int.MAX_VALUE
 
-    override fun onBindViewHolder(holder: PagerViewHolder, position: Int) {
-        holder.notice.setImageResource(item[position%3])
+    override fun onBindViewHolder(holder: NoticeViewHolder, position: Int) {
+        holder.onBind(item[position % item.size])
     }
 
-    inner class PagerViewHolder(parent: ViewGroup) : RecyclerView.ViewHolder
+    inner class NoticeViewHolder(parent: ViewGroup) : RecyclerView.ViewHolder
         (LayoutInflater.from(parent.context).inflate(R.layout.notice_banner_item, parent, false)) {
-        val notice : ImageView = itemView.findViewById(R.id.img_notice_banner)
+        private val notice : ImageView = itemView.findViewById(R.id.img_notice_banner)
+
+        fun onBind(res: Int) {
+            notice.setImageResource(res)
+        }
     }
 }

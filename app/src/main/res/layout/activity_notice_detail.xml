@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ClassesActivity">
+    tools:context=".NoticeDetailActivity">
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline1"
@@ -20,6 +20,13 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.9" />
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline43"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.2"/>
+
     <ImageView
         android:id="@+id/imageView5"
         android:layout_width="0dp"
@@ -32,48 +39,38 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/logo" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_classes"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:orientation="vertical"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintBottom_toTopOf="@id/guideline4"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="@id/guideline1"
-        tools:listitem="@layout/class_recycler_classes" />
+
 
     <ImageButton
-        android:id="@+id/btn_search_classes"
+        android:id="@+id/btn_search_notice_detail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btn_setting_classes"
+        app:layout_constraintEnd_toStartOf="@+id/btn_setting_notice_detail"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/btn_classes_classes"
+        app:layout_constraintStart_toEndOf="@+id/btn_classes_notice_detail"
         app:layout_constraintTop_toTopOf="@+id/guideline4"
         app:srcCompat="@android:drawable/ic_menu_search"
         app:layout_constraintVertical_bias="0.5"/>
 
     <ImageButton
-        android:id="@+id/btn_classes_classes"
+        android:id="@+id/btn_classes_notice_detail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btn_search_classes"
+        app:layout_constraintEnd_toStartOf="@+id/btn_search_notice_detail"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/btn_home_classes"
+        app:layout_constraintStart_toEndOf="@+id/btn_home_notice_detail"
         app:layout_constraintTop_toTopOf="@+id/guideline4"
         app:srcCompat="@android:drawable/ic_menu_add"
         app:layout_constraintVertical_bias="0.5"/>
 
     <ImageButton
-        android:id="@+id/btn_home_classes"
+        android:id="@+id/btn_home_notice_detail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btn_classes_classes"
+        app:layout_constraintEnd_toStartOf="@+id/btn_classes_notice_detail"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline4"
@@ -81,15 +78,60 @@
         app:layout_constraintVertical_bias="0.5"/>
 
     <ImageButton
-        android:id="@+id/btn_setting_classes"
+        android:id="@+id/btn_setting_notice_detail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/btn_search_classes"
+        app:layout_constraintStart_toEndOf="@+id/btn_search_notice_detail"
         app:layout_constraintTop_toTopOf="@+id/guideline4"
-        app:srcCompat="@android:drawable/ic_menu_manage"
+        app:srcCompat="@android:drawable/ic_menu_preferences"
         app:layout_constraintVertical_bias="0.5"/>
 
+    <ImageView
+        android:id="@+id/imageView13"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline43"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline1"
+        app:srcCompat="@drawable/box" />
+
+    <TextView
+        android:id="@+id/tv_title_notice_detail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="공지사항"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/guideline43"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline1" />
+
+    <TextView
+        android:id="@+id/tv_date_notice_detail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
+        android:text="2022-10-25"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline43"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_content_notice_detail"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/box"
+        android:padding="20dp"
+        android:text="TextViewTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextView"
+        app:layout_constraintBottom_toTopOf="@+id/guideline4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline43" />
 </androidx.constraintlayout.widget.ConstraintLayout>

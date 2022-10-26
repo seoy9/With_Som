@@ -7,5 +7,6 @@ data class ClassData(
     val type : String,
     val content : String,
     val num : Int,
-    val schedule : String
+    val schedule : String,
+    val location : String
 )

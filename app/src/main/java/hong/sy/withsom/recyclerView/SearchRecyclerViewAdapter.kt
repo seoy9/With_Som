@@ -1,12 +1,14 @@
 package hong.sy.withsom.recyclerView
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import hong.sy.withsom.ClassDetailActivity
 import hong.sy.withsom.R
 import hong.sy.withsom.data.ClassData
 
@@ -26,6 +28,18 @@ class SearchRecyclerViewAdapter(private val context: Context) : RecyclerView.Ada
             tv_type.text = item.type
             tv_schedule.text = item.schedule
             tv_num.text = "정원 " + item.num.toString() + "명"
+
+            itemView.setOnClickListener {
+                Intent(context, ClassDetailActivity::class.java).apply {
+                    putExtra("title", item.title)
+                    putExtra("leader", item.leader)
+                    putExtra("leader_img", item.imgLeader)
+                    putExtra("location", item.location)
+                    putExtra("schedule", item.schedule)
+                    putExtra("num", item.num)
+                    addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                }.run { context.startActivity(this) }
+            }
         }
     }
 

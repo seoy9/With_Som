@@ -15,8 +15,12 @@ class SignUpImageActivity : AppCompatActivity() {
         binding = ActivitySignUpImageBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        buttonSetting()
+    }
+
+    private fun buttonSetting() {
         binding.btnSignupDone.setOnClickListener {
-            val intent = Intent(this@SignUpImageActivity, MainActivity::class.java)
+            val intent = Intent(this@SignUpImageActivity, LoginActivity::class.java)
             startActivity(intent)
             finish()
         }

@@ -33,21 +33,25 @@ class NoticeDetailActivity : AppCompatActivity() {
         binding.btnHomeNoticeDetail.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
+            finish()
         }
 
         binding.btnClassesNoticeDetail.setOnClickListener {
             val intent = Intent(this, ClassesActivity::class.java)
             startActivity(intent)
+            finish()
         }
 
         binding.btnSearchNoticeDetail.setOnClickListener {
             val intent = Intent(this, SearchActivity::class.java)
             startActivity(intent)
+            finish()
         }
 
         binding.btnSettingNoticeDetail.setOnClickListener {
             val intent = Intent(this, SettingActivity::class.java)
             startActivity(intent)
+            finish()
         }
     }
 }

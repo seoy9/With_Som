@@ -20,6 +20,20 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.9" />
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline17"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.35" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline41"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.82"/>
+
     <ImageView
         android:id="@+id/imageView5"
         android:layout_width="0dp"
@@ -31,13 +45,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/logo" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline17"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.35" />
 
     <ImageView
         android:id="@+id/img_leader_detail"
@@ -67,48 +74,42 @@
         android:id="@+id/imageView4"
         android:layout_width="50dp"
         android:layout_height="50dp"
+        android:layout_marginTop="8dp"
         android:src="@android:drawable/ic_menu_mylocation"
-        app:layout_constraintBottom_toBottomOf="@+id/guideline4"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.2"
+        app:layout_constraintEnd_toStartOf="@+id/imageView9"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintHorizontal_chainStyle="spread"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/guideline17"
-        app:layout_constraintVertical_bias="0.01"/>
+        app:layout_constraintTop_toBottomOf="@+id/guideline17" />
 
     <ImageView
         android:id="@+id/imageView9"
         android:layout_width="50dp"
         android:layout_height="50dp"
+        android:layout_marginTop="8dp"
         android:src="@android:drawable/ic_menu_recent_history"
-        app:layout_constraintBottom_toBottomOf="@+id/guideline4"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/imageView10"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/guideline17"
-        app:layout_constraintVertical_bias="0.01"/>
+        app:layout_constraintStart_toEndOf="@+id/imageView4"
+        app:layout_constraintTop_toBottomOf="@+id/guideline17" />
 
     <ImageView
         android:id="@+id/imageView10"
         android:layout_width="50dp"
         android:layout_height="50dp"
+        android:layout_marginTop="8dp"
         android:src="@android:drawable/ic_menu_myplaces"
-        app:layout_constraintBottom_toBottomOf="@+id/guideline4"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.8"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/guideline17"
-        app:layout_constraintVertical_bias="0.01"/>
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/imageView9"
+        app:layout_constraintTop_toBottomOf="@+id/guideline17" />
 
     <TextView
         android:id="@+id/tv_location_detail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
         android:text="위치"
         app:layout_constraintEnd_toEndOf="@+id/imageView4"
-        app:layout_constraintEnd_toStartOf="@+id/tv_schedule_detail"
-        app:layout_constraintHorizontal_bias="0.116"
         app:layout_constraintStart_toStartOf="@+id/imageView4"
         app:layout_constraintTop_toBottomOf="@+id/imageView4" />
 
@@ -116,12 +117,8 @@
         android:id="@+id/tv_schedule_detail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
         android:text="시간"
         app:layout_constraintEnd_toEndOf="@+id/imageView9"
-        app:layout_constraintEnd_toStartOf="@+id/tv_number_detail"
-        app:layout_constraintHorizontal_bias="0.116"
-        app:layout_constraintStart_toEndOf="@+id/tv_location_detail"
         app:layout_constraintStart_toStartOf="@+id/imageView9"
         app:layout_constraintTop_toBottomOf="@+id/imageView9" />
 
@@ -129,11 +126,8 @@
         android:id="@+id/tv_number_detail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
         android:text="인원"
         app:layout_constraintEnd_toEndOf="@+id/imageView10"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/tv_schedule_detail"
         app:layout_constraintStart_toStartOf="@+id/imageView10"
         app:layout_constraintTop_toBottomOf="@+id/imageView10" />
 
@@ -141,9 +135,11 @@
         android:id="@+id/rv_detail"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginTop="8dp"
         android:orientation="vertical"
+        android:padding="10dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintBottom_toTopOf="@+id/guideline4"
+        app:layout_constraintBottom_toTopOf="@+id/guideline41"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -159,8 +155,8 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/btn_classes_detail"
         app:layout_constraintTop_toTopOf="@+id/guideline4"
-        app:srcCompat="@android:drawable/ic_menu_search"
-        app:layout_constraintVertical_bias="0.5"/>
+        app:layout_constraintVertical_bias="0.5"
+        app:srcCompat="@android:drawable/ic_menu_search" />
 
     <ImageButton
         android:id="@+id/btn_classes_detail"
@@ -171,8 +167,8 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/btn_home_detail"
         app:layout_constraintTop_toTopOf="@+id/guideline4"
-        app:srcCompat="@android:drawable/ic_menu_add"
-        app:layout_constraintVertical_bias="0.5"/>
+        app:layout_constraintVertical_bias="0.5"
+        app:srcCompat="@android:drawable/ic_menu_add" />
 
     <ImageButton
         android:id="@+id/btn_home_detail"
@@ -183,8 +179,8 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline4"
-        app:srcCompat="@android:drawable/ic_menu_mylocation"
-        app:layout_constraintVertical_bias="0.5"/>
+        app:layout_constraintVertical_bias="0.5"
+        app:srcCompat="@android:drawable/ic_menu_mylocation" />
 
     <ImageButton
         android:id="@+id/btn_setting_detail"
@@ -195,7 +191,18 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/btn_search_detail"
         app:layout_constraintTop_toTopOf="@+id/guideline4"
-        app:srcCompat="@android:drawable/ic_menu_manage"
-        app:layout_constraintVertical_bias="0.5"/>
+        app:layout_constraintVertical_bias="0.5"
+        app:srcCompat="@android:drawable/ic_menu_manage" />
+
+    <Button
+        android:id="@+id/btn_application"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="신청하기"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/guideline4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline41" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -3,6 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="hong.sy.withsom">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -13,6 +16,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.WithSom"
         tools:targetApi="31">
+        <activity
+            android:name=".FindPassActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
         <activity
             android:name=".NoticeDetailActivity"
             android:exported="false">
@@ -53,7 +63,7 @@
             android:exported="false" />
         <activity
             android:name=".LoginActivity"
-            android:exported="false" />
+            android:exported="false"></activity>
         <activity
             android:name=".SignUpImageActivity"
             android:exported="false" />

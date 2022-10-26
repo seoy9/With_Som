@@ -44,6 +44,9 @@ class ClassRecyclerViewAdapter(private val context: Context) : RecyclerView.Adap
                         putExtra("title", data.title)
                         putExtra("leader", data.leader)
                         putExtra("leader_img", data.imgLeader)
+                        putExtra("location", data.location)
+                        putExtra("schedule", data.schedule)
+                        putExtra("num", data.num)
                         addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                     }.run { context.startActivity(this) }
                 }
@@ -56,9 +59,9 @@ class ClassRecyclerViewAdapter(private val context: Context) : RecyclerView.Adap
     }
 
     private fun getClassList(): ArrayList<ClassData> {
-        val classData1 = ClassData(R.drawable.foundation, "20221234 이솜솜", "솜솜덕질", "취미", "솜솜이를 덕질해보자!", 5, "매일")
-        val classData2 = ClassData(R.drawable.simbol, "20225678 김솜솜", "정보처리기사", "자격증", "컴퓨터학과 졸업요건 달성", 6, "월 4~5시")
-        val classData3 = ClassData(R.drawable.vision, "20229000 동솜솜", "만 보 걷기", "운동", "건강해지자!!", 7, "미정")
+        val classData1 = ClassData(R.drawable.foundation, "20221234 이솜솜", "솜솜덕질", "취미", "솜솜이를 덕질해보자!", 5, "매일", "동덕여대")
+        val classData2 = ClassData(R.drawable.simbol, "20225678 김솜솜", "정보처리기사", "자격증", "컴퓨터학과 졸업요건 달성", 6, "월 4~5시", "동덕여대 대학원")
+        val classData3 = ClassData(R.drawable.vision, "20229000 동솜솜", "만 보 걷기", "운동", "건강해지자!!", 7, "미정", "동덕여대 백주년")
 
         return arrayListOf<ClassData>(classData1, classData2, classData3)
     }

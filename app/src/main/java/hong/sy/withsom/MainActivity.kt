@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.viewpager2.widget.ViewPager2
 import hong.sy.withsom.data.ClassData
 import hong.sy.withsom.databinding.ActivityMainBinding
+import hong.sy.withsom.login.SharedPreferenceManager
 import hong.sy.withsom.viewPager2.ClassViewPagerAdapter
 import hong.sy.withsom.viewPager2.NoticeViewPagerAdapter
 
@@ -43,6 +44,8 @@ class MainActivity : AppCompatActivity() {
         classBannerSetting()
 
         buttonSetting()
+
+        Toast.makeText(this, "${SharedPreferenceManager.getUserId(this)}님 환영합니다.", Toast.LENGTH_SHORT).show()
     }
 
     private fun autoScrollStart(intervalTime: Long) {
@@ -80,9 +83,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun getClassList(): ArrayList<ClassData> {
-        val classData1 = ClassData(R.drawable.foundation, "20221234 이솜솜", "솜솜덕질", "취미", "솜솜이를 덕질해보자!", 5, "매일")
-        val classData2 = ClassData(R.drawable.simbol, "20225678 김솜솜", "정보처리기사", "자격증", "컴퓨터학과 졸업요건 달성", 6, "월 4~5시")
-        val classData3 = ClassData(R.drawable.vision, "20229000 박솜솜", "만 보 걷기", "운동", "건강해지자!!", 7, "미정")
+        val classData1 = ClassData(R.drawable.foundation, "20221234 이솜솜", "솜솜덕질", "취미", "솜솜이를 덕질해보자!", 5, "매일", "동덕여대")
+        val classData2 = ClassData(R.drawable.simbol, "20225678 김솜솜", "정보처리기사", "자격증", "컴퓨터학과 졸업요건 달성", 6, "월 4~5시", "동덕여대 대학원")
+        val classData3 = ClassData(R.drawable.vision, "20229000 박솜솜", "만 보 걷기", "운동", "건강해지자!!", 7, "미정", "동덕여대 백주년")
 
         return arrayListOf<ClassData>(classData1, classData2, classData3)
     }
@@ -91,16 +94,19 @@ class MainActivity : AppCompatActivity() {
         binding.btnClassesMain.setOnClickListener {
             val intent = Intent(this, ClassesActivity::class.java)
             startActivity(intent)
+            finish()
         }
 
         binding.btnSearchMain.setOnClickListener{
             val intent = Intent(this, SearchActivity::class.java)
             startActivity(intent)
+            finish()
         }
 
         binding.btnSettingMain.setOnClickListener {
             val intent = Intent(this, SettingActivity::class.java)
             startActivity(intent)
+            finish()
         }
     }
 
@@ -151,6 +157,9 @@ class MainActivity : AppCompatActivity() {
                     putExtra("title", data.title)
                     putExtra("leader", data.leader)
                     putExtra("leader_img", data.imgLeader)
+                    putExtra("location", data.location)
+                    putExtra("schedule", data.schedule)
+                    putExtra("num", data.num)
                     addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                 }.run { startActivity(this) }
             }

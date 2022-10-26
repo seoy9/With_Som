@@ -16,28 +16,37 @@ class InquiryActivity : AppCompatActivity() {
         binding = ActivityInquiryBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        buttonSetting()
+    }
+
+    private fun buttonSetting() {
         binding.btnSendInquiry.setOnClickListener {
             Toast.makeText(this, "${binding.edInquiryContent.text}\n문의 완료!", Toast.LENGTH_SHORT).show()
+            finish()
         }
 
         binding.btnSettingInquiry.setOnClickListener {
             val intent = Intent(this, SettingActivity::class.java)
             startActivity(intent)
+            finish()
         }
 
         binding.btnClassesInquiry.setOnClickListener {
             val intent = Intent(this, ClassesActivity::class.java)
             startActivity(intent)
+            finish()
         }
 
         binding.btnHomeInquiry.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
+            finish()
         }
 
         binding.btnSearchInquiry.setOnClickListener {
             val intent = Intent(this, SearchActivity::class.java)
             startActivity(intent)
+            finish()
         }
     }
 }

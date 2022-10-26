@@ -25,6 +25,9 @@ class ClassDetailActivity : AppCompatActivity() {
         val title = intent.getStringExtra("title")
         val leader = intent.getStringExtra("leader")
         val leader_img = intent.getIntExtra("leader_img", 0)
+        val location = intent.getStringExtra("location")
+        val schedule = intent.getStringExtra("schedule")
+        val num = intent.getIntExtra("num", 0).toString()
 
         binding.tvDetailName.text = title + "\n" + leader
 
@@ -32,9 +35,13 @@ class ClassDetailActivity : AppCompatActivity() {
             binding.imgLeaderDetail.setImageResource(leader_img)
         }
 
+        binding.tvLocationDetail.text = location
+        binding.tvScheduleDetail.text = schedule
+        binding.tvNumberDetail.text = num + "명"
+
         initRecycler()
 
-       buttonSetting()
+        buttonSetting()
     }
 
     private fun initRecycler() {
@@ -56,24 +63,32 @@ class ClassDetailActivity : AppCompatActivity() {
     }
 
     private fun buttonSetting() {
+        binding.btnApplication.setOnClickListener {
+            Toast.makeText(this, "신청되었습니다.", Toast.LENGTH_SHORT).show()
+        }
+
         binding.btnHomeDetail.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
+            finish()
         }
 
         binding.btnClassesDetail.setOnClickListener {
             val intent = Intent(this, ClassesActivity::class.java)
             startActivity(intent)
+            finish()
         }
 
         binding.btnSearchDetail.setOnClickListener {
             val intent = Intent(this, SearchActivity::class.java)
             startActivity(intent)
+            finish()
         }
 
         binding.btnSettingDetail.setOnClickListener {
             val intent = Intent(this, SettingActivity::class.java)
             startActivity(intent)
+            finish()
         }
     }
 }

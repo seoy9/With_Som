@@ -16,6 +16,10 @@ class CorrectionActivity : AppCompatActivity() {
         binding = ActivityCorrectionBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        buttonSetting()
+    }
+
+    private fun buttonSetting() {
         binding.btnCorrectionFoundation.setOnClickListener {
             binding.imgCorrection.setImageResource(R.drawable.foundation)
         }
@@ -39,26 +43,31 @@ class CorrectionActivity : AppCompatActivity() {
             list += "\n비밀번호 확인: " + binding.edCorrectionRePw.text.toString()
 
             Toast.makeText(this, list + "\n수정 완료", Toast.LENGTH_LONG).show()
+            finish()
         }
 
         binding.btnClassesCorrection.setOnClickListener {
             val intent = Intent(this, ClassesActivity::class.java)
             startActivity(intent)
+            finish()
         }
 
         binding.btnSearchCorrection.setOnClickListener {
             val intent = Intent(this, SearchActivity::class.java)
             startActivity(intent)
+            finish()
         }
 
         binding.btnHomeCorrection.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
+            finish()
         }
 
         binding.btnSettingCorrection.setOnClickListener {
             val intent = Intent(this, SettingActivity::class.java)
             startActivity(intent)
+            finish()
         }
     }
 }

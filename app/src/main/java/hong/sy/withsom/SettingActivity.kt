@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import hong.sy.withsom.databinding.ActivitySettingBinding
+import hong.sy.withsom.login.SharedPreferenceManager
 import hong.sy.withsom.setting.CorrectionActivity
 import hong.sy.withsom.setting.InformationActivity
 import hong.sy.withsom.setting.InquiryActivity
@@ -23,8 +24,12 @@ class SettingActivity : AppCompatActivity() {
 
     private fun buttonSetting() {
         binding.btnLogout.setOnClickListener {
+            SharedPreferenceManager.clearUser(this)
+
+            finishAffinity()
             val intent = Intent(this, LoadingActivity::class.java)
             startActivity(intent)
+            finish()
         }
 
         binding.btnCorrection.setOnClickListener {

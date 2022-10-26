@@ -1,13 +1,12 @@
 package hong.sy.withsom
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import hong.sy.withsom.databinding.ActivityFindPassBinding
 import hong.sy.withsom.mail.GMailSender
 
-class FindPassActivity : AppCompatActivity() {
+class FindPwActivity : AppCompatActivity() {
     lateinit var binding: ActivityFindPassBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {

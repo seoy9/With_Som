@@ -1,6 +1,5 @@
 package hong.sy.withsom
 
-import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -51,7 +50,7 @@ class LoginActivity : AppCompatActivity() {
 
     private fun buttonSetting() {
         binding.tvFindPw.setOnClickListener {
-            val intent = Intent(this, FindPassActivity::class.java)
+            val intent = Intent(this, FindPwActivity::class.java)
             startActivity(intent)
         }
     }

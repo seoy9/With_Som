@@ -20,7 +20,7 @@ class GMailSender : Authenticator() {
     }
 
     // 메일 보내기
-    fun sendEmail(toEmail: String) {
+    fun sendEmail(toEmail: String, subject: String, text: String) {
         val launch = CoroutineScope(Dispatchers.IO).launch {
             val props = Properties()
             props.setProperty("mail.transport.protocol", "smtp")
@@ -35,15 +35,12 @@ class GMailSender : Authenticator() {
             // 구글에서 지원하는 smtp 정보를 받아와 MimeMessage 객체에 전달
             val session = Session.getDefaultInstance(props, this@GMailSender)
 
-            val temporaryPW = "3333"
-
             // 메시지 객체 만들기
             val message = MimeMessage(session)
             message.sender = InternetAddress(fromEmail)                                 // 보내는 사람 설정
             message.addRecipient(Message.RecipientType.TO, InternetAddress(toEmail))    // 받는 사람 설정
-            message.subject =
-                "[With Som] 임시 비밀번호입니다."                                              // 이메일 제목
-            message.setText("${toEmail} 님의 임시 비밀번호 : ${temporaryPW}")                                               // 이메일 내용
+            message.subject = "[With Som] " + subject                                             // 이메일 제목
+            message.setText(text)                                               // 이메일 내용
 
             // 전송
             Transport.send(message)

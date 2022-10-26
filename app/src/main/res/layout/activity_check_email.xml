@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FindPassActivity">
+    tools:context=".CheckEmailActivity">
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline1"
@@ -46,57 +46,58 @@
         app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/round_box" />
 
-    <Button
-        android:id="@+id/btn_find_pw"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="임시 비밀번호 발급받기"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/btn_go_login"
-        app:layout_constraintEnd_toStartOf="@+id/guideline4"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="@+id/guideline3"
-        app:layout_constraintTop_toBottomOf="@+id/ed_email_find_pw" />
-
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="비밀번호 찾기"
+        android:text="이메일 확인"
         android:textColor="@color/black"
         android:textSize="25sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/ed_email_find_pw"
+        app:layout_constraintBottom_toTopOf="@+id/ed_check_certification"
         app:layout_constraintEnd_toStartOf="@+id/guideline4"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="@+id/guideline3"
         app:layout_constraintTop_toTopOf="@+id/guideline1" />
 
-    <EditText
-        android:id="@+id/ed_email_find_pw"
+    <TextView
+        android:id="@+id/textView11"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="메일로 전송된 인증번호를 작성해주세요."
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="@+id/textView2"
+        app:layout_constraintStart_toStartOf="@+id/textView2"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+    <EditText
+        android:id="@+id/ed_check_certification"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
         android:ems="10"
         android:gravity="center"
-        android:hint="이메일"
+        android:hint="인증번호"
         android:inputType="textEmailAddress"
-        app:layout_constraintBottom_toTopOf="@+id/btn_find_pw"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/btn_check_email"
         app:layout_constraintEnd_toStartOf="@+id/guideline4"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="@+id/guideline3"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <Button
-        android:id="@+id/btn_go_login"
+        android:id="@+id/btn_check_email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="로그인"
+        android:text="인증하기"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/guideline2"
         app:layout_constraintEnd_toStartOf="@+id/guideline4"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="@+id/guideline3"
-        app:layout_constraintTop_toBottomOf="@+id/btn_find_pw" />
-
+        app:layout_constraintTop_toBottomOf="@+id/ed_check_certification" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

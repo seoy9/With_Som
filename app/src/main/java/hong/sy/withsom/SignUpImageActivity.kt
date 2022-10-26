@@ -20,6 +20,7 @@ class SignUpImageActivity : AppCompatActivity() {
 
     private fun buttonSetting() {
         binding.btnSignupDone.setOnClickListener {
+            finishAffinity()
             val intent = Intent(this@SignUpImageActivity, LoginActivity::class.java)
             startActivity(intent)
             finish()

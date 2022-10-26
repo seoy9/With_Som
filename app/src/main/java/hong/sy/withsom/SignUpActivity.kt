@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import hong.sy.withsom.databinding.ActivitySignUpBinding
+import hong.sy.withsom.mail.GMailSender
 
 class SignUpActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySignUpBinding
@@ -21,19 +22,25 @@ class SignUpActivity : AppCompatActivity() {
     private fun buttonSetting() {
         binding.btnSignupNext.setOnClickListener {
             if(checkContent() && checkPw() && checkPrivacy()) {
-                val intent = Intent(this, SignUpImageActivity::class.java)
+                val email = binding.edEmail.text.toString()
+                val certificationNum = "1234"
+                
+                GMailSender().sendEmail(email, "이메일 인증번호입니다.", "${email} 님의 인증번호 : ${certificationNum}")
+                Toast.makeText(this, "인증번호를 메일로 전송했습니다.", Toast.LENGTH_SHORT).show()
+
+                val intent = Intent(this, CheckEmailActivity::class.java)
                 startActivity(intent)
             }
         }
     }
 
     private fun checkContent() : Boolean {
-        val name = binding.edName.text.toString()
-        val stNum = binding.edStNum.text.toString()
-        val depart = binding.edDepart.text.toString()
-        val email = binding.edEmail.text.toString()
-        val pw = binding.edPw.text.toString()
-        val repw = binding.edPwCheck.text.toString()
+        val name = binding.edName.text
+        val stNum = binding.edStNum.text
+        val depart = binding.edDepart.text
+        val email = binding.edEmail.text
+        val pw = binding.edPw.text
+        val repw = binding.edPwCheck.text
 
         if(name.isNullOrBlank() || stNum.isNullOrBlank() || depart.isNullOrBlank() || email.isNullOrBlank() || pw.isNullOrBlank() || repw.isNullOrBlank()) {
             Toast.makeText(this, "모든 항목을 입력해주세요.", Toast.LENGTH_SHORT).show()

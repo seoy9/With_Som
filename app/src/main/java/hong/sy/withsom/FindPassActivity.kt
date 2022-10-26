@@ -22,10 +22,11 @@ class FindPassActivity : AppCompatActivity() {
     private fun buttonSetting() {
         binding.btnFindPw.setOnClickListener {
             var email = binding.edEmailFindPw.text.toString()
+            val temporaryPW = "3333"
 
             Toast.makeText(this, email, Toast.LENGTH_SHORT).show()
 
-            GMailSender().sendEmail(email)
+            GMailSender().sendEmail(email, "임시 비밀번호입니다." , "${email} 님의 임시 비밀번호 : ${temporaryPW}")
             Toast.makeText(this, "임시 비밀번호를 메일로 전송했습니다.", Toast.LENGTH_SHORT).show()
         }
 

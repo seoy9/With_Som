@@ -3,7 +3,10 @@ package hong.sy.withsom
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import hong.sy.withsom.databinding.ActivityCheckEmailBinding
 
 class CheckEmailActivity : AppCompatActivity() {
@@ -14,6 +17,8 @@ class CheckEmailActivity : AppCompatActivity() {
 
         binding = ActivityCheckEmailBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        textChangedSetting()
 
         buttonSetting()
     }
@@ -32,5 +37,25 @@ class CheckEmailActivity : AppCompatActivity() {
                 Toast.makeText(this, "인증번호가 다릅니다.\n다시 확인해주세요.", Toast.LENGTH_SHORT).show()
             }
         }
+    }
+
+    private fun textChangedSetting() {
+        binding.edCheckCertification.addTextChangedListener(object: TextWatcher {
+            override fun afterTextChanged(p0: Editable?) { }
+
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) { }
+
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                if (p0 != null) {
+                    if(p0.length >= 4) {
+                        binding.btnCheckEmail.backgroundTintList = ContextCompat.getColorStateList(applicationContext, R.color.dongduk)
+                        binding.btnCheckEmail.setEnabled(true)
+                    } else {
+                        binding.btnCheckEmail.backgroundTintList = ContextCompat.getColorStateList(applicationContext, R.color.nonButton)
+                        binding.btnCheckEmail.setEnabled(false)
+                    }
+                }
+            }
+        })
     }
 }

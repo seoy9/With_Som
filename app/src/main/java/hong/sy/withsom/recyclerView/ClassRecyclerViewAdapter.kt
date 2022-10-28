@@ -5,13 +5,17 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.TextView
+import androidx.core.view.size
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import hong.sy.withsom.data.ClassData
 import hong.sy.withsom.ClassDetailActivity
 import hong.sy.withsom.viewPager2.ClassViewPagerAdapter
 import hong.sy.withsom.R
+import java.io.Serializable
+import java.util.*
 
 class ClassRecyclerViewAdapter(private val context: Context) : RecyclerView.Adapter<ClassRecyclerViewAdapter.ViewHolder>() {
     var datas = mutableListOf<ClassData>()
@@ -33,6 +37,8 @@ class ClassRecyclerViewAdapter(private val context: Context) : RecyclerView.Adap
         private val classes : ViewPager2 = itemView.findViewById(R.id.viewPager_classes)
         private val classDetail : ArrayList<ClassData> = getClassList()
         private val classViewPagerAdapter =  ClassViewPagerAdapter(classDetail)
+        private val nextButton: ImageButton = itemView.findViewById(R.id.btn_next_class)
+        private val beforeButton: ImageButton = itemView.findViewById(R.id.btn_before_class)
 
         fun setting() {
             classes.adapter = classViewPagerAdapter
@@ -40,21 +46,58 @@ class ClassRecyclerViewAdapter(private val context: Context) : RecyclerView.Adap
 
             classViewPagerAdapter.setOnItemClickListener(object : ClassViewPagerAdapter.OnItemClickListener {
                 override fun onClick(v: View, data: ClassData, pos: Int) {
-                    Intent(context, ClassDetailActivity::class.java).apply {
-                        putExtra("title", data.title)
-                        putExtra("leader", data.leader)
-                        putExtra("leader_img", data.imgLeader)
-                        putExtra("location", data.location)
-                        putExtra("schedule", data.schedule)
-                        putExtra("num", data.num)
-                        addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                    }.run { context.startActivity(this) }
+                    val intent = Intent(context, ClassDetailActivity::class.java)
+                    intent.putExtra("data", data as Serializable)
+                    context.startActivity(intent)
                 }
+            })
+
+            classes.registerOnPageChangeCallback(object: ViewPager2.OnPageChangeCallback() {
+                    override fun onPageSelected(position: Int) {
+                        super.onPageSelected(position)
+                        if(classDetail.size == 1) {
+                            blindAllButton()
+                        } else if(position == 0) {
+                            blindBeforeButton()
+                        } else if(position == itemCount-1) {
+                            blindNextButton()
+                        } else {
+                            showAllButton()
+                        }
+
+                        var currentPosition = position
+                        nextButton.setOnClickListener {
+                            classes.setCurrentItem(++currentPosition, true)
+                        }
+                        beforeButton.setOnClickListener {
+                            classes.setCurrentItem(--currentPosition, true)
+                        }
+                    }
             })
         }
 
         fun bind(item: ClassData) {
             type.text = "#" + item.type
+        }
+
+        fun blindBeforeButton() {
+            beforeButton.setVisibility(View.INVISIBLE)
+            nextButton.setVisibility(View.VISIBLE)
+        }
+
+        fun blindNextButton() {
+            beforeButton.setVisibility(View.VISIBLE)
+            nextButton.setVisibility(View.INVISIBLE)
+        }
+
+        fun showAllButton() {
+            beforeButton.setVisibility(View.VISIBLE)
+            nextButton.setVisibility(View.VISIBLE)
+        }
+
+        fun blindAllButton() {
+            beforeButton.setVisibility(View.INVISIBLE)
+            nextButton.setVisibility(View.INVISIBLE)
         }
     }
 

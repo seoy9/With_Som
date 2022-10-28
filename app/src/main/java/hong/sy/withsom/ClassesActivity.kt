@@ -3,6 +3,8 @@ package hong.sy.withsom
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import hong.sy.withsom.createclass.ClassNameActivity
+import hong.sy.withsom.createclass.ClassScheduleActivity
 import hong.sy.withsom.data.ClassData
 import hong.sy.withsom.databinding.ActivityClassesBinding
 import hong.sy.withsom.recyclerView.ClassRecyclerViewAdapter
@@ -43,6 +45,12 @@ class ClassesActivity : AppCompatActivity() {
     }
 
     private fun buttonSetting() {
+        binding.fabCreate.setOnClickListener {
+            val intent = Intent(this, ClassNameActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+
         binding.btnHomeClasses.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)

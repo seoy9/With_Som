@@ -24,6 +24,7 @@ class MainActivity : AppCompatActivity() {
     private var currentPosition = Int.MAX_VALUE / 2
     private val intervalTime = 3000.toLong()
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -36,10 +37,6 @@ class MainActivity : AppCompatActivity() {
         }
 
         noticeBannerSetting()
-
-        binding.noticeSeeAll.setOnClickListener {
-            Toast.makeText(this, "모두 보기 클릭했음", Toast.LENGTH_SHORT).show()
-        }
 
         classBannerSetting()
 
@@ -116,8 +113,7 @@ class MainActivity : AppCompatActivity() {
         binding.tvTotalNotice.text = numBanner.toString()
         binding.viewpagerNotice.setCurrentItem(currentPosition, false)
 
-        binding.viewpagerNotice.apply {
-            registerOnPageChangeCallback(object: ViewPager2.OnPageChangeCallback() {
+        binding.viewpagerNotice.registerOnPageChangeCallback(object: ViewPager2.OnPageChangeCallback() {
                 override fun onPageSelected(position: Int) {
                     super.onPageSelected(position)
                     binding.tvCurrentNotice.text = "${(position % 3) + 1}"
@@ -130,11 +126,21 @@ class MainActivity : AppCompatActivity() {
                         ViewPager2.SCROLL_STATE_DRAGGING -> autoScrollStop()
                     }
                 }
-            })
-        }
+        })
     }
 
     private fun classBannerSetting() {
+        val pageMarginPx = resources.getDimensionPixelOffset(R.dimen.pageMargin)
+        val pageWidth = resources.getDimensionPixelOffset(R.dimen.pageWidth)
+        val screenWidth = resources.displayMetrics.widthPixels
+        val offsetPx = screenWidth - pageMarginPx - pageWidth
+
+        binding.viewpagerClass.setPageTransformer {page, position ->
+            page.translationX = position * -offsetPx
+        }
+
+        binding.viewpagerClass.offscreenPageLimit = 1
+
         classViewPagerAdapter = ClassViewPagerAdapter(getClassList())
 
         binding.viewpagerClass.adapter = classViewPagerAdapter
@@ -142,26 +148,18 @@ class MainActivity : AppCompatActivity() {
 
         binding.tvTotalClass.text = numBanner.toString()
 
-        binding.viewpagerClass.apply {
-            registerOnPageChangeCallback(object: ViewPager2.OnPageChangeCallback() {
-                override fun onPageSelected(position: Int) {
-                    super.onPageSelected(position)
-                    binding.tvCurrentClass.text = "${position+1}"
-                }
-            })
-        }
+        binding.viewpagerClass.registerOnPageChangeCallback(object: ViewPager2.OnPageChangeCallback() {
+            override fun onPageSelected(position: Int) {
+                super.onPageSelected(position)
+                binding.tvCurrentClass.text = "${position+1}"
+            }
+        })
 
         classViewPagerAdapter.setOnItemClickListener(object : ClassViewPagerAdapter.OnItemClickListener {
             override fun onClick(v: View, data: ClassData, pos: Int) {
-                Intent(this@MainActivity, ClassDetailActivity::class.java).apply {
-                    putExtra("title", data.title)
-                    putExtra("leader", data.leader)
-                    putExtra("leader_img", data.imgLeader)
-                    putExtra("location", data.location)
-                    putExtra("schedule", data.schedule)
-                    putExtra("num", data.num)
-                    addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                }.run { startActivity(this) }
+                val intent = Intent(this@MainActivity, ClassDetailActivity::class.java)
+                intent.putExtra("data", data)
+                startActivity(intent)
             }
         })
     }

@@ -11,8 +11,8 @@ import javax.mail.internet.MimeMessage
 
 class GMailSender : Authenticator() {
     // 보내는 사람 이메일과 비밀번호
-    val fromEmail = "donduk.withsom@gmail.com"
-    val password = "dfopjmidqybhaeca"
+    val fromEmail = "dongduk.withsom@gmail.com"
+    val password = "junccmpeypyvgucu"
 
     // 보내는 사람 계정 확인
     override fun getPasswordAuthentication(): PasswordAuthentication {

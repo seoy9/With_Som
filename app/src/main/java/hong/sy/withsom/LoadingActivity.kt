@@ -16,9 +16,9 @@ class LoadingActivity : AppCompatActivity() {
         binding = ActivityLoadingBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        if(SharedPreferenceManager.getUserId(this).isNullOrBlank() || SharedPreferenceManager.getUserPass(this).isNullOrBlank()) {
+        if(SharedPreferenceManager.getUserEmail(this).isNullOrBlank() || SharedPreferenceManager.getUserPass(this).isNullOrBlank()) {
         } else {
-            Toast.makeText(this, "${SharedPreferenceManager.getUserId(this)}님 자동로그인 되었습니다.", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "${SharedPreferenceManager.getUserEmail(this)}님 자동로그인 되었습니다.", Toast.LENGTH_SHORT).show()
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
             finish()

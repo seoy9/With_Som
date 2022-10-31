@@ -9,13 +9,14 @@ import androidx.core.content.ContextCompat
 import hong.sy.withsom.*
 import hong.sy.withsom.data.ClassData
 import hong.sy.withsom.databinding.ActivityClassContentBinding
+import hong.sy.withsom.room.ClassEntity
 import java.io.Serializable
 
 class ClassContentActivity : AppCompatActivity() {
     lateinit var binding: ActivityClassContentBinding
     private var total = ""
     lateinit var title: String
-    lateinit var classData: ClassData
+    lateinit var classEntity: ClassEntity
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,7 +28,7 @@ class ClassContentActivity : AppCompatActivity() {
 
         title = intent.getStringExtra("title").toString()
 
-        classData = intent.getSerializableExtra("data") as ClassData
+        classEntity= intent.getSerializableExtra("data") as ClassEntity
 
         buttonSetting()
 
@@ -36,15 +37,16 @@ class ClassContentActivity : AppCompatActivity() {
 
     private fun buttonSetting() {
         binding.btnClassContentNext.setOnClickListener {
-            total += "모임 소개 : " + binding.edClassContent.text.toString() + "\n"
+            val content = binding.edClassContent.text.toString()
 
-            classData.content = binding.edClassContent.text.toString()
+            total += "모임 소개 : " + content + "\n"
+            classEntity.content = content
 
             val intent = Intent(this, ClassLocationActivity::class.java)
             intent.putExtra("total", total)
 //            intent.putExtra("title", title)
 //            intent.putExtra("content", binding.edClassContent.text.toString())
-            intent.putExtra("data", classData as Serializable)
+            intent.putExtra("data", classEntity as Serializable)
             startActivity(intent)
         }
 

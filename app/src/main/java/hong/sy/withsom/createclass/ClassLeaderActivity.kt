@@ -3,6 +3,8 @@ package hong.sy.withsom.createclass
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.text.Editable
 import android.text.TextWatcher
 import android.widget.Toast
@@ -10,12 +12,18 @@ import androidx.core.content.ContextCompat
 import hong.sy.withsom.*
 import hong.sy.withsom.data.ClassData
 import hong.sy.withsom.databinding.ActivityClassLeaderBinding
+import hong.sy.withsom.room.ClassDao
+import hong.sy.withsom.room.ClassDatabase
+import hong.sy.withsom.room.ClassEntity
 import java.io.Serializable
 
 class ClassLeaderActivity : AppCompatActivity() {
     lateinit var binding: ActivityClassLeaderBinding
     private var total = ""
-    lateinit var classData: ClassData
+    lateinit var classEntity: ClassEntity
+
+    private lateinit var db: ClassDatabase
+    private lateinit var classDao: ClassDao
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,9 +31,12 @@ class ClassLeaderActivity : AppCompatActivity() {
         binding = ActivityClassLeaderBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        db = ClassDatabase.getInstance(this)!!
+        classDao = db.getClassDao()
+
         total += intent.getStringExtra("total")
 
-        classData = intent.getSerializableExtra("data") as ClassData
+        classEntity = intent.getSerializableExtra("data") as ClassEntity
 
         buttonSetting()
 
@@ -34,14 +45,14 @@ class ClassLeaderActivity : AppCompatActivity() {
 
     private fun buttonSetting() {
         binding.btnClassLeaderDone.setOnClickListener {
-            total += "리더 소개 : " + binding.edClassLeader.text.toString()
+            val leaderContent = binding.edClassLeader.text.toString()
+
+            total += "리더 소개 : " + leaderContent
+            classEntity.leaderContent = leaderContent
+
             Toast.makeText(this, total, Toast.LENGTH_LONG).show()
 
-            // class data 리더 소개 변수 추가
-
-            val intent = Intent(this, ClassDetailActivity::class.java)
-            intent.putExtra("data", classData as Serializable)
-            startActivity(intent)
+            insertClass()
         }
 
         binding.btnHomeLeader.setOnClickListener {
@@ -85,5 +96,22 @@ class ClassLeaderActivity : AppCompatActivity() {
                 }
             }
         })
+    }
+
+    private fun insertClass() {
+        Thread {
+            classDao.insertClass(classEntity)
+
+            val handler = Handler(Looper.getMainLooper())
+            handler.postDelayed(object: Runnable {
+                override fun run() {
+                    Toast.makeText(this@ClassLeaderActivity, "insert", Toast.LENGTH_SHORT).show()
+                }
+            }, 0)
+
+            val intent = Intent(this, ClassDetailActivity::class.java)
+            intent.putExtra("data", classEntity as Serializable)
+            startActivity(intent)
+        }.start()
     }
 }

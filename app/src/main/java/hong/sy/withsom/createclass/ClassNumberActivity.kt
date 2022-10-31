@@ -9,12 +9,13 @@ import androidx.core.content.ContextCompat
 import hong.sy.withsom.*
 import hong.sy.withsom.data.ClassData
 import hong.sy.withsom.databinding.ActivityClassNumberBinding
+import hong.sy.withsom.room.ClassEntity
 import java.io.Serializable
 
 class ClassNumberActivity : AppCompatActivity() {
     lateinit var binding: ActivityClassNumberBinding
     private var total = ""
-    lateinit var classData: ClassData
+    lateinit var classEntity: ClassEntity
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,7 +25,7 @@ class ClassNumberActivity : AppCompatActivity() {
 
         total += intent.getStringExtra("total")
 
-        classData = intent.getSerializableExtra("data") as ClassData
+        classEntity = intent.getSerializableExtra("data") as ClassEntity
 
         buttonSetting()
 
@@ -33,12 +34,14 @@ class ClassNumberActivity : AppCompatActivity() {
 
     private fun buttonSetting() {
         binding.btnClassNumberNext.setOnClickListener {
-            total += "모집 인원 : " + binding.edClassNumber.text.toString() + "\n"
-            classData.num = binding.edClassNumber.text.toString().toInt()
+            val totalNum = binding.edClassNumber.text.toString()
+
+            total += "모집 인원 : " + totalNum + "\n"
+            classEntity.totalNum = totalNum.toInt()
 
             val intent = Intent(this, ClassMemberActivity::class.java)
             intent.putExtra("total", total)
-            intent.putExtra("data", classData as Serializable)
+            intent.putExtra("data", classEntity as Serializable)
             startActivity(intent)
         }
 

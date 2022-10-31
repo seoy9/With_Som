@@ -5,11 +5,11 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.widget.Toast
 import androidx.core.content.ContextCompat
 import hong.sy.withsom.*
 import hong.sy.withsom.data.ClassData
 import hong.sy.withsom.databinding.ActivityClassLocationBinding
+import hong.sy.withsom.room.ClassEntity
 import java.io.Serializable
 
 class ClassLocationActivity : AppCompatActivity() {
@@ -17,7 +17,7 @@ class ClassLocationActivity : AppCompatActivity() {
     private var total = ""
     lateinit var title: String
     lateinit var content: String
-    lateinit var classData: ClassData
+    lateinit var classEntity: ClassEntity
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,7 +30,7 @@ class ClassLocationActivity : AppCompatActivity() {
         title = intent.getStringExtra("title").toString()
         content = intent.getStringExtra("content").toString()
 
-        classData = intent.getSerializableExtra("data") as ClassData
+        classEntity = intent.getSerializableExtra("data") as ClassEntity
 
         buttonSetting()
 
@@ -39,15 +39,17 @@ class ClassLocationActivity : AppCompatActivity() {
 
     private fun buttonSetting() {
         binding.btnClassLocationNext.setOnClickListener {
-            total += "모임 위치 : " + binding.edClassLocation.text.toString() + "\n"
-            classData.location = binding.edClassLocation.text.toString()
+            val location = binding.edClassLocation.text.toString()
+
+            total += "모임 위치 : " + location + "\n"
+            classEntity.location = location
 
             val intent = Intent(this, ClassNumberActivity::class.java)
             intent.putExtra("total", total)
 //            intent.putExtra("title", title)
 //            intent.putExtra("content", content)
 //            intent.putExtra("location", binding.edClassLocation.text.toString())
-            intent.putExtra("data", classData as Serializable)
+            intent.putExtra("data", classEntity as Serializable)
             startActivity(intent)
         }
 

@@ -1,28 +1,24 @@
 package hong.sy.withsom.createclass
 
-import android.R
 import android.content.DialogInterface
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.widget.ArrayAdapter
-import android.widget.Spinner
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
 import hong.sy.withsom.*
 import hong.sy.withsom.data.ClassData
 import hong.sy.withsom.databinding.ActivityClassScheduleBinding
+import hong.sy.withsom.room.ClassEntity
 import java.io.Serializable
-import java.util.*
 
 class ClassScheduleActivity : AppCompatActivity() {
     lateinit var binding: ActivityClassScheduleBinding
     private var total = ""
     private val isChecked = BooleanArray(10){ i -> false }
-    lateinit var classData: ClassData
+    lateinit var classEntity: ClassEntity
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,7 +28,7 @@ class ClassScheduleActivity : AppCompatActivity() {
 
         total += intent.getStringExtra("total")
 
-        classData = intent.getSerializableExtra("data") as ClassData
+        classEntity = intent.getSerializableExtra("data") as ClassEntity
 
         buttonSetting()
 
@@ -61,7 +57,11 @@ class ClassScheduleActivity : AppCompatActivity() {
                         }
                     }
 
-                    checked = checked.subSequence(0, checked.length - 2).toString()
+                    if(checked == "") {
+                        checked = "선택 안 함"
+                    } else {
+                        checked = checked.subSequence(0, checked.length - 2).toString()
+                    }
 
                     binding.tvScheduleChecked.text = checked
                 }
@@ -69,15 +69,22 @@ class ClassScheduleActivity : AppCompatActivity() {
         }
 
         binding.btnClassScheduleNext.setOnClickListener {
-            total += "모임 일정 : " + binding.tvScheduleChecked.text.toString() + "\n"
-            total += "모임 일정 상세 소개 : " + binding.edClassScheduleDetail.text.toString() + "\n"
-            classData.schedule = binding.tvScheduleChecked.text.toString()
-            // classData 스케줄 상세 변수 추가
+            var schedule = binding.tvScheduleChecked.text.toString()
+            val scheduleDetail = binding.edClassScheduleDetail.text.toString()
+
+            if(schedule == "선택 안 함") {
+                schedule = "미정"
+            }
+
+            total += "모임 일정 : " + schedule + "\n"
+            total += "모임 일정 상세 소개 : " + scheduleDetail + "\n"
+            classEntity.schedule = schedule
+            classEntity.scheduleDetail = scheduleDetail
 
 
             val intent = Intent(this, ClassLeaderActivity::class.java)
             intent.putExtra("total", total)
-            intent.putExtra("data", classData as Serializable)
+            intent.putExtra("data", classEntity as Serializable)
             startActivity(intent)
         }
 

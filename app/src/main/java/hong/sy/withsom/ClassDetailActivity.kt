@@ -10,6 +10,10 @@ import hong.sy.withsom.databinding.ActivityClassDetailBinding
 import hong.sy.withsom.recyclerView.DetailRecyclerViewAdapter
 import hong.sy.withsom.recyclerView.HorizontalItemDecorator
 import hong.sy.withsom.recyclerView.VerticalItemDecorator
+import hong.sy.withsom.room.ClassEntity
+import hong.sy.withsom.room.UserDao
+import hong.sy.withsom.room.UserDatabase
+import hong.sy.withsom.room.UserEntity
 
 class ClassDetailActivity : AppCompatActivity() {
     private lateinit var binding: ActivityClassDetailBinding
@@ -17,7 +21,10 @@ class ClassDetailActivity : AppCompatActivity() {
     lateinit var detailAdapter: DetailRecyclerViewAdapter
     val datas = mutableListOf<DetailData>()
 
-    lateinit var classData: ClassData
+    lateinit var classEntity: ClassEntity
+
+    private lateinit var db: UserDatabase
+    private lateinit var userDao: UserDao
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,9 +32,12 @@ class ClassDetailActivity : AppCompatActivity() {
         binding = ActivityClassDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        classData = intent.getSerializableExtra("data") as ClassData
+        db = UserDatabase.getInstance(this)!!
+        userDao = db.getUserDao()
 
-        if(classData == null) {
+        classEntity = intent.getSerializableExtra("data") as ClassEntity
+
+        if(classEntity == null) {
 
             val title = intent.getStringExtra("title")
             val leader = intent.getStringExtra("leader")
@@ -46,11 +56,13 @@ class ClassDetailActivity : AppCompatActivity() {
             binding.tvScheduleDetail.text = schedule
             binding.tvNumberDetail.text = num + "명"
         } else {
-            binding.tvDetailName.text = classData.title + "\n" + classData.leader
-            binding.imgLeaderDetail.setImageResource(classData.imgLeader)
-            binding.tvLocationDetail.text = classData.location
-            binding.tvScheduleDetail.text = classData.schedule
-            binding.tvNumberDetail.text = classData.num.toString() + "명"
+            getUser(classEntity.leaderID)
+
+//            binding.tvDetailName.text = classEntity.name + "\n" + user.stNum + " " + user.name
+//            binding.imgLeaderDetail.setImageResource(user.profile)
+//            binding.tvLocationDetail.text = classEntity.location
+//            binding.tvScheduleDetail.text = classEntity.schedule
+//            binding.tvNumberDetail.text = classEntity.totalNum.toString() + "명"
         }
 
         initRecycler()
@@ -62,7 +74,7 @@ class ClassDetailActivity : AppCompatActivity() {
         detailAdapter = DetailRecyclerViewAdapter(this)
         binding.rvDetail.adapter = detailAdapter
 
-        if(classData == null) {
+        if(classEntity == null) {
 
             datas.apply {
                 add(DetailData(title = "모임 소개", content = "솜솜이를 사랑하시는 분!\n같이 덕질해요!"))
@@ -75,10 +87,10 @@ class ClassDetailActivity : AppCompatActivity() {
             }
         } else {
             datas.apply {
-                add(DetailData(title = "모임 소개", content = classData.content))
-                add(DetailData(title = "모임 대상", content = "not member"))
-                add(DetailData(title = "모임 일정", content = "not schedule detail"))
-                add(DetailData(title = "리더 소개", content = "not leader content"))
+                add(DetailData(title = "모임 소개", content = classEntity.content))
+                add(DetailData(title = "모임 대상", content = classEntity.member))
+                add(DetailData(title = "모임 일정", content = classEntity.scheduleDetail))
+                add(DetailData(title = "리더 소개", content = classEntity.leaderContent))
 
                 detailAdapter.datas = datas
                 detailAdapter.notifyDataSetChanged()
@@ -117,5 +129,19 @@ class ClassDetailActivity : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
+    }
+
+    private fun getUser(id: String) {
+        Thread {
+            val user = userDao.selectEmailUser(id)
+
+            if(user != null) {
+                binding.tvDetailName.text = classEntity.name + "\n" + user.stNum + " " + user.name
+                binding.imgLeaderDetail.setImageResource(user.profile)
+                binding.tvLocationDetail.text = classEntity.location
+                binding.tvScheduleDetail.text = classEntity.schedule
+                binding.tvNumberDetail.text = classEntity.totalNum.toString() + "명"
+            }
+        }.start()
     }
 }

@@ -11,9 +11,14 @@ import androidx.recyclerview.widget.RecyclerView
 import hong.sy.withsom.ClassDetailActivity
 import hong.sy.withsom.R
 import hong.sy.withsom.data.ClassData
+import hong.sy.withsom.room.ClassEntity
+import hong.sy.withsom.room.UserDatabase
+import hong.sy.withsom.room.UserEntity
+import java.io.Serializable
+import java.util.*
 
 class SearchRecyclerViewAdapter(private val context: Context) : RecyclerView.Adapter<SearchRecyclerViewAdapter.SearchViewHolder>() {
-    var classes = mutableListOf<ClassData>()
+    var classes = ArrayList<ClassEntity>()
 
     inner class SearchViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         private val img_leader : ImageView = itemView.findViewById(R.id.img_leader_search)
@@ -22,23 +27,35 @@ class SearchRecyclerViewAdapter(private val context: Context) : RecyclerView.Ada
         private val tv_schedule : TextView = itemView.findViewById(R.id.tv_schedule_search)
         private val tv_num : TextView = itemView.findViewById(R.id.tv_num_search)
 
-        fun bind(item : ClassData) {
-            img_leader.setImageResource(item.imgLeader)
-            tv_title.text = item.title
+        private val db = UserDatabase.getInstance(view.context)!!
+        private val userDao = db.getUserDao()
+        private lateinit var user: UserEntity
+
+        fun bind(item : ClassEntity) {
+            Thread {
+                user = userDao.selectIDUser(item.leaderID)
+            }.start()
+
+            img_leader.setImageResource(user.profile)
+            tv_title.text = item.name
             tv_type.text = item.type
             tv_schedule.text = item.schedule
-            tv_num.text = "정원 " + item.num.toString() + "명"
+            tv_num.text = "정원 " + item.totalNum.toString() + "명"
 
             itemView.setOnClickListener {
-                Intent(context, ClassDetailActivity::class.java).apply {
-                    putExtra("title", item.title)
-                    putExtra("leader", item.leader)
-                    putExtra("leader_img", item.imgLeader)
-                    putExtra("location", item.location)
-                    putExtra("schedule", item.schedule)
-                    putExtra("num", item.num)
-                    addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                }.run { context.startActivity(this) }
+//                Intent(context, ClassDetailActivity::class.java).apply {
+//                    putExtra("title", item.name)
+//                    putExtra("leader", user.)
+//                    putExtra("leader_img", item.imgLeader)
+//                    putExtra("location", item.location)
+//                    putExtra("schedule", item.schedule)
+//                    putExtra("num", item.num)
+//                    addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+//                }.run { context.startActivity(this) }
+
+                val intent = Intent(context, ClassDetailActivity::class.java)
+                intent.putExtra("data", item as Serializable)
+                context.startActivity(intent)
             }
         }
     }

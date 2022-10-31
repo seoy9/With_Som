@@ -9,12 +9,13 @@ import androidx.core.content.ContextCompat
 import hong.sy.withsom.*
 import hong.sy.withsom.data.ClassData
 import hong.sy.withsom.databinding.ActivityClassMemberBinding
+import hong.sy.withsom.room.ClassEntity
 import java.io.Serializable
 
 class ClassMemberActivity : AppCompatActivity() {
     lateinit var binding: ActivityClassMemberBinding
     private var total = ""
-    lateinit var classData: ClassData
+    lateinit var classEntity: ClassEntity
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,7 +25,7 @@ class ClassMemberActivity : AppCompatActivity() {
 
         total += intent.getStringExtra("total")
 
-        classData = intent.getSerializableExtra("data") as ClassData
+        classEntity = intent.getSerializableExtra("data") as ClassEntity
 
         buttonSetting()
 
@@ -33,12 +34,14 @@ class ClassMemberActivity : AppCompatActivity() {
 
     private fun buttonSetting() {
         binding.btnClassMemberNext.setOnClickListener {
-            total += "모집 대상 : " + binding.edClassMember.text.toString() + "\n"
-            // data class 에 member 변수 넣어야 함
+            val member = binding.edClassMember.text.toString()
+
+            total += "모집 대상 : " + member + "\n"
+            classEntity.member = member
 
             val intent = Intent(this, ClassScheduleActivity::class.java)
             intent.putExtra("total", total)
-            intent.putExtra("data", classData as Serializable)
+            intent.putExtra("data", classEntity as Serializable)
             startActivity(intent)
         }
 

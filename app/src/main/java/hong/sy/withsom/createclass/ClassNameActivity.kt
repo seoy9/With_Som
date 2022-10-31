@@ -10,6 +10,7 @@ import hong.sy.withsom.*
 import hong.sy.withsom.data.ClassData
 import hong.sy.withsom.databinding.ActivityClassNameBinding
 import hong.sy.withsom.login.SharedPreferenceManager
+import hong.sy.withsom.room.*
 import java.io.Serializable
 
 class ClassNameActivity : AppCompatActivity() {
@@ -22,6 +23,7 @@ class ClassNameActivity : AppCompatActivity() {
         binding = ActivityClassNameBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+
         buttonSetting()
 
         textChangedSetting()
@@ -29,14 +31,17 @@ class ClassNameActivity : AppCompatActivity() {
 
     private fun buttonSetting() {
         binding.btnClassNameNext.setOnClickListener {
-            total += "모임 이름 : " + binding.edClassName.text.toString() + "\n"
 
-            val classData = ClassData(R.drawable.foundation, SharedPreferenceManager.getUserId(this), binding.edClassName.text.toString(), "non", "non", 0, "non", "non")
+            val name = binding.edClassName.text.toString()
+            val leaderID = SharedPreferenceManager.getUserId(this)
+            total += "모임 이름 : " + name + "\n"
 
-            val intent = Intent(this, ClassContentActivity::class.java)
+            val classEntity = ClassEntity(null, name, "", "", "", 0, 0, "", "", "", leaderID, "")
+
+            val intent = Intent(this, ClassTypeActivity::class.java)
             intent.putExtra("total", total)
 //            intent.putExtra("title", binding.edClassName.text.toString())
-            intent.putExtra("data", classData as Serializable)
+            intent.putExtra("data", classEntity as Serializable)
             startActivity(intent)
         }
 

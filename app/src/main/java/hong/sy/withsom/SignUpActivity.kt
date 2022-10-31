@@ -3,21 +3,34 @@ package hong.sy.withsom
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.text.Editable
 import android.text.TextWatcher
 import android.widget.Toast
 import androidx.core.content.ContextCompat
+import hong.sy.withsom.data.UserData
 import hong.sy.withsom.databinding.ActivitySignUpBinding
 import hong.sy.withsom.mail.GMailSender
+import hong.sy.withsom.room.UserDao
+import hong.sy.withsom.room.UserDatabase
+import hong.sy.withsom.room.UserEntity
+import java.io.Serializable
 
 class SignUpActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySignUpBinding
+
+    private lateinit var db: UserDatabase
+    private lateinit var userDao: UserDao
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = ActivitySignUpBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        db = UserDatabase.getInstance(this)!!
+        userDao = db.getUserDao()
 
         buttonSetting()
 
@@ -28,13 +41,12 @@ class SignUpActivity : AppCompatActivity() {
         binding.btnSignupNext.setOnClickListener {
             if(checkContent() && checkStNum() && checkEmail() && checkPw() && checkRePw() && checkPrivacy()) {
                 val email = binding.edEmail.text.toString()
-                val certificationNum = "1234"
-                
-                GMailSender().sendEmail(email, "이메일 인증번호입니다.", "${email} 님의 인증번호 : ${certificationNum}")
-                Toast.makeText(this, "인증번호를 메일로 전송했습니다.", Toast.LENGTH_SHORT).show()
+//                val pw = binding.edPw.text.toString()
+//                val name = binding.edName.text.toString()
+//                val stNum = binding.edStNum.text.toString()
+//                val depart = binding.edDepart.text.toString()
 
-                val intent = Intent(this, CheckEmailActivity::class.java)
-                startActivity(intent)
+               checkExistence(email)
             }
         }
 
@@ -247,5 +259,59 @@ class SignUpActivity : AppCompatActivity() {
                 binding.edPwCheck.backgroundTintList = ContextCompat.getColorStateList(applicationContext, R.color.black)
             }
         })
+    }
+
+    private fun checkExistence(email: String): Boolean {
+        var ischeck = true
+
+        Thread {
+            val user = userDao.selectEmailUser(email)
+
+            if(user != null) {
+                ischeck = false
+            }
+
+            if(ischeck) {
+                sign()
+            } else {
+                val handler = Handler(Looper.getMainLooper())
+                handler.postDelayed(object: Runnable {
+                    override fun run() {
+                        Toast.makeText(this@SignUpActivity, "이미 존재하는 계정입니다.", Toast.LENGTH_SHORT).show()
+                    }
+                }, 0)
+            }
+        }.start()
+
+        return ischeck
+    }
+
+    private fun sign() {
+        val email = binding.edEmail.text.toString()
+        val pw = binding.edPw.text.toString()
+        val name = binding.edName.text.toString()
+        val stNum = binding.edStNum.text.toString()
+        val depart = binding.edDepart.text.toString()
+        val certificationNum = "1234"
+
+        GMailSender().sendEmail(
+            email,
+            "이메일 인증번호입니다.",
+            "${name} 님의 인증번호 : ${certificationNum}"
+        )
+
+        val handler = Handler(Looper.getMainLooper())
+        handler.postDelayed(object: Runnable {
+            override fun run() {
+                Toast.makeText(this@SignUpActivity, "인증번호를 메일로 전송했습니다.", Toast.LENGTH_SHORT).show()
+            }
+        }, 0)
+//        Toast.makeText(this, "인증번호를 메일로 전송했습니다.", Toast.LENGTH_SHORT).show()
+
+        val user = UserEntity(null, email, pw, name, stNum, depart, -1)
+
+        val intent = Intent(this, CheckEmailActivity::class.java)
+        intent.putExtra("user", user as Serializable)
+        startActivity(intent)
     }
 }

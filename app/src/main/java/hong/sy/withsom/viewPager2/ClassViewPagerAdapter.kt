@@ -6,10 +6,13 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import hong.sy.withsom.data.ClassData
 import hong.sy.withsom.R
+import hong.sy.withsom.room.ClassEntity
+import hong.sy.withsom.room.UserDatabase
+import hong.sy.withsom.room.UserEntity
+import java.util.*
 
-class ClassViewPagerAdapter(classDataBannerList: ArrayList<ClassData>) : RecyclerView.Adapter<ClassViewPagerAdapter.PagerViewHolder>() {
+class ClassViewPagerAdapter(classDataBannerList: ArrayList<ClassEntity>) : RecyclerView.Adapter<ClassViewPagerAdapter.PagerViewHolder>() {
     var item = classDataBannerList
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = PagerViewHolder((parent))
@@ -21,7 +24,7 @@ class ClassViewPagerAdapter(classDataBannerList: ArrayList<ClassData>) : Recycle
     }
 
     interface OnItemClickListener {
-        fun onClick(v: View, data: ClassData, pos: Int)
+        fun onClick(v: View, data: ClassEntity, pos: Int)
     }
 
     private var listener : OnItemClickListener? = null
@@ -36,18 +39,26 @@ class ClassViewPagerAdapter(classDataBannerList: ArrayList<ClassData>) : Recycle
         private val classTitle : TextView = itemView.findViewById(R.id.tv_class_title)
         private val classType : TextView = itemView.findViewById(R.id.tv_class_type)
         private val classContent : TextView = itemView.findViewById(R.id.tv_class_content)
+        private val db = UserDatabase.getInstance(parent.context)!!
+        private val userDao = db.getUserDao()
 
-        fun bind(item: ClassData) {
-            imgLeader.setImageResource(item.imgLeader)
-            classTitle.text = item.title
-            classType.text = item.type
-            classContent.text = item.content
+        fun bind(item: ClassEntity) {
+            Thread {
+                val user = userDao.selectEmailUser(item.leaderID)
 
-            val pos = adapterPosition
+                if(user != null) {
+                    imgLeader.setImageResource(user.profile)
+                    classTitle.text = item.name
+                    classType.text = item.type
+                    classContent.text = item.content
 
-            itemView.setOnClickListener {
-                listener?.onClick(itemView, item, pos)
-            }
+                    val pos = adapterPosition
+
+                    itemView.setOnClickListener {
+                        listener?.onClick(itemView, item, pos)
+                    }
+                }
+            }.start()
         }
     }
 }

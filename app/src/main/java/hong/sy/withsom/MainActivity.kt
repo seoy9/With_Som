@@ -8,11 +8,13 @@ import android.os.Message
 import android.view.View
 import android.widget.Toast
 import androidx.viewpager2.widget.ViewPager2
-import hong.sy.withsom.data.ClassData
 import hong.sy.withsom.databinding.ActivityMainBinding
 import hong.sy.withsom.login.SharedPreferenceManager
+import hong.sy.withsom.room.*
 import hong.sy.withsom.viewPager2.ClassViewPagerAdapter
 import hong.sy.withsom.viewPager2.NoticeViewPagerAdapter
+import java.io.Serializable
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -24,12 +26,26 @@ class MainActivity : AppCompatActivity() {
     private var currentPosition = Int.MAX_VALUE / 2
     private val intervalTime = 3000.toLong()
 
+    private lateinit var classDB: ClassDatabase
+    private lateinit var classDao: ClassDao
+    private lateinit var classList: ArrayList<ClassEntity>
+
+    private lateinit var noticeDB: NoticeDatabase
+    private lateinit var noticeDao: NoticeDao
+    private lateinit var noticeList: ArrayList<NoticeEntity>
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        classDB = ClassDatabase.getInstance(this)!!
+        classDao = classDB.getClassDao()
+
+        noticeDB = NoticeDatabase.getInstance(this)!!
+        noticeDao = noticeDB.getNoticeDao()
 
         binding.tvMore.setOnClickListener {
             val intent = Intent(this, NoticeActivity::class.java)
@@ -38,11 +54,12 @@ class MainActivity : AppCompatActivity() {
 
         noticeBannerSetting()
 
-        classBannerSetting()
+        //classBannerSetting()
+        settingClassViewPagerAdapter()
 
         buttonSetting()
 
-        Toast.makeText(this, "${SharedPreferenceManager.getUserId(this)}님 환영합니다.", Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, "${SharedPreferenceManager.getUserEmail(this)}님 환영합니다.", Toast.LENGTH_SHORT).show()
     }
 
     private fun autoScrollStart(intervalTime: Long) {
@@ -79,12 +96,17 @@ class MainActivity : AppCompatActivity() {
         return arrayListOf<Int>(R.drawable.notice_banner1, R.drawable.notice_banner2, R.drawable.notice_banner3)
     }
 
-    private fun getClassList(): ArrayList<ClassData> {
-        val classData1 = ClassData(R.drawable.foundation, "20221234 이솜솜", "솜솜덕질", "취미", "솜솜이를 덕질해보자!", 5, "매일", "동덕여대")
-        val classData2 = ClassData(R.drawable.simbol, "20225678 김솜솜", "정보처리기사", "자격증", "컴퓨터학과 졸업요건 달성", 6, "월 4~5시", "동덕여대 대학원")
-        val classData3 = ClassData(R.drawable.vision, "20229000 박솜솜", "만 보 걷기", "운동", "건강해지자!!", 7, "미정", "동덕여대 백주년")
+    private fun settingClassViewPagerAdapter() {
+//        val classData1 = ClassData(R.drawable.foundation, "20221234 이솜솜", "솜솜덕질", "취미", "솜솜이를 덕질해보자!", 5, "매일", "동덕여대")
+//        val classData2 = ClassData(R.drawable.simbol, "20225678 김솜솜", "정보처리기사", "자격증", "컴퓨터학과 졸업요건 달성", 6, "월 4~5시", "동덕여대 대학원")
+//        val classData3 = ClassData(R.drawable.vision, "20229000 박솜솜", "만 보 걷기", "운동", "건강해지자!!", 7, "미정", "동덕여대 백주년")
+//
+//        return arrayListOf<ClassData>(classData1, classData2, classData3)
 
-        return arrayListOf<ClassData>(classData1, classData2, classData3)
+        Thread{
+            classList = ArrayList(classDao.getAll())
+            classBannerSetting(classList)
+        }.start()
     }
 
     private fun buttonSetting() {
@@ -129,7 +151,7 @@ class MainActivity : AppCompatActivity() {
         })
     }
 
-    private fun classBannerSetting() {
+    private fun classBannerSetting(classList: ArrayList<ClassEntity>) {
         val pageMarginPx = resources.getDimensionPixelOffset(R.dimen.pageMargin)
         val pageWidth = resources.getDimensionPixelOffset(R.dimen.pageWidth)
         val screenWidth = resources.displayMetrics.widthPixels
@@ -141,7 +163,7 @@ class MainActivity : AppCompatActivity() {
 
         binding.viewpagerClass.offscreenPageLimit = 1
 
-        classViewPagerAdapter = ClassViewPagerAdapter(getClassList())
+        classViewPagerAdapter = ClassViewPagerAdapter(classList)
 
         binding.viewpagerClass.adapter = classViewPagerAdapter
         binding.viewpagerClass.orientation = ViewPager2.ORIENTATION_HORIZONTAL
@@ -156,9 +178,9 @@ class MainActivity : AppCompatActivity() {
         })
 
         classViewPagerAdapter.setOnItemClickListener(object : ClassViewPagerAdapter.OnItemClickListener {
-            override fun onClick(v: View, data: ClassData, pos: Int) {
+            override fun onClick(v: View, data: ClassEntity, pos: Int) {
                 val intent = Intent(this@MainActivity, ClassDetailActivity::class.java)
-                intent.putExtra("data", data)
+                intent.putExtra("data", data as Serializable)
                 startActivity(intent)
             }
         })

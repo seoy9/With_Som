@@ -32,7 +32,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.82"/>
+        app:layout_constraintGuide_percent="0.82" />
 
     <ImageView
         android:id="@+id/imageView5"
@@ -49,12 +49,12 @@
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:background="@color/background_1"
         android:orientation="vertical"
         app:layout_constraintBottom_toTopOf="@+id/guideline4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline1"
-        android:background="@color/background_1">
+        app:layout_constraintTop_toTopOf="@+id/guideline1">
 
     </LinearLayout>
 
@@ -88,10 +88,8 @@
         android:layout_height="30dp"
         android:layout_marginTop="8dp"
         android:src="@android:drawable/ic_menu_mylocation"
-        app:layout_constraintEnd_toStartOf="@+id/imageView9"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintHorizontal_chainStyle="spread"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/tv_location_detail"
+        app:layout_constraintStart_toStartOf="@+id/tv_location_detail"
         app:layout_constraintTop_toBottomOf="@+id/guideline17" />
 
     <ImageView
@@ -100,9 +98,8 @@
         android:layout_height="30dp"
         android:layout_marginTop="8dp"
         android:src="@android:drawable/ic_menu_recent_history"
-        app:layout_constraintEnd_toStartOf="@+id/imageView10"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/imageView4"
+        app:layout_constraintEnd_toEndOf="@+id/tv_schedule_detail"
+        app:layout_constraintStart_toStartOf="@+id/tv_schedule_detail"
         app:layout_constraintTop_toBottomOf="@+id/guideline17" />
 
     <ImageView
@@ -111,9 +108,8 @@
         android:layout_height="30dp"
         android:layout_marginTop="8dp"
         android:src="@android:drawable/ic_menu_myplaces"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/imageView9"
+        app:layout_constraintEnd_toEndOf="@+id/tv_number_detail"
+        app:layout_constraintStart_toStartOf="@+id/tv_number_detail"
         app:layout_constraintTop_toBottomOf="@+id/guideline17" />
 
     <TextView
@@ -121,8 +117,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="위치"
-        app:layout_constraintEnd_toEndOf="@+id/imageView4"
-        app:layout_constraintStart_toStartOf="@+id/imageView4"
+        app:layout_constraintEnd_toStartOf="@+id/tv_schedule_detail"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView4" />
 
     <TextView
@@ -130,8 +127,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="시간"
-        app:layout_constraintEnd_toEndOf="@+id/imageView9"
-        app:layout_constraintStart_toStartOf="@+id/imageView9"
+        app:layout_constraintEnd_toStartOf="@+id/tv_number_detail"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/tv_location_detail"
         app:layout_constraintTop_toBottomOf="@+id/imageView9" />
 
     <TextView
@@ -139,8 +137,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="인원"
-        app:layout_constraintEnd_toEndOf="@+id/imageView10"
-        app:layout_constraintStart_toStartOf="@+id/imageView10"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/tv_schedule_detail"
         app:layout_constraintTop_toBottomOf="@+id/imageView10" />
 
     <androidx.recyclerview.widget.RecyclerView
@@ -148,6 +147,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="8dp"
+        android:clipToPadding="false"
         android:orientation="vertical"
         android:padding="10dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
@@ -156,8 +156,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_schedule_detail"
-        tools:listitem="@layout/class_recycler_detail"
-        android:clipToPadding="false"/>
+        tools:listitem="@layout/class_recycler_detail" />
 
     <ImageButton
         android:id="@+id/btn_search_detail"

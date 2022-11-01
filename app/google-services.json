@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "234193712826",
+    "project_id": "with-3046d",
+    "storage_bucket": "with-3046d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:234193712826:android:9ff66506eac8c82fd33483",
+        "android_client_info": {
+          "package_name": "hong.sy.withsom"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "234193712826-1si5s1f49vm9nu29r1fk2u6a71dt8fkv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDOJFS-NPcPVjDRHP9tpQOBMgqPSigOdNc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "234193712826-1si5s1f49vm9nu29r1fk2u6a71dt8fkv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

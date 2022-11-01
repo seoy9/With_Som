@@ -5,14 +5,22 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Message
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.viewpager2.widget.ViewPager2
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.Query
+import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 import hong.sy.withsom.data.ClassData
 import hong.sy.withsom.databinding.ActivityMainBinding
 import hong.sy.withsom.login.SharedPreferenceManager
 import hong.sy.withsom.viewPager2.ClassViewPagerAdapter
 import hong.sy.withsom.viewPager2.NoticeViewPagerAdapter
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -24,6 +32,9 @@ class MainActivity : AppCompatActivity() {
     private var currentPosition = Int.MAX_VALUE / 2
     private val intervalTime = 3000.toLong()
 
+    private val database = Firebase.database
+
+    private var classList = ArrayList<ClassData>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -77,12 +88,35 @@ class MainActivity : AppCompatActivity() {
         return arrayListOf<Int>(R.drawable.notice_banner1, R.drawable.notice_banner2, R.drawable.notice_banner3)
     }
 
-    private fun getClassList(): ArrayList<ClassData> {
-        val classData1 = ClassData("1", "솜솜덕질", "취미", "솜솜이를 덕질해보자!", "동덕여대", 0, 5, "솜솜이를 사랑하는 학우", "매주, 월, 수, 금", "유동적으로 활동", "1@dongduk.ac.kr", "솜덕")
-        val classData2 = ClassData("2", "정보처리기사", "자격증", "정보처리기사 자격 취득", "숭인관", 0, 3, "정처기 필요한 사람", "매주, 화, 목", "화, 목 6시 이후", "2@dongduk.ac.kr", "컴과솜")
-        val classData3 = ClassData("3", "만 보 걷기", "운동", "건강해지기", "백주년기념관", 0, 10, "만 보 챌린지 할 사람", "매주, 토, 일", "주말 낮", "3@dongduk.ac.kr", "체과촘")
+    private fun getClassList() {
+        val myRef = database.getReference("classes")
+        myRef.addValueEventListener(object: ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if(snapshot.exists()) {
+                    for(classSnapshot in snapshot.children) {
+                        val cid = classSnapshot.child("cid").getValue(Int::class.java)
+                        val name = classSnapshot.child("name").getValue(String::class.java)
+                        val type = classSnapshot.child("type").getValue(String::class.java)
+                        val content = classSnapshot.child("content").getValue(String::class.java)
+                        val location = classSnapshot.child("location").getValue(String::class.java)
+                        val currentNum = classSnapshot.child("currentNum").getValue(Int::class.java)
+                        val totalNum = classSnapshot.child("totalNum").getValue(Int::class.java)
+                        val member = classSnapshot.child("member").getValue(String::class.java)
+                        val schedule = classSnapshot.child("schedule").getValue(String::class.java)
+                        val scheduleDetail = classSnapshot.child("scheduleDetail").getValue(String::class.java)
+                        val leaderID = classSnapshot.child("leaderID").getValue(String::class.java)
+                        val leaderContent = classSnapshot.child("leaderContent").getValue(String::class.java)
 
-        return arrayListOf<ClassData>(classData1, classData2, classData3)
+                        val c = ClassData(cid!!, name!!, type!!, content!!, location!!, currentNum!!, totalNum!!, member!!, schedule!!, scheduleDetail!!, leaderID!!, leaderContent!!)
+                        classList.add(c)
+                    }
+                    settingClassViewPagerAdapter()
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+            }
+        })
     }
 
     private fun buttonSetting() {
@@ -139,21 +173,28 @@ class MainActivity : AppCompatActivity() {
 
         binding.viewpagerClass.offscreenPageLimit = 1
 
-        classViewPagerAdapter = ClassViewPagerAdapter(getClassList())
+        getClassList()
+    }
+
+    private fun settingClassViewPagerAdapter() {
+        classViewPagerAdapter = ClassViewPagerAdapter(classList)
 
         binding.viewpagerClass.adapter = classViewPagerAdapter
         binding.viewpagerClass.orientation = ViewPager2.ORIENTATION_HORIZONTAL
 
-        binding.tvTotalClass.text = numBanner.toString()
+        //binding.tvTotalClass.text = numBanner.toString()
+        binding.tvTotalClass.text = classList.size.toString()
 
-        binding.viewpagerClass.registerOnPageChangeCallback(object: ViewPager2.OnPageChangeCallback() {
+        binding.viewpagerClass.registerOnPageChangeCallback(object :
+            ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
-                binding.tvCurrentClass.text = "${position+1}"
+                binding.tvCurrentClass.text = "${position + 1}"
             }
         })
 
-        classViewPagerAdapter.setOnItemClickListener(object : ClassViewPagerAdapter.OnItemClickListener {
+        classViewPagerAdapter.setOnItemClickListener(object :
+            ClassViewPagerAdapter.OnItemClickListener {
             override fun onClick(v: View, data: ClassData, pos: Int) {
                 val intent = Intent(this@MainActivity, ClassDetailActivity::class.java)
                 intent.putExtra("data", data)

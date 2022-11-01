@@ -33,7 +33,7 @@ class ClassNameActivity : AppCompatActivity() {
             val leaderID = SharedPreferenceManager.getUserEmail(this)
 
             total += "모임 이름 : " + binding.edClassName.text.toString() + "\n"
-            val classData = ClassData("", name, "", "", "", 0, 0, "", "", "", leaderID, "")
+            val classData = ClassData(-1, name, "", "", "", 0, 0, "", "", "", leaderID, "")
 
             val intent = Intent(this, ClassTypeActivity::class.java)
             intent.putExtra("total", total)

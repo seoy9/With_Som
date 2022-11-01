@@ -34,7 +34,7 @@ class SignUpActivity : AppCompatActivity() {
                 val name = binding.edName.text.toString()
                 val stNum = binding.edStNum.text.toString()
                 val depart = binding.edDepart.text.toString()
-                val user = UserData("", email, pw, name, stNum, depart, -1)
+                val user = UserData(stNum, email, pw, name, stNum, depart, -1)
 
                 val certificationNum = "1234"
 

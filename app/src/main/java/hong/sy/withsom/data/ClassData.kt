@@ -3,7 +3,7 @@ package hong.sy.withsom.data
 import java.io.Serializable
 
 data class ClassData(
-    var id: String? = null,
+    var cid: Int,
     var name: String,
     var type: String,
     var content: String,
@@ -13,6 +13,6 @@ data class ClassData(
     var member: String,
     var schedule: String,
     var scheduleDetail: String,
-    val leaderID: String,
+    var leaderID: String,
     var leaderContent: String
 ) : Serializable

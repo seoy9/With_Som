@@ -38,7 +38,6 @@ class SignUpImageActivity : AppCompatActivity() {
     private fun buttonSetting() {
         binding.btnSignupDone.setOnClickListener {
             user.profile = selectedImage
-            user.id = user.stNum
 
             Thread {
                 myRef.child(user.stNum).setValue(user)

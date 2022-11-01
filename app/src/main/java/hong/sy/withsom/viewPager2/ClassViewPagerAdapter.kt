@@ -8,6 +8,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import hong.sy.withsom.data.ClassData
 import hong.sy.withsom.R
+import java.util.*
 
 class ClassViewPagerAdapter(classDataBannerList: ArrayList<ClassData>) : RecyclerView.Adapter<ClassViewPagerAdapter.PagerViewHolder>() {
     var item = classDataBannerList

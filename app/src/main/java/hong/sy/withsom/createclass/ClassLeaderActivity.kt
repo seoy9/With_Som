@@ -5,8 +5,15 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.widget.Toast
 import androidx.core.content.ContextCompat
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.Query
+import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 import hong.sy.withsom.*
 import hong.sy.withsom.data.ClassData
 import hong.sy.withsom.databinding.ActivityClassLeaderBinding
@@ -16,6 +23,10 @@ class ClassLeaderActivity : AppCompatActivity() {
     lateinit var binding: ActivityClassLeaderBinding
     private var total = ""
     lateinit var classData: ClassData
+
+    private val database = Firebase.database
+    private val myRef = database.getReference("classes")
+    private var id = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,9 +52,17 @@ class ClassLeaderActivity : AppCompatActivity() {
 
             Toast.makeText(this, total, Toast.LENGTH_LONG).show()
 
-            val intent = Intent(this, ClassDetailActivity::class.java)
-            intent.putExtra("data", classData as Serializable)
-            startActivity(intent)
+            id = System.currentTimeMillis().toInt()
+
+            Thread {
+                classData.cid = id
+
+                myRef.child(classData.cid.toString()).setValue(classData)
+
+                val intent = Intent(this, ClassDetailActivity::class.java)
+                intent.putExtra("data", classData as Serializable)
+                startActivity(intent)
+            }.start()
         }
 
         binding.btnHomeLeader.setOnClickListener {

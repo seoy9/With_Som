@@ -23,7 +23,7 @@ import java.io.Serializable
 import java.util.*
 
 class ClassRecyclerViewAdapter(private val context: Context) : RecyclerView.Adapter<ClassRecyclerViewAdapter.ViewHolder>() {
-    var datas = mutableListOf<ClassData>()
+    var datas = ArrayList<String>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(context).inflate(R.layout.class_recycler_classes, parent, false)
@@ -33,7 +33,7 @@ class ClassRecyclerViewAdapter(private val context: Context) : RecyclerView.Adap
     override fun getItemCount(): Int = datas.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.getClassList()
+        holder.getClassList(datas[position])
         holder.bind(datas[position])
     }
 
@@ -44,7 +44,7 @@ class ClassRecyclerViewAdapter(private val context: Context) : RecyclerView.Adap
         private val nextButton: ImageButton = itemView.findViewById(R.id.btn_next_class)
         private val beforeButton: ImageButton = itemView.findViewById(R.id.btn_before_class)
 
-        fun getClassList() {
+        fun getClassList(item: String) {
             val database = Firebase.database
             val myRef = database.getReference("classes")
             myRef.addValueEventListener(object: ValueEventListener {
@@ -64,8 +64,14 @@ class ClassRecyclerViewAdapter(private val context: Context) : RecyclerView.Adap
                             val leaderID = classSnapshot.child("leaderID").getValue(String::class.java)
                             val leaderContent = classSnapshot.child("leaderContent").getValue(String::class.java)
 
-                            val c = ClassData(cid!!, name!!, type!!, content!!, location!!, currentNum!!, totalNum!!, member!!, schedule!!, scheduleDetail!!, leaderID!!, leaderContent!!)
-                            classList.add(c)
+                            for(t in type!!.split(", ")) {
+                                if(t == item) {
+                                    val c = ClassData(cid!!, name!!, type, content!!, location!!, currentNum!!, totalNum!!, member!!, schedule!!, scheduleDetail!!, leaderID!!, leaderContent!!)
+                                    classList.add(c)
+                                }
+                            }
+//                            val c = ClassData(cid!!, name!!, type!!, content!!, location!!, currentNum!!, totalNum!!, member!!, schedule!!, scheduleDetail!!, leaderID!!, leaderContent!!)
+//                            classList.add(c)
                         }
                         setting()
                     }
@@ -92,11 +98,11 @@ class ClassRecyclerViewAdapter(private val context: Context) : RecyclerView.Adap
             classes.registerOnPageChangeCallback(object: ViewPager2.OnPageChangeCallback() {
                     override fun onPageSelected(position: Int) {
                         super.onPageSelected(position)
-                        if(classList.size == 1) {
+                        if(classList.size == 1 || classList.size == 0) {
                             blindAllButton()
                         } else if(position == 0) {
                             blindBeforeButton()
-                        } else if(position == itemCount-1) {
+                        } else if(position == classList.size-1) {
                             blindNextButton()
                         } else {
                             showAllButton()
@@ -113,8 +119,8 @@ class ClassRecyclerViewAdapter(private val context: Context) : RecyclerView.Adap
             })
         }
 
-        fun bind(item: ClassData) {
-            type.text = "#" + item.type
+        fun bind(item: String) {
+            type.text = "#" + item
         }
 
         fun blindBeforeButton() {

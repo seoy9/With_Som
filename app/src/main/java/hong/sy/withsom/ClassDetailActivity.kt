@@ -4,6 +4,11 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 import hong.sy.withsom.data.ClassData
 import hong.sy.withsom.data.DetailData
 import hong.sy.withsom.databinding.ActivityClassDetailBinding
@@ -46,11 +51,31 @@ class ClassDetailActivity : AppCompatActivity() {
             binding.tvScheduleDetail.text = schedule
             binding.tvNumberDetail.text = num + "명"
         } else {
-            binding.tvDetailName.text = classData.name + "\n" + classData.leaderID
-            //binding.imgLeaderDetail.setImageResource(classData.imgLeader)
-            binding.tvLocationDetail.text = classData.location
-            binding.tvScheduleDetail.text = classData.schedule
-            binding.tvNumberDetail.text = classData.totalNum.toString() + "명"
+            val database = Firebase.database
+            val myRef = database.getReference("users")
+            myRef.addValueEventListener(object: ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    if(snapshot.exists()) {
+                        for(userSnapshot in snapshot.children) {
+                            val email = userSnapshot.child("email").getValue(String::class.java)
+                            val profile = userSnapshot.child("profile").getValue(Int::class.java)
+                            val stNum = userSnapshot.child("stNum").getValue(String::class.java)
+                            val name = userSnapshot.child("name").getValue(String::class.java)
+
+                            if(email == classData.leaderID) {
+                                binding.imgLeaderDetail.setImageResource(profile!!)
+                                binding.tvDetailName.text = classData.name + "\n" + stNum!! + " " + name!!
+                                binding.tvLocationDetail.text = classData.location
+                                binding.tvScheduleDetail.text = classData.schedule
+                                binding.tvNumberDetail.text = classData.totalNum.toString() + "명"
+                            }
+                        }
+                    }
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                }
+            })
         }
 
         initRecycler()

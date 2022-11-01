@@ -6,6 +6,11 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 import hong.sy.withsom.data.ClassData
 import hong.sy.withsom.R
 import java.util.*
@@ -18,6 +23,7 @@ class ClassViewPagerAdapter(classDataBannerList: ArrayList<ClassData>) : Recycle
     override fun getItemCount(): Int = item.size
 
     override fun onBindViewHolder(holder: PagerViewHolder, position: Int) {
+        holder.getClassList(item[position].leaderID)
         holder.bind(item[position])
     }
 
@@ -49,6 +55,28 @@ class ClassViewPagerAdapter(classDataBannerList: ArrayList<ClassData>) : Recycle
             itemView.setOnClickListener {
                 listener?.onClick(itemView, item, pos)
             }
+        }
+
+        fun getClassList(item: String) {
+            val database = Firebase.database
+            val myRef = database.getReference("users")
+            myRef.addValueEventListener(object: ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    if(snapshot.exists()) {
+                        for(userSnapshot in snapshot.children) {
+                            val email = userSnapshot.child("email").getValue(String::class.java)
+                            val profile = userSnapshot.child("profile").getValue(Int::class.java)
+
+                            if(email == item) {
+                                imgLeader.setImageResource(profile!!)
+                            }
+                        }
+                    }
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                }
+            })
         }
     }
 }

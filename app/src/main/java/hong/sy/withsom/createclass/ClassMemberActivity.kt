@@ -33,8 +33,10 @@ class ClassMemberActivity : AppCompatActivity() {
 
     private fun buttonSetting() {
         binding.btnClassMemberNext.setOnClickListener {
-            total += "모집 대상 : " + binding.edClassMember.text.toString() + "\n"
-            // data class 에 member 변수 넣어야 함
+            val member = binding.edClassMember.text.toString()
+
+            total += "모집 대상 : " + member + "\n"
+            classData.member = member
 
             val intent = Intent(this, ClassScheduleActivity::class.java)
             intent.putExtra("total", total)

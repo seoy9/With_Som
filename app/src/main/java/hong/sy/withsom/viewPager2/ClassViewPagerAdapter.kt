@@ -38,8 +38,8 @@ class ClassViewPagerAdapter(classDataBannerList: ArrayList<ClassData>) : Recycle
         private val classContent : TextView = itemView.findViewById(R.id.tv_class_content)
 
         fun bind(item: ClassData) {
-            imgLeader.setImageResource(item.imgLeader)
-            classTitle.text = item.title
+            //imgLeader.setImageResource(item.imgLeader)
+            classTitle.text = item.name
             classType.text = item.type
             classContent.text = item.content
 

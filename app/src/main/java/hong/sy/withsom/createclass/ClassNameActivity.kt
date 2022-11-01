@@ -29,11 +29,13 @@ class ClassNameActivity : AppCompatActivity() {
 
     private fun buttonSetting() {
         binding.btnClassNameNext.setOnClickListener {
+            val name = binding.edClassName.text.toString()
+            val leaderID = SharedPreferenceManager.getUserEmail(this)
+
             total += "모임 이름 : " + binding.edClassName.text.toString() + "\n"
+            val classData = ClassData("", name, "", "", "", 0, 0, "", "", "", leaderID, "")
 
-            val classData = ClassData(R.drawable.foundation, SharedPreferenceManager.getUserId(this), binding.edClassName.text.toString(), "non", "non", 0, "non", "non")
-
-            val intent = Intent(this, ClassContentActivity::class.java)
+            val intent = Intent(this, ClassTypeActivity::class.java)
             intent.putExtra("total", total)
 //            intent.putExtra("title", binding.edClassName.text.toString())
             intent.putExtra("data", classData as Serializable)

@@ -41,8 +41,6 @@ class MainActivity : AppCompatActivity() {
         classBannerSetting()
 
         buttonSetting()
-
-        Toast.makeText(this, "${SharedPreferenceManager.getUserId(this)}님 환영합니다.", Toast.LENGTH_SHORT).show()
     }
 
     private fun autoScrollStart(intervalTime: Long) {
@@ -80,9 +78,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun getClassList(): ArrayList<ClassData> {
-        val classData1 = ClassData(R.drawable.foundation, "20221234 이솜솜", "솜솜덕질", "취미", "솜솜이를 덕질해보자!", 5, "매일", "동덕여대")
-        val classData2 = ClassData(R.drawable.simbol, "20225678 김솜솜", "정보처리기사", "자격증", "컴퓨터학과 졸업요건 달성", 6, "월 4~5시", "동덕여대 대학원")
-        val classData3 = ClassData(R.drawable.vision, "20229000 박솜솜", "만 보 걷기", "운동", "건강해지자!!", 7, "미정", "동덕여대 백주년")
+        val classData1 = ClassData("1", "솜솜덕질", "취미", "솜솜이를 덕질해보자!", "동덕여대", 0, 5, "솜솜이를 사랑하는 학우", "매주, 월, 수, 금", "유동적으로 활동", "1@dongduk.ac.kr", "솜덕")
+        val classData2 = ClassData("2", "정보처리기사", "자격증", "정보처리기사 자격 취득", "숭인관", 0, 3, "정처기 필요한 사람", "매주, 화, 목", "화, 목 6시 이후", "2@dongduk.ac.kr", "컴과솜")
+        val classData3 = ClassData("3", "만 보 걷기", "운동", "건강해지기", "백주년기념관", 0, 10, "만 보 챌린지 할 사람", "매주, 토, 일", "주말 낮", "3@dongduk.ac.kr", "체과촘")
 
         return arrayListOf<ClassData>(classData1, classData2, classData3)
     }

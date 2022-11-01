@@ -46,11 +46,11 @@ class ClassDetailActivity : AppCompatActivity() {
             binding.tvScheduleDetail.text = schedule
             binding.tvNumberDetail.text = num + "명"
         } else {
-            binding.tvDetailName.text = classData.title + "\n" + classData.leader
-            binding.imgLeaderDetail.setImageResource(classData.imgLeader)
+            binding.tvDetailName.text = classData.name + "\n" + classData.leaderID
+            //binding.imgLeaderDetail.setImageResource(classData.imgLeader)
             binding.tvLocationDetail.text = classData.location
             binding.tvScheduleDetail.text = classData.schedule
-            binding.tvNumberDetail.text = classData.num.toString() + "명"
+            binding.tvNumberDetail.text = classData.totalNum.toString() + "명"
         }
 
         initRecycler()
@@ -76,9 +76,9 @@ class ClassDetailActivity : AppCompatActivity() {
         } else {
             datas.apply {
                 add(DetailData(title = "모임 소개", content = classData.content))
-                add(DetailData(title = "모임 대상", content = "not member"))
-                add(DetailData(title = "모임 일정", content = "not schedule detail"))
-                add(DetailData(title = "리더 소개", content = "not leader content"))
+                add(DetailData(title = "모임 대상", content = classData.member))
+                add(DetailData(title = "모임 일정", content = classData.scheduleDetail))
+                add(DetailData(title = "리더 소개", content = classData.leaderContent))
 
                 detailAdapter.datas = datas
                 detailAdapter.notifyDataSetChanged()

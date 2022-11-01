@@ -30,6 +30,18 @@ object SharedPreferenceManager {
         return prefs.getString("MY_PASS", "").toString()
     }
 
+    fun setUserEmail(context: Context, input: String) {
+        val prefs : SharedPreferences = context.getSharedPreferences(MY_ACCOUNT, Context.MODE_PRIVATE)
+        val editor : SharedPreferences.Editor = prefs.edit()
+        editor.putString("MY_EMAIL", input)
+        editor.commit()
+    }
+
+    fun getUserEmail(context: Context): String {
+        val prefs : SharedPreferences = context.getSharedPreferences(MY_ACCOUNT, Context.MODE_PRIVATE)
+        return prefs.getString("MY_EMAIL", "").toString()
+    }
+
     fun clearUser(context: Context) {
         val prefs : SharedPreferences = context.getSharedPreferences(MY_ACCOUNT, Context.MODE_PRIVATE)
         val editor : SharedPreferences.Editor = prefs.edit()

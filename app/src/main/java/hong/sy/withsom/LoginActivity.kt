@@ -1,20 +1,33 @@
 package hong.sy.withsom
 
 import android.content.Intent
-import android.graphics.Color
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.Query
+import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 import hong.sy.withsom.databinding.ActivityLoginBinding
 import hong.sy.withsom.login.SharedPreferenceManager
+
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
     private var isIDdone = false
     private var isPWdone = false
+
+    private val database = Firebase.database
+
+    private var isHave = false
+    private var isCorrect = false
+    lateinit var name: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,19 +61,9 @@ class LoginActivity : AppCompatActivity() {
                 Toast.makeText(this, "이메일을 확인해주세요.", Toast.LENGTH_SHORT).show()
             }
             else {
-                binding.edLoginEmail.backgroundTintList = ContextCompat.getColorStateList(applicationContext, R.color.black)
-                binding.edLoginPw.backgroundTintList = ContextCompat.getColorStateList(applicationContext, R.color.black)
-
-                if(binding.checkBoxAutologin.isChecked) {
-                    SharedPreferenceManager.setUserId(this, binding.edLoginEmail.text.toString())
-                    SharedPreferenceManager.setUserPass(this, binding.edLoginPw.text.toString())
-                }
-
-                Toast.makeText(this, "${SharedPreferenceManager.getUserId(this)}님 로그인되었습니다.", Toast.LENGTH_SHORT).show()
-                val intent = Intent(this, MainActivity::class.java)
-                startActivity(intent)
-                finish()
-                finishAffinity()
+                Thread {
+                    isEmailExistence()
+                }.start()
             }
         }
     }
@@ -122,5 +125,72 @@ class LoginActivity : AppCompatActivity() {
                 }
             }
         })
+    }
+
+    private fun isEmailExistence() {
+        val id = binding.edLoginEmail.text.toString()
+        val pw = binding.edLoginPw.text.toString()
+        val postListener: ValueEventListener = object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                for (postSnapshot in dataSnapshot.getChildren()) {
+                    if (postSnapshot.child("email").getValue(String::class.java) != null) {
+                        val email = postSnapshot.child("email").getValue(String::class.java)
+                        val password = postSnapshot.child("pw").getValue(String::class.java)
+                        name = postSnapshot.child("name").getValue(String::class.java)!!
+
+                        if(id == email) {
+                            isHave = true
+                            if(pw == password) {
+                                isCorrect = true
+                            }
+                        }
+                    }
+                    result()
+                    break
+                }
+            }
+
+            override fun onCancelled(databaseError: DatabaseError) {
+                Log.w("FirebaseDatabase", "onCancelled", databaseError.toException())
+            }
+        }
+        val sortbyAge: Query = database.getReference().child("users").orderByChild("users")
+        sortbyAge.addListenerForSingleValueEvent(postListener)
+    }
+
+    private fun result() {
+        if (isHave && isCorrect) {
+            SharedPreferenceManager.setUserEmail(
+                this,
+                binding.edLoginEmail.text.toString()
+            )
+
+            if (binding.checkBoxAutologin.isChecked) {
+                SharedPreferenceManager.setUserId(
+                    this,
+                    binding.edLoginEmail.text.toString()
+                )
+                SharedPreferenceManager.setUserPass(
+                    this,
+                    binding.edLoginPw.text.toString()
+                )
+            }
+
+            runOnUiThread {
+                Toast.makeText(
+                    this,
+                    "${name}님 로그인되었습니다.",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+            finish()
+            finishAffinity()
+        } else if(isHave && !isCorrect) {
+            runOnUiThread {  Toast.makeText(this, "비밀번호가 다릅니다.", Toast.LENGTH_SHORT).show() }
+        } else {
+            runOnUiThread {  Toast.makeText(this, "존재하지 않는 계정입니다.", Toast.LENGTH_SHORT).show() }
+        }
     }
 }

@@ -7,8 +7,10 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.widget.Toast
 import androidx.core.content.ContextCompat
+import hong.sy.withsom.data.UserData
 import hong.sy.withsom.databinding.ActivitySignUpBinding
 import hong.sy.withsom.mail.GMailSender
+import java.io.Serializable
 
 class SignUpActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySignUpBinding
@@ -28,12 +30,19 @@ class SignUpActivity : AppCompatActivity() {
         binding.btnSignupNext.setOnClickListener {
             if(checkContent() && checkStNum() && checkEmail() && checkPw() && checkRePw() && checkPrivacy()) {
                 val email = binding.edEmail.text.toString()
+                val pw = binding.edPw.text.toString()
+                val name = binding.edName.text.toString()
+                val stNum = binding.edStNum.text.toString()
+                val depart = binding.edDepart.text.toString()
+                val user = UserData("", email, pw, name, stNum, depart, -1)
+
                 val certificationNum = "1234"
-                
+
                 GMailSender().sendEmail(email, "이메일 인증번호입니다.", "${email} 님의 인증번호 : ${certificationNum}")
                 Toast.makeText(this, "인증번호를 메일로 전송했습니다.", Toast.LENGTH_SHORT).show()
 
                 val intent = Intent(this, CheckEmailActivity::class.java)
+                intent.putExtra("user", user as Serializable)
                 startActivity(intent)
             }
         }

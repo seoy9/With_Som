@@ -34,10 +34,12 @@ class ClassLeaderActivity : AppCompatActivity() {
 
     private fun buttonSetting() {
         binding.btnClassLeaderDone.setOnClickListener {
-            total += "리더 소개 : " + binding.edClassLeader.text.toString()
-            Toast.makeText(this, total, Toast.LENGTH_LONG).show()
+            val leaderContent = binding.edClassLeader.text.toString()
 
-            // class data 리더 소개 변수 추가
+            total += "리더 소개 : " + leaderContent
+            classData.leaderContent = leaderContent
+
+            Toast.makeText(this, total, Toast.LENGTH_LONG).show()
 
             val intent = Intent(this, ClassDetailActivity::class.java)
             intent.putExtra("data", classData as Serializable)

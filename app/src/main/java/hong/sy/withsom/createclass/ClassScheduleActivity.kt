@@ -69,10 +69,13 @@ class ClassScheduleActivity : AppCompatActivity() {
         }
 
         binding.btnClassScheduleNext.setOnClickListener {
-            total += "모임 일정 : " + binding.tvScheduleChecked.text.toString() + "\n"
-            total += "모임 일정 상세 소개 : " + binding.edClassScheduleDetail.text.toString() + "\n"
-            classData.schedule = binding.tvScheduleChecked.text.toString()
-            // classData 스케줄 상세 변수 추가
+            val schedule = binding.tvScheduleChecked.text.toString()
+            val scheduleDetail = binding.edClassScheduleDetail.text.toString()
+
+            total += "모임 일정 : " + schedule + "\n"
+            total += "모임 일정 상세 소개 : " + scheduleDetail + "\n"
+            classData.schedule = schedule
+            classData.scheduleDetail = scheduleDetail
 
 
             val intent = Intent(this, ClassLeaderActivity::class.java)

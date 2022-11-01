@@ -7,16 +7,21 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.widget.Toast
 import androidx.core.content.ContextCompat
+import hong.sy.withsom.data.UserData
 import hong.sy.withsom.databinding.ActivityCheckEmailBinding
+import java.io.Serializable
 
 class CheckEmailActivity : AppCompatActivity() {
     lateinit var binding: ActivityCheckEmailBinding
+    lateinit var user: UserData
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = ActivityCheckEmailBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        user = intent.getSerializableExtra("user") as UserData
 
         textChangedSetting()
 
@@ -31,6 +36,7 @@ class CheckEmailActivity : AppCompatActivity() {
                 Toast.makeText(this, "메일 인증 완료", Toast.LENGTH_SHORT).show()
 
                 val intent = Intent(this, SignUpImageActivity::class.java)
+                intent.putExtra("user", user as Serializable)
                 startActivity(intent)
                 finish()
             } else {

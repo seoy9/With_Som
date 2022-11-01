@@ -36,8 +36,9 @@ class ClassContentActivity : AppCompatActivity() {
 
     private fun buttonSetting() {
         binding.btnClassContentNext.setOnClickListener {
-            total += "모임 소개 : " + binding.edClassContent.text.toString() + "\n"
+            val content = binding.edClassContent.text.toString()
 
+            total += "모임 소개 : " + content + "\n"
             classData.content = binding.edClassContent.text.toString()
 
             val intent = Intent(this, ClassLocationActivity::class.java)

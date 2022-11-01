@@ -33,8 +33,10 @@ class ClassNumberActivity : AppCompatActivity() {
 
     private fun buttonSetting() {
         binding.btnClassNumberNext.setOnClickListener {
-            total += "모집 인원 : " + binding.edClassNumber.text.toString() + "\n"
-            classData.num = binding.edClassNumber.text.toString().toInt()
+            val totalNum = binding.edClassNumber.text.toString()
+
+            total += "모집 인원 : " + totalNum + "\n"
+            classData.totalNum = totalNum.toInt()
 
             val intent = Intent(this, ClassMemberActivity::class.java)
             intent.putExtra("total", total)

@@ -39,7 +39,9 @@ class ClassLocationActivity : AppCompatActivity() {
 
     private fun buttonSetting() {
         binding.btnClassLocationNext.setOnClickListener {
-            total += "모임 위치 : " + binding.edClassLocation.text.toString() + "\n"
+            val location = binding.edClassLocation.text.toString()
+
+            total += "모임 위치 : " + location + "\n"
             classData.location = binding.edClassLocation.text.toString()
 
             val intent = Intent(this, ClassNumberActivity::class.java)

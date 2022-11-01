@@ -23,22 +23,21 @@ class SearchRecyclerViewAdapter(private val context: Context) : RecyclerView.Ada
         private val tv_num : TextView = itemView.findViewById(R.id.tv_num_search)
 
         fun bind(item : ClassData) {
-            img_leader.setImageResource(item.imgLeader)
-            tv_title.text = item.title
+            //img_leader.setImageResource(item.imgLeader)
+            tv_title.text = item.name
             tv_type.text = item.type
             tv_schedule.text = item.schedule
-            tv_num.text = "정원 " + item.num.toString() + "명"
+            tv_num.text = "정원 " + item.totalNum.toString() + "명"
 
             itemView.setOnClickListener {
-                Intent(context, ClassDetailActivity::class.java).apply {
-                    putExtra("title", item.title)
-                    putExtra("leader", item.leader)
-                    putExtra("leader_img", item.imgLeader)
-                    putExtra("location", item.location)
-                    putExtra("schedule", item.schedule)
-                    putExtra("num", item.num)
-                    addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                }.run { context.startActivity(this) }
+                val intent = Intent(context, ClassDetailActivity::class.java)
+                intent.putExtra("title", item.name)
+                intent.putExtra("leader", item.leaderID)
+                    //putExtra("leader_img", item.imgLeader)
+                intent.putExtra("location", item.location)
+                intent.putExtra("schedule", item.schedule)
+                intent.putExtra("num", item.totalNum)
+                context.startActivity(intent)
             }
         }
     }

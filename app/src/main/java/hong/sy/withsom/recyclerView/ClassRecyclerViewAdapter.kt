@@ -70,8 +70,6 @@ class ClassRecyclerViewAdapter(private val context: Context) : RecyclerView.Adap
                                     classList.add(c)
                                 }
                             }
-//                            val c = ClassData(cid!!, name!!, type!!, content!!, location!!, currentNum!!, totalNum!!, member!!, schedule!!, scheduleDetail!!, leaderID!!, leaderContent!!)
-//                            classList.add(c)
                         }
                         setting()
                     }

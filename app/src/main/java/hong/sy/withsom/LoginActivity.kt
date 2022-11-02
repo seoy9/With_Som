@@ -61,9 +61,7 @@ class LoginActivity : AppCompatActivity() {
                 Toast.makeText(this, "이메일을 확인해주세요.", Toast.LENGTH_SHORT).show()
             }
             else {
-                Thread {
-                    isEmailExistence()
-                }.start()
+                isEmailExistence()
             }
         }
     }
@@ -176,21 +174,16 @@ class LoginActivity : AppCompatActivity() {
                 )
             }
 
-            runOnUiThread {
-                Toast.makeText(
-                    this,
-                    "${name}님 로그인되었습니다.",
-                    Toast.LENGTH_SHORT
-                ).show()
-            }
+            Toast.makeText(this, "${name}님 로그인되었습니다.", Toast.LENGTH_SHORT).show()
+
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
             finish()
             finishAffinity()
         } else if(isHave && !isCorrect) {
-            runOnUiThread {  Toast.makeText(this, "비밀번호가 다릅니다.", Toast.LENGTH_SHORT).show() }
+            Toast.makeText(this, "비밀번호가 다릅니다.", Toast.LENGTH_SHORT).show()
         } else {
-            runOnUiThread {  Toast.makeText(this, "존재하지 않는 계정입니다.", Toast.LENGTH_SHORT).show() }
+            Toast.makeText(this, "존재하지 않는 계정입니다.", Toast.LENGTH_SHORT).show()
         }
     }
 }

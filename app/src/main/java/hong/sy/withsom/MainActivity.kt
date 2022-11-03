@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Message
 import android.view.View
+import android.widget.Toast
 import androidx.viewpager2.widget.ViewPager2
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -120,9 +121,13 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun randomClass() {
-        val randomClass = ArrayList<ClassData>()
+        var randomClass = ArrayList<ClassData>()
 
         while(true) {
+            if(classList.size < 3) {
+                randomClass.addAll(classList)
+                break
+            }
             if(randomClass.size == 3) {
                 break
             }
@@ -136,7 +141,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         classList.clear()
-        classList = randomClass
+        classList.addAll(randomClass)
 
         settingClassViewPagerAdapter()
     }

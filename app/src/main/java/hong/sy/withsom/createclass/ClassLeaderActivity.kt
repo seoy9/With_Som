@@ -59,6 +59,7 @@ class ClassLeaderActivity : AppCompatActivity() {
 
                 myRef.child(classData.cid.toString()).setValue(classData)
 
+                finishAffinity()
                 val intent = Intent(this, ClassDetailActivity::class.java)
                 intent.putExtra("data", classData as Serializable)
                 startActivity(intent)

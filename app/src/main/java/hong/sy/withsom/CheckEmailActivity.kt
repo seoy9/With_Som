@@ -16,6 +16,7 @@ import java.util.Random
 class CheckEmailActivity : AppCompatActivity() {
     lateinit var binding: ActivityCheckEmailBinding
     lateinit var user: UserData
+    lateinit var certificationNum: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,6 +25,7 @@ class CheckEmailActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         user = intent.getSerializableExtra("user") as UserData
+        certificationNum = intent.getStringExtra("certificationNum").toString()
 
         textChangedSetting()
 
@@ -32,8 +34,6 @@ class CheckEmailActivity : AppCompatActivity() {
 
     private fun buttonSetting() {
         binding.btnCheckEmail.setOnClickListener {
-            val certificationNum = RandomString().getRandomCertificationNum()
-
             if(binding.edCheckCertification.text.toString() == certificationNum) {
                 Toast.makeText(this, "메일 인증 완료", Toast.LENGTH_SHORT).show()
 

@@ -72,16 +72,6 @@ class LoginActivity : AppCompatActivity() {
             val intent = Intent(this, FindPwActivity::class.java)
             startActivity(intent)
         }
-
-        binding.checkBoxAutologin.setOnClickListener {
-            val checkBox = binding.checkBoxAutologin
-
-            if(checkBox.isChecked) {
-                checkBox.buttonTintList = ContextCompat.getColorStateList(applicationContext, R.color.dongduk)
-            } else {
-                checkBox.buttonTintList = ContextCompat.getColorStateList(applicationContext, R.color.black)
-            }
-        }
     }
 
     private fun textchangedSetting() {

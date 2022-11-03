@@ -32,31 +32,51 @@ class ClassDetailActivity : AppCompatActivity() {
 
         classData = intent.getSerializableExtra("data") as ClassData
 
-        val database = Firebase.database
-        val myRef = database.getReference("users")
-        myRef.addValueEventListener(object: ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                if(snapshot.exists()) {
-                    for(userSnapshot in snapshot.children) {
-                        val email = userSnapshot.child("email").getValue(String::class.java)
-                        val profile = userSnapshot.child("profile").getValue(Int::class.java)
-                        val stNum = userSnapshot.child("stNum").getValue(String::class.java)
-                        val name = userSnapshot.child("name").getValue(String::class.java)
+        if(classData == null) {
 
-                        if(email == classData.leaderID) {
-                            binding.imgLeaderDetail.setImageResource(profile!!)
-                            binding.tvDetailName.text = classData.name + "\n" + stNum!! + " " + name!!
-                            binding.tvLocationDetail.text = classData.location
-                            binding.tvScheduleDetail.text = classData.schedule
-                            binding.tvNumberDetail.text = classData.currentNum.toString() + "/" + classData.totalNum.toString() + "명"
+            val title = intent.getStringExtra("title")
+            val leader = intent.getStringExtra("leader")
+            val leader_img = intent.getIntExtra("leader_img", 0)
+            val location = intent.getStringExtra("location")
+            val schedule = intent.getStringExtra("schedule")
+            val num = intent.getIntExtra("num", 0).toString()
+
+            binding.tvDetailName.text = title + "\n" + leader
+
+            if (leader_img != null) {
+                binding.imgLeaderDetail.setImageResource(leader_img)
+            }
+
+            binding.tvLocationDetail.text = location
+            binding.tvScheduleDetail.text = schedule
+            binding.tvNumberDetail.text = num + "명"
+        } else {
+            val database = Firebase.database
+            val myRef = database.getReference("users")
+            myRef.addValueEventListener(object: ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    if(snapshot.exists()) {
+                        for(userSnapshot in snapshot.children) {
+                            val email = userSnapshot.child("email").getValue(String::class.java)
+                            val profile = userSnapshot.child("profile").getValue(Int::class.java)
+                            val stNum = userSnapshot.child("stNum").getValue(String::class.java)
+                            val name = userSnapshot.child("name").getValue(String::class.java)
+
+                            if(email == classData.leaderID) {
+                                binding.imgLeaderDetail.setImageResource(profile!!)
+                                binding.tvDetailName.text = classData.name + "\n" + stNum!! + " " + name!!
+                                binding.tvLocationDetail.text = classData.location
+                                binding.tvScheduleDetail.text = classData.schedule
+                                binding.tvNumberDetail.text = classData.currentNum.toString() + "/" + classData.totalNum.toString() + "명"
+                            }
                         }
                     }
                 }
-            }
 
-            override fun onCancelled(error: DatabaseError) {
-            }
-        })
+                override fun onCancelled(error: DatabaseError) {
+                }
+            })
+        }
 
         initRecycler()
 

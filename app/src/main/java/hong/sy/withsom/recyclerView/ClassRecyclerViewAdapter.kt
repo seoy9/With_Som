@@ -96,7 +96,7 @@ class ClassRecyclerViewAdapter(private val context: Context) : RecyclerView.Adap
             classes.registerOnPageChangeCallback(object: ViewPager2.OnPageChangeCallback() {
                     override fun onPageSelected(position: Int) {
                         super.onPageSelected(position)
-                        if(classList.size == 1 || classList.size == 0) {
+                        if(classList.size == 0 || classList.size == 1) {
                             blindAllButton()
                         } else if(position == 0) {
                             blindBeforeButton()

@@ -48,7 +48,12 @@ class ClassViewPagerAdapter(classDataBannerList: ArrayList<ClassData>) : Recycle
             //imgLeader.setImageResource(item.imgLeader)
             classTitle.text = item.name
             classType.text = item.type
-            classContent.text = item.content
+            val content = item.content
+            if(content.length > 35) {
+                classContent.text = content.subSequence(0, 32).toString() + "..."
+            } else {
+                classContent.text= content
+            }
 
             val pos = adapterPosition
 

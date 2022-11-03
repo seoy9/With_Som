@@ -10,6 +10,7 @@ import androidx.core.content.ContextCompat
 import hong.sy.withsom.data.UserData
 import hong.sy.withsom.databinding.ActivitySignUpBinding
 import hong.sy.withsom.mail.GMailSender
+import hong.sy.withsom.random.RandomString
 import java.io.Serializable
 
 class SignUpActivity : AppCompatActivity() {
@@ -36,12 +37,13 @@ class SignUpActivity : AppCompatActivity() {
                 val depart = binding.edDepart.text.toString()
                 val user = UserData(stNum, email, pw, name, stNum, depart, -1)
 
-                val certificationNum = "1234"
+                val certificationNum = RandomString().getRandomCertificationNum()
 
                 GMailSender().sendEmail(email, "이메일 인증번호입니다.", "${email} 님의 인증번호 : ${certificationNum}")
                 Toast.makeText(this, "인증번호를 메일로 전송했습니다.", Toast.LENGTH_SHORT).show()
 
                 val intent = Intent(this, CheckEmailActivity::class.java)
+                intent.putExtra("certificationNum", certificationNum)
                 intent.putExtra("user", user as Serializable)
                 startActivity(intent)
             }
@@ -50,16 +52,6 @@ class SignUpActivity : AppCompatActivity() {
         binding.checkBoxPrivacy.setOnClickListener {
             if(binding.checkBoxPrivacy.isChecked) {
                 binding.checkBoxPrivacy.setTextColor(getResources().getColor(R.color.black))
-            }
-        }
-
-        binding.checkBoxPrivacy.setOnClickListener {
-            val checkBox = binding.checkBoxPrivacy
-
-            if(checkBox.isChecked) {
-                checkBox.buttonTintList = ContextCompat.getColorStateList(applicationContext, R.color.dongduk)
-            } else {
-                checkBox.buttonTintList = ContextCompat.getColorStateList(applicationContext, R.color.black)
             }
         }
     }
@@ -177,6 +169,7 @@ class SignUpActivity : AppCompatActivity() {
             return false
         }
 
+        binding.checkBoxPrivacy.setTextColor(getResources().getColor(R.color.black))
         return true
     }
 

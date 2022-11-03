@@ -162,7 +162,7 @@
         app:layout_constraintVertical_bias="0.5" />
 
     <TextView
-        android:id="@+id/textView9"
+        android:id="@+id/tv_notice_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="2022-2 문제해결형 Co-Teaching 강..."

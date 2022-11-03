@@ -17,6 +17,7 @@ import com.google.firebase.ktx.Firebase
 import hong.sy.withsom.databinding.ActivityFindPwBinding
 import hong.sy.withsom.login.SharedPreferenceManager
 import hong.sy.withsom.mail.GMailSender
+import hong.sy.withsom.random.RandomString
 
 class FindPwActivity : AppCompatActivity() {
     lateinit var binding: ActivityFindPwBinding
@@ -24,7 +25,7 @@ class FindPwActivity : AppCompatActivity() {
     private val database = Firebase.database
     private val myRef = database.getReference("users")
     private var isHave = false
-    private val temporaryPW = "33333333"
+    private val temporaryPW = RandomString().getRandomPassword()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,16 +49,6 @@ class FindPwActivity : AppCompatActivity() {
             } else {
 
                 isEmailExistence()
-
-//                var email = binding.edEmailFindPw.text.toString()
-//                val temporaryPW = "3333"
-//
-//                GMailSender().sendEmail(
-//                    email,
-//                    "임시 비밀번호입니다.",
-//                    "${email} 님의 임시 비밀번호 : ${temporaryPW}"
-//                )
-//                Toast.makeText(this, "임시 비밀번호를 메일로 전송했습니다.", Toast.LENGTH_SHORT).show()
             }
         }
 

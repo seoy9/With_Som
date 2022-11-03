@@ -81,10 +81,12 @@
         android:id="@+id/ed_login_email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:backgroundTint="@color/black"
         android:ems="11"
         android:gravity="center"
         android:hint="이메일"
         android:inputType="textEmailAddress"
+        android:textCursorDrawable="@drawable/cursor"
         app:layout_constraintBottom_toTopOf="@+id/ed_login_pw"
         app:layout_constraintEnd_toStartOf="@+id/guideline4"
         app:layout_constraintHorizontal_bias="0.5"
@@ -99,6 +101,7 @@
         android:gravity="center"
         android:hint="비밀번호"
         android:inputType="textPassword"
+        android:textCursorDrawable="@drawable/cursor"
         app:layout_constraintBottom_toTopOf="@+id/checkBox_autologin"
         app:layout_constraintEnd_toStartOf="@+id/guideline4"
         app:layout_constraintHorizontal_bias="0.5"
@@ -122,9 +125,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="비밀번호 찾기"
+        android:textAllCaps="false"
         app:layout_constraintBottom_toTopOf="@+id/btn_login_done"
         app:layout_constraintEnd_toStartOf="@+id/guideline4"
         app:layout_constraintStart_toEndOf="@+id/checkBox_autologin"
-        app:layout_constraintTop_toBottomOf="@id/ed_login_pw"/>
+        app:layout_constraintTop_toBottomOf="@id/ed_login_pw" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
+import android.widget.CompoundButton
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -70,6 +71,16 @@ class LoginActivity : AppCompatActivity() {
         binding.tvFindPw.setOnClickListener {
             val intent = Intent(this, FindPwActivity::class.java)
             startActivity(intent)
+        }
+
+        binding.checkBoxAutologin.setOnClickListener {
+            val checkBox = binding.checkBoxAutologin
+
+            if(checkBox.isChecked) {
+                checkBox.buttonTintList = ContextCompat.getColorStateList(applicationContext, R.color.dongduk)
+            } else {
+                checkBox.buttonTintList = ContextCompat.getColorStateList(applicationContext, R.color.black)
+            }
         }
     }
 
@@ -164,14 +175,9 @@ class LoginActivity : AppCompatActivity() {
             )
 
             if (binding.checkBoxAutologin.isChecked) {
-                SharedPreferenceManager.setUserId(
-                    this,
-                    binding.edLoginEmail.text.toString()
-                )
-                SharedPreferenceManager.setUserPass(
-                    this,
-                    binding.edLoginPw.text.toString()
-                )
+                SharedPreferenceManager.setUserId(this, binding.edLoginEmail.text.toString())
+                SharedPreferenceManager.setUserPass(this, binding.edLoginPw.text.toString())
+                SharedPreferenceManager.setUserName(this, name)
             }
 
             Toast.makeText(this, "${name}님 로그인되었습니다.", Toast.LENGTH_SHORT).show()

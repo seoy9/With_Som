@@ -6,6 +6,8 @@ import android.os.Bundle
 import android.widget.Toast
 import hong.sy.withsom.*
 import hong.sy.withsom.databinding.ActivityInquiryBinding
+import hong.sy.withsom.login.SharedPreferenceManager
+import hong.sy.withsom.mail.GMailSender
 
 class InquiryActivity : AppCompatActivity() {
     lateinit var binding: ActivityInquiryBinding
@@ -21,7 +23,13 @@ class InquiryActivity : AppCompatActivity() {
 
     private fun buttonSetting() {
         binding.btnSendInquiry.setOnClickListener {
-            Toast.makeText(this, "${binding.edInquiryContent.text}\n문의 완료!", Toast.LENGTH_SHORT).show()
+            val email = "dongduk.withsom@gmail.com"
+            val id = SharedPreferenceManager.getUserEmail(this)
+            val name = SharedPreferenceManager.getUserName(this)
+            val inquiryContent = binding.edInquiryContent.text.toString()
+
+            GMailSender().sendEmail(email, "${id} ${name} 님의 문의", "${id} ${name} 님의 문의\n\n${inquiryContent}")
+            Toast.makeText(this, "문의 완료!\n감사합니다 :)", Toast.LENGTH_SHORT).show()
             finish()
         }
 

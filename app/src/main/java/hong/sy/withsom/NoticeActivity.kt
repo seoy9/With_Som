@@ -44,7 +44,7 @@ class NoticeActivity : AppCompatActivity() {
 //        }
 
         val database = Firebase.database
-        val myRef = database.getReference("notice")
+        val myRef = database.getReference("notices")
         myRef.addValueEventListener(object: ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if(snapshot.exists()) {
@@ -69,6 +69,9 @@ class NoticeActivity : AppCompatActivity() {
     private fun noticeAdapterSetting() {
         noticeAdapter = NoticeRecyclerViewAdapter(this)
         binding.rvNotice.adapter = noticeAdapter
+
+        noticeAdapter.notices = notices
+        noticeAdapter.notifyDataSetChanged()
     }
 
     private fun buttonSetting() {

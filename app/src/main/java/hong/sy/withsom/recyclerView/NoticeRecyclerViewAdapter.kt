@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import hong.sy.withsom.NoticeDetailActivity
 import hong.sy.withsom.R
 import hong.sy.withsom.data.NoticeData
+import java.io.Serializable
 
 class NoticeRecyclerViewAdapter(private val context: Context) : RecyclerView.Adapter<NoticeRecyclerViewAdapter.NoticeViewHolder>() {
     var notices = mutableListOf<NoticeData>()
@@ -23,12 +24,9 @@ class NoticeRecyclerViewAdapter(private val context: Context) : RecyclerView.Ada
             tv_date.text = notice.date
 
             itemView.setOnClickListener {
-                Intent(context, NoticeDetailActivity::class.java).apply {
-                    putExtra("title", notice.title)
-                    putExtra("date", notice.date)
-                    putExtra("content", notice.content)
-                    addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                }.run { context.startActivity(this) }
+                val intent = Intent(context, NoticeDetailActivity::class.java)
+                intent.putExtra("notice", notice as Serializable)
+                context.startActivity(intent)
             }
         }
     }

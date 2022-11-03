@@ -3,6 +3,7 @@ package hong.sy.withsom
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import hong.sy.withsom.data.NoticeData
 import hong.sy.withsom.databinding.ActivityNoticeDetailBinding
 
 class NoticeDetailActivity : AppCompatActivity() {
@@ -14,19 +15,17 @@ class NoticeDetailActivity : AppCompatActivity() {
         binding = ActivityNoticeDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val title = intent.getStringExtra("title").toString()
-        val date = intent.getStringExtra("date").toString()
-        val content = intent.getStringExtra("content").toString()
+        val notice = intent.getSerializableExtra("notice") as NoticeData
 
-        setting(title, date, content)
+        setting(notice)
 
-
+        buttonSetting()
     }
 
-    private fun setting(title: String, date: String, content: String) {
-        binding.tvTitleNoticeDetail.text = title
-        binding.tvDateNoticeDetail.text = date
-        binding.tvContentNoticeDetail.text = content
+    private fun setting(notice : NoticeData) {
+        binding.tvTitleNoticeDetail.text = notice.title
+        binding.tvDateNoticeDetail.text = notice.date
+        binding.tvContentNoticeDetail.text = notice.content
     }
 
     private fun buttonSetting() {

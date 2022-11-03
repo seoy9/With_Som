@@ -52,6 +52,16 @@ class SignUpActivity : AppCompatActivity() {
                 binding.checkBoxPrivacy.setTextColor(getResources().getColor(R.color.black))
             }
         }
+
+        binding.checkBoxPrivacy.setOnClickListener {
+            val checkBox = binding.checkBoxPrivacy
+
+            if(checkBox.isChecked) {
+                checkBox.buttonTintList = ContextCompat.getColorStateList(applicationContext, R.color.dongduk)
+            } else {
+                checkBox.buttonTintList = ContextCompat.getColorStateList(applicationContext, R.color.black)
+            }
+        }
     }
 
     private fun checkContent() : Boolean {

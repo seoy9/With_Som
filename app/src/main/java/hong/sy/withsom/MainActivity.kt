@@ -5,21 +5,19 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Message
-import android.util.Log
 import android.view.View
-import android.widget.Toast
 import androidx.viewpager2.widget.ViewPager2
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.Query
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import hong.sy.withsom.data.ClassData
+import hong.sy.withsom.data.NoticeData
 import hong.sy.withsom.databinding.ActivityMainBinding
-import hong.sy.withsom.login.SharedPreferenceManager
 import hong.sy.withsom.viewPager2.ClassViewPagerAdapter
 import hong.sy.withsom.viewPager2.NoticeViewPagerAdapter
+import java.io.Serializable
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
@@ -52,6 +50,8 @@ class MainActivity : AppCompatActivity() {
         classBannerSetting()
 
         buttonSetting()
+
+        getTopNoticeTitle()
     }
 
     private fun autoScrollStart(intervalTime: Long) {
@@ -110,13 +110,35 @@ class MainActivity : AppCompatActivity() {
                         val c = ClassData(cid!!, name!!, type!!, content!!, location!!, currentNum!!, totalNum!!, member!!, schedule!!, scheduleDetail!!, leaderID!!, leaderContent!!)
                         classList.add(c)
                     }
-                    settingClassViewPagerAdapter()
+                    randomClass()
                 }
             }
 
             override fun onCancelled(error: DatabaseError) {
             }
         })
+    }
+
+    private fun randomClass() {
+        val randomClass = ArrayList<ClassData>()
+
+        while(true) {
+            if(randomClass.size == 3) {
+                break
+            }
+
+            val random = Random().nextInt(classList.size)
+
+            if(!randomClass.contains(classList[random])) {
+                randomClass.add(classList[random])
+            }
+
+        }
+
+        classList.clear()
+        classList = randomClass
+
+        settingClassViewPagerAdapter()
     }
 
     private fun buttonSetting() {
@@ -201,5 +223,40 @@ class MainActivity : AppCompatActivity() {
                 startActivity(intent)
             }
         })
+    }
+
+    private fun getTopNoticeTitle() {
+        val notices = ArrayList<NoticeData>()
+        val myRef = database.getReference("notices")
+        myRef.addValueEventListener(object: ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if(snapshot.exists()) {
+                    for(classSnapshot in snapshot.children) {
+                        val nid = classSnapshot.child("nid").getValue(Int::class.java)
+                        val title = classSnapshot.child("title").getValue(String::class.java)
+                        val date = classSnapshot.child("date").getValue(String::class.java)
+                        val content = classSnapshot.child("content").getValue(String::class.java)
+
+                        val notice = NoticeData(nid!!, title!!, date!!, content!!)
+                        notices.add(notice)
+                    }
+                    noticeTitleSetting(notices)
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+            }
+        })
+    }
+
+    private fun noticeTitleSetting(notices: ArrayList<NoticeData>) {
+        val title = notices[notices.size-1].title
+        binding.tvNoticeTitle.text = title.subSequence(0, 26).toString() + "..."
+
+        binding.tvNoticeTitle.setOnClickListener {
+            val intent = Intent(this, NoticeDetailActivity::class.java)
+            intent.putExtra("notice", notices[notices.size-1] as Serializable)
+            startActivity(intent)
+        }
     }
 }

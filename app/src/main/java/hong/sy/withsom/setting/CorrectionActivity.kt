@@ -93,12 +93,7 @@ class CorrectionActivity : AppCompatActivity() {
                 val sortbyAge: Query = database.getReference().child("users").orderByChild("users")
                 sortbyAge.addListenerForSingleValueEvent(postListener)
 
-                var list = "이름: " + binding.edCorrectionName.text.toString()
-                list += "\n학과: " + binding.edCorrectionDepart.text.toString()
-                list += "\n비밀번호: " + binding.edCorrectionPw.text.toString()
-                list += "\n비밀번호 확인: " + binding.edCorrectionRePw.text.toString()
-
-                Toast.makeText(this, list + "\n수정 완료", Toast.LENGTH_LONG).show()
+                Toast.makeText(this, "수정 완료", Toast.LENGTH_LONG).show()
                 finish()
             }
         }

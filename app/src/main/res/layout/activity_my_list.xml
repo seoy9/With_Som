@@ -56,16 +56,31 @@
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:text="내 모임"/>
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:text="신청한 모임"/>
 
     </com.google.android.material.tabs.TabLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_classes"
+        android:id="@+id/rv_myclass"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:clipToPadding="false"
+        android:orientation="vertical"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toTopOf="@id/guideline4"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/list_tabLayout"
+        tools:listitem="@layout/class_recycler_search" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_myapplication"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:clipToPadding="false"
@@ -78,51 +93,51 @@
         tools:listitem="@layout/class_recycler_search" />
 
     <ImageButton
-        android:id="@+id/btn_search_classes"
+        android:id="@+id/btn_search_list"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/baseline_search_24"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btn_setting_classes"
+        app:layout_constraintEnd_toStartOf="@+id/btn_setting_list"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/btn_classes_classes"
+        app:layout_constraintStart_toEndOf="@+id/btn_classes_list"
         app:layout_constraintTop_toTopOf="@+id/guideline4"
         app:layout_constraintVertical_bias="0.5" />
 
     <ImageButton
-        android:id="@+id/btn_classes_classes"
+        android:id="@+id/btn_classes_list"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/baseline_groups_24"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btn_search_classes"
+        app:layout_constraintEnd_toStartOf="@+id/btn_search_list"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/btn_home_classes"
+        app:layout_constraintStart_toEndOf="@+id/btn_home_list"
         app:layout_constraintTop_toTopOf="@+id/guideline4"
         app:layout_constraintVertical_bias="0.5"
         android:backgroundTint="@color/dongduk"/>
 
     <ImageButton
-        android:id="@+id/btn_home_classes"
+        android:id="@+id/btn_home_list"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/baseline_home_24"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btn_classes_classes"
+        app:layout_constraintEnd_toStartOf="@+id/btn_classes_list"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline4"
         app:layout_constraintVertical_bias="0.5" />
 
     <ImageButton
-        android:id="@+id/btn_setting_classes"
+        android:id="@+id/btn_setting_list"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/baseline_settings_24"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/btn_search_classes"
+        app:layout_constraintStart_toEndOf="@+id/btn_search_list"
         app:layout_constraintTop_toTopOf="@+id/guideline4"
         app:layout_constraintVertical_bias="0.5" />
 

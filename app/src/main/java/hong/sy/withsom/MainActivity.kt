@@ -225,6 +225,7 @@ class MainActivity : AppCompatActivity() {
             override fun onClick(v: View, data: ClassData, pos: Int) {
                 val intent = Intent(this@MainActivity, ClassDetailActivity::class.java)
                 intent.putExtra("data", data)
+                intent.putExtra("where", "main")
                 startActivity(intent)
             }
         })

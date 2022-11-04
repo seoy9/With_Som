@@ -89,6 +89,7 @@ class ClassRecyclerViewAdapter(private val context: Context) : RecyclerView.Adap
                 override fun onClick(v: View, data: ClassData, pos: Int) {
                     val intent = Intent(context, ClassDetailActivity::class.java)
                     intent.putExtra("data", data as Serializable)
+                    intent.putExtra("where", "class")
                     context.startActivity(intent)
                 }
             })

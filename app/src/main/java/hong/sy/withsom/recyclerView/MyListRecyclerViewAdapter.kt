@@ -16,10 +16,12 @@ import com.google.firebase.ktx.Firebase
 import hong.sy.withsom.ClassDetailActivity
 import hong.sy.withsom.R
 import hong.sy.withsom.data.ClassData
+import java.io.Serializable
 import java.util.*
 
 class MyListRecyclerViewAdapter(private val context: Context) : RecyclerView.Adapter<MyListRecyclerViewAdapter.MyListViewHolder>() {
     var datas = ArrayList<ClassData>()
+    var where = ""
 
     inner class MyListViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         private val img_leader : ImageView = itemView.findViewById(R.id.img_leader_search)
@@ -37,12 +39,8 @@ class MyListRecyclerViewAdapter(private val context: Context) : RecyclerView.Ada
 
             itemView.setOnClickListener {
                 val intent = Intent(context, ClassDetailActivity::class.java)
-                intent.putExtra("title", item.name)
-                intent.putExtra("leader", item.leaderID)
-                //putExtra("leader_img", item.imgLeader)
-                intent.putExtra("location", item.location)
-                intent.putExtra("schedule", item.schedule)
-                intent.putExtra("num", item.totalNum)
+                intent.putExtra("data", item as Serializable)
+                intent.putExtra("where", where)
                 context.startActivity(intent)
             }
         }

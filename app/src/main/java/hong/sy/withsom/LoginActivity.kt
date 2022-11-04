@@ -15,6 +15,7 @@ import com.google.firebase.database.Query
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import hong.sy.withsom.data.ClassData
 import hong.sy.withsom.databinding.ActivityLoginBinding
 import hong.sy.withsom.login.SharedPreferenceManager
 
@@ -129,32 +130,30 @@ class LoginActivity : AppCompatActivity() {
     private fun isEmailExistence() {
         val id = binding.edLoginEmail.text.toString()
         val pw = binding.edLoginPw.text.toString()
-        val postListener: ValueEventListener = object : ValueEventListener {
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
-                for (postSnapshot in dataSnapshot.getChildren()) {
-                    if (postSnapshot.child("email").getValue(String::class.java) != null) {
-                        val email = postSnapshot.child("email").getValue(String::class.java)
-                        val password = postSnapshot.child("pw").getValue(String::class.java)
-                        name = postSnapshot.child("name").getValue(String::class.java)!!
+        val myRef = database.getReference("users")
+        myRef.addValueEventListener(object: ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if(snapshot.exists()) {
+                    for(userSnapshot in snapshot.children) {
+                        val email = userSnapshot.child("email").getValue(String::class.java)
+                        val password = userSnapshot.child("pw").getValue(String::class.java)
+                        name = userSnapshot.child("name").getValue(String::class.java)!!
 
                         if(id == email) {
                             isHave = true
                             if(pw == password) {
                                 isCorrect = true
                             }
+                            result()
+                            break
                         }
                     }
-                    result()
-                    break
                 }
             }
 
-            override fun onCancelled(databaseError: DatabaseError) {
-                Log.w("FirebaseDatabase", "onCancelled", databaseError.toException())
+            override fun onCancelled(error: DatabaseError) {
             }
-        }
-        val sortbyAge: Query = database.getReference().child("users").orderByChild("users")
-        sortbyAge.addListenerForSingleValueEvent(postListener)
+        })
     }
 
     private fun result() {

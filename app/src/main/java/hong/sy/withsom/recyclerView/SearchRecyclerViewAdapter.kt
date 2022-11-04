@@ -19,6 +19,7 @@ import com.google.firebase.ktx.Firebase
 import hong.sy.withsom.ClassDetailActivity
 import hong.sy.withsom.R
 import hong.sy.withsom.data.ClassData
+import java.io.Serializable
 import java.util.*
 
 class SearchRecyclerViewAdapter(private val datas: ArrayList<ClassData>, private val context: Context) : RecyclerView.Adapter<SearchRecyclerViewAdapter.SearchViewHolder>(), Filterable {
@@ -73,12 +74,14 @@ class SearchRecyclerViewAdapter(private val datas: ArrayList<ClassData>, private
 
             itemView.setOnClickListener {
                 val intent = Intent(context, ClassDetailActivity::class.java)
-                intent.putExtra("title", item.name)
-                intent.putExtra("leader", item.leaderID)
-                    //putExtra("leader_img", item.imgLeader)
-                intent.putExtra("location", item.location)
-                intent.putExtra("schedule", item.schedule)
-                intent.putExtra("num", item.totalNum)
+//                intent.putExtra("title", item.name)
+//                intent.putExtra("leader", item.leaderID)
+//                    //putExtra("leader_img", item.imgLeader)
+//                intent.putExtra("location", item.location)
+//                intent.putExtra("schedule", item.schedule)
+//                intent.putExtra("num", item.totalNum)
+                intent.putExtra("data", item as Serializable)
+                intent.putExtra("where", "search")
                 context.startActivity(intent)
             }
         }

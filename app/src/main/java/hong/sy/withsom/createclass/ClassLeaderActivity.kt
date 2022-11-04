@@ -62,6 +62,7 @@ class ClassLeaderActivity : AppCompatActivity() {
                 finishAffinity()
                 val intent = Intent(this, ClassDetailActivity::class.java)
                 intent.putExtra("data", classData as Serializable)
+                intent.putExtra("where", "createClass")
                 startActivity(intent)
             }.start()
         }

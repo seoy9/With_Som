@@ -1,13 +1,10 @@
 package hong.sy.withsom.recyclerView
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Filter
-import android.widget.Filterable
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
@@ -21,43 +18,10 @@ import hong.sy.withsom.R
 import hong.sy.withsom.data.ClassData
 import java.util.*
 
-class SearchRecyclerViewAdapter(private val datas: ArrayList<ClassData>, private val context: Context) : RecyclerView.Adapter<SearchRecyclerViewAdapter.SearchViewHolder>(), Filterable {
-    var classes = datas
-    var searchFilter = SearchFilter()
+class MyListRecyclerViewAdapter(private val context: Context) : RecyclerView.Adapter<MyListRecyclerViewAdapter.MyListViewHolder>() {
+    var datas = ArrayList<ClassData>()
 
-    inner class SearchFilter: Filter() {
-        override fun performFiltering(constraint: CharSequence?): FilterResults {
-            val filterString = constraint.toString()
-            val results = FilterResults()
-
-            val filterList : ArrayList<ClassData> = ArrayList<ClassData>()
-
-            if(filterString.length == 0) {
-                results.values = datas
-                results.count = datas.size
-                return results
-            } else {
-                for(search in datas) {
-                    if(search.name.contains(filterString) || search.content.contains(filterString) || search.type.contains(filterString) || search.member.contains(filterString) || search.leaderID.contains(filterString) || search.schedule.contains(filterString) || search.scheduleDetail.contains(filterString) || search.location.contains(filterString)) {
-                        filterList.add(search)
-                    }
-                }
-            }
-            results.values = filterList
-            results.count = filterList.size
-
-            return results
-        }
-
-        @SuppressLint("NotifyDataSetChanged")
-        override fun publishResults(constraint: CharSequence?, results: FilterResults?) {
-            classes.clear()
-            classes.addAll(results!!.values as ArrayList<ClassData>)
-            notifyDataSetChanged()
-        }
-    }
-
-    inner class SearchViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    inner class MyListViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         private val img_leader : ImageView = itemView.findViewById(R.id.img_leader_search)
         private val tv_title : TextView = itemView.findViewById(R.id.tv_title_search)
         private val tv_type : TextView = itemView.findViewById(R.id.tv_type_search)
@@ -75,7 +39,7 @@ class SearchRecyclerViewAdapter(private val datas: ArrayList<ClassData>, private
                 val intent = Intent(context, ClassDetailActivity::class.java)
                 intent.putExtra("title", item.name)
                 intent.putExtra("leader", item.leaderID)
-                    //putExtra("leader_img", item.imgLeader)
+                //putExtra("leader_img", item.imgLeader)
                 intent.putExtra("location", item.location)
                 intent.putExtra("schedule", item.schedule)
                 intent.putExtra("num", item.totalNum)
@@ -106,19 +70,15 @@ class SearchRecyclerViewAdapter(private val datas: ArrayList<ClassData>, private
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyListViewHolder {
         val view = LayoutInflater.from(context).inflate(R.layout.class_recycler_search, parent, false)
-        return SearchViewHolder(view)
+        return MyListViewHolder(view)
     }
 
-    override fun getItemCount(): Int = classes.size
+    override fun getItemCount(): Int  = datas.size
 
-    override fun onBindViewHolder(holder: SearchViewHolder, position: Int) {
-        holder.bindLeaderImg(classes[position])
-        holder.bind(classes[position])
-    }
-
-    override fun getFilter(): Filter {
-        return searchFilter
+    override fun onBindViewHolder(holder: MyListViewHolder, position: Int) {
+        holder.bindLeaderImg(datas[position])
+        holder.bind(datas[position])
     }
 }

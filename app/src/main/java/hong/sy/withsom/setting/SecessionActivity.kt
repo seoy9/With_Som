@@ -17,6 +17,7 @@ import hong.sy.withsom.*
 import hong.sy.withsom.data.ClassData
 import hong.sy.withsom.databinding.ActivitySecessionBinding
 import hong.sy.withsom.login.SharedPreferenceManager
+import hong.sy.withsom.mail.GMailSender
 
 class SecessionActivity : AppCompatActivity() {
     lateinit var binding: ActivitySecessionBinding
@@ -123,7 +124,12 @@ class SecessionActivity : AppCompatActivity() {
     }
 
     private fun doneDeleteUser() {
+        val email = "dongduk.withsom@gmail.com"
+        val id = SharedPreferenceManager.getUserEmail(this)
+        val name = SharedPreferenceManager.getUserName(this)
+
         Toast.makeText(this, "사유 : ${reason}\n탈퇴되었습니다.", Toast.LENGTH_SHORT).show()
+        GMailSender().sendEmail(email, "${id} ${name} 님의 탈퇴", "${id} ${name} 님의 탈퇴\n\n사유 : ${reason}")
 
         SharedPreferenceManager.clearUser(this)
 

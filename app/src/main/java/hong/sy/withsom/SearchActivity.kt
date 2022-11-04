@@ -3,15 +3,24 @@ package hong.sy.withsom
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
+import androidx.appcompat.widget.SearchView
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 import hong.sy.withsom.data.ClassData
 import hong.sy.withsom.databinding.ActivitySearchBinding
 import hong.sy.withsom.recyclerView.SearchRecyclerViewAdapter
+import java.util.*
 
 class SearchActivity : AppCompatActivity() {
     lateinit var binding: ActivitySearchBinding
 
+//    var searchAdapter: SearchRecyclerViewAdapter = SearchRecyclerViewAdapter(ArrayList<ClassData>(), this)
     lateinit var searchAdapter: SearchRecyclerViewAdapter
-    val classes = mutableListOf<ClassData>()
+    val classList = ArrayList<ClassData>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,23 +30,67 @@ class SearchActivity : AppCompatActivity() {
 
         initRecycler()
 
-        buttonSetting()
+        //buttonSetting()
     }
 
     private fun initRecycler() {
-        searchAdapter = SearchRecyclerViewAdapter(this)
-        binding.rvSearch.adapter = searchAdapter
+        val database = Firebase.database
+        val myRef = database.getReference("classes")
+        myRef.addValueEventListener(object: ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if(snapshot.exists()) {
+                    for(classSnapshot in snapshot.children) {
+                        val cid = classSnapshot.child("cid").getValue(Int::class.java)
+                        val name = classSnapshot.child("name").getValue(String::class.java)
+                        val type = classSnapshot.child("type").getValue(String::class.java)
+                        val content = classSnapshot.child("content").getValue(String::class.java)
+                        val location = classSnapshot.child("location").getValue(String::class.java)
+                        val currentNum = classSnapshot.child("currentNum").getValue(Int::class.java)
+                        val totalNum = classSnapshot.child("totalNum").getValue(Int::class.java)
+                        val member = classSnapshot.child("member").getValue(String::class.java)
+                        val schedule = classSnapshot.child("schedule").getValue(String::class.java)
+                        val scheduleDetail = classSnapshot.child("scheduleDetail").getValue(String::class.java)
+                        val leaderID = classSnapshot.child("leaderID").getValue(String::class.java)
+                        val leaderContent = classSnapshot.child("leaderContent").getValue(String::class.java)
 
-        classes.apply {
-            add(ClassData(1, "솜솜덕질", "취미", "솜솜이를 덕질해보자!", "동덕여대", 0, 5, "솜솜이를 사랑하는 학우", "매주, 월, 수, 금", "유동적으로 활동", "1@dongduk.ac.kr", "솜덕"))
-            add(ClassData(2, "정보처리기사", "자격증", "정보처리기사 자격 취득", "숭인관", 0, 3, "정처기 필요한 사람", "매주, 화, 목", "화, 목 6시 이후", "2@dongduk.ac.kr", "컴과솜"))
-            add(ClassData(3, "만 보 걷기", "운동", "건강해지기", "백주년기념관", 0, 10, "만 보 챌린지 할 사람", "매주, 토, 일", "주말 낮", "3@dongduk.ac.kr", "체과촘"))
+                        val c = ClassData(cid!!, name!!, type!!, content!!, location!!, currentNum!!, totalNum!!, member!!, schedule!!, scheduleDetail!!, leaderID!!, leaderContent!!)
+                        classList.add(c)
+                    }
+                    searchAdapterSetting()
+                }
+            }
 
-            searchAdapter.classes = classes
-            searchAdapter.notifyDataSetChanged()
-        }
+            override fun onCancelled(error: DatabaseError) {
+            }
+        })
     }
+
+    private fun searchAdapterSetting() {
+        searchAdapter = SearchRecyclerViewAdapter(classList, this)
+        binding.rvSearch.adapter = searchAdapter
+        searchAdapter.classes = classList
+        searchAdapter.notifyDataSetChanged()
+
+        buttonSetting()
+    }
+
     private fun buttonSetting() {
+        binding.searchView.setOnQueryTextListener(object: SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                searchAdapter.filter.filter(query)
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                if(newText!!.length == 0) {
+                    searchAdapter.classes.clear()
+                    initRecycler()
+                }
+                return false
+            }
+
+        })
+
         binding.btnClassesSearch.setOnClickListener {
             val intent = Intent(this, ClassesActivity::class.java)
             startActivity(intent)

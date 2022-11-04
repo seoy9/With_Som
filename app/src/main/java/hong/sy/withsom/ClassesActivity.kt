@@ -56,6 +56,12 @@ class ClassesActivity : AppCompatActivity() {
             finish()
         }
 
+        binding.fabMyList.setOnClickListener {
+            val intent = Intent(this, MyListActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+
         binding.btnHomeClasses.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)

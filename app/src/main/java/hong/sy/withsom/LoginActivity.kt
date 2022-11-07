@@ -158,10 +158,7 @@ class LoginActivity : AppCompatActivity() {
 
     private fun result() {
         if (isHave && isCorrect) {
-            SharedPreferenceManager.setUserEmail(
-                this,
-                binding.edLoginEmail.text.toString()
-            )
+            SharedPreferenceManager.setUserEmail(this, binding.edLoginEmail.text.toString())
 
             if (binding.checkBoxAutologin.isChecked) {
                 SharedPreferenceManager.setUserId(this, binding.edLoginEmail.text.toString())

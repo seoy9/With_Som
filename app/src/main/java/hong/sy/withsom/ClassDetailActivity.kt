@@ -20,6 +20,7 @@ import hong.sy.withsom.login.SharedPreferenceManager
 import hong.sy.withsom.recyclerView.DetailRecyclerViewAdapter
 import hong.sy.withsom.recyclerView.HorizontalItemDecorator
 import hong.sy.withsom.recyclerView.VerticalItemDecorator
+import java.util.*
 
 class ClassDetailActivity : AppCompatActivity() {
     private lateinit var binding: ActivityClassDetailBinding
@@ -186,25 +187,27 @@ class ClassDetailActivity : AppCompatActivity() {
             builder.setTitle("현재 인원을 증가시키겠습니까?")
                 .setPositiveButton("증가",
                     DialogInterface.OnClickListener{ dialog, id ->
-                                val myRef = database.getReference("classes")
-                                myRef.addValueEventListener(object: ValueEventListener {
-                                    override fun onDataChange(snapshot: DataSnapshot) {
-                                        if(snapshot.exists()) {
-                                            for(classSnapshot in snapshot.children) {
-                                                val cid = classSnapshot.child("cid").getValue(Int::class.java)
-                                                val currentNum = classSnapshot.child("currentNum").getValue(Int::class.java)
+                        val myRef = database.getReference("classes")
+                        myRef.addValueEventListener(object: ValueEventListener {
+                            override fun onDataChange(snapshot: DataSnapshot) {
+                                if(snapshot.exists()) {
+                                    for(classSnapshot in snapshot.children) {
+                                        val cid = classSnapshot.child("cid").getValue(Int::class.java)
+                                        var currentNum = classSnapshot.child("currentNum").getValue(Int::class.java)
 
-                                                if(classData.cid == cid) {
-                                                    myRef.child(cid.toString()).child("currentNum").setValue(currentNum!! + 1)
-                                                    break
-                                                }
-                                            }
+                                        if(classData.cid == cid) {
+                                            currentNum = currentNum!! + 1
+                                            myRef.child(cid.toString()).child("currentNum").setValue(currentNum)
+                                            break
                                         }
                                     }
+                                }
+                            }
 
-                                    override fun onCancelled(error: DatabaseError) {
-                                    }
-                                })
+                            override fun onCancelled(error: DatabaseError) {
+                            }
+                        })
+
                         Toast.makeText(this@ClassDetailActivity, "현재 인원이 추가되었습니다.", Toast.LENGTH_SHORT).show()
                     })
                 .setNegativeButton("취소", null)
@@ -268,5 +271,13 @@ class ClassDetailActivity : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
+    }
+
+    private fun refresh() {
+        val intent = this.intent
+        finish()
+        overridePendingTransition(0, 0)
+        startActivity(intent)
+        overridePendingTransition(0, 0)
     }
 }

@@ -128,33 +128,31 @@ class CorrectionActivity : AppCompatActivity() {
         var name = ""
         var depart = ""
 
-        val postListener: ValueEventListener = object : ValueEventListener {
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
-                for (postSnapshot in dataSnapshot.getChildren()) {
-                    if (postSnapshot.child("email").getValue(String::class.java) != null) {
-                        val e = postSnapshot.child("email").getValue(String::class.java)
+        myRef.addValueEventListener(object: ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if(snapshot.exists()) {
+                    for(userSnapshot in snapshot.children) {
+                        val e = userSnapshot.child("email").getValue(String::class.java)
 
                         if(email == e) {
-                            name = postSnapshot.child("name").getValue(String::class.java)!!
-                            depart = postSnapshot.child("depart").getValue(String::class.java)!!
+                            name = userSnapshot.child("name").getValue(String::class.java)!!
+                            depart = userSnapshot.child("depart").getValue(String::class.java)!!
                             isHave = true
+                            result(name, depart)
+                            break
                         }
                     }
-                    result(name, depart)
-                    break
                 }
             }
 
-            override fun onCancelled(databaseError: DatabaseError) {
-                Log.w("FirebaseDatabase", "onCancelled", databaseError.toException())
+            override fun onCancelled(error: DatabaseError) {
             }
-        }
-        val sortbyAge: Query = database.getReference().child("users").orderByChild("users")
-        sortbyAge.addListenerForSingleValueEvent(postListener)
+        })
     }
 
     private fun result(name: String, depart: String) {
         if (isHave) {
+            Toast.makeText(this, SharedPreferenceManager.getUserEmail(this), Toast.LENGTH_SHORT).show()
             binding.tvCorrectionEmail.text = SharedPreferenceManager.getUserEmail(this)
             binding.edCorrectionName.setText(name)
             binding.edCorrectionDepart.setText(depart)

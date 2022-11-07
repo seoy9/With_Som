@@ -46,9 +46,6 @@ class ClassLocationActivity : AppCompatActivity() {
 
             val intent = Intent(this, ClassNumberActivity::class.java)
             intent.putExtra("total", total)
-//            intent.putExtra("title", title)
-//            intent.putExtra("content", content)
-//            intent.putExtra("location", binding.edClassLocation.text.toString())
             intent.putExtra("data", classData as Serializable)
             startActivity(intent)
         }

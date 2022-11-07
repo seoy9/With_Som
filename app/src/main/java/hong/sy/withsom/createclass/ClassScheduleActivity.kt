@@ -61,7 +61,11 @@ class ClassScheduleActivity : AppCompatActivity() {
                         }
                     }
 
-                    checked = checked.subSequence(0, checked.length - 2).toString()
+                    if(checked == "") {
+                        checked = "선택 안 함"
+                    } else {
+                        checked = checked.subSequence(0, checked.length - 2).toString()
+                    }
 
                     binding.tvScheduleChecked.text = checked
                 }
@@ -69,7 +73,12 @@ class ClassScheduleActivity : AppCompatActivity() {
         }
 
         binding.btnClassScheduleNext.setOnClickListener {
-            val schedule = binding.tvScheduleChecked.text.toString()
+            var schedule = binding.tvScheduleChecked.text.toString()
+
+            if(schedule == "선택 안 함") {
+                schedule = "미정"
+            }
+
             val scheduleDetail = binding.edClassScheduleDetail.text.toString()
 
             total += "모임 일정 : " + schedule + "\n"

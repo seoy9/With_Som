@@ -112,8 +112,7 @@ class FindPwActivity : AppCompatActivity() {
             GMailSender().sendEmail(
                 email,
                 "임시 비밀번호입니다.",
-                "${email} 님의 임시 비밀번호 : ${temporaryPW}"
-            )
+                "<img src='https://s3.us-west-2.amazonaws.com/secure.notion-static.com/c914e239-ba64-474b-b066-d556061030f3/logo.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20221107%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221107T004323Z&X-Amz-Expires=86400&X-Amz-Signature=3464e7a25057098bec92b232f8a20e60a6fd807d57127c2c25d3573c1dd43c47&X-Amz-SignedHeaders=host&response-content-disposition=filename%3D%22logo.png%22&x-id=GetObject' alt='With Som 로고' width='20%' height='20%'><h3><b>[로그인 비밀번호 초기화]</b></h3>\n\n현재 보드리는 비밀번호는 임시로 제공되는 비밀번호입니다.\n\n로그인 후 '개인정보 수정'에서 비밀번호를 변경하고 사용하시길 바랍니다.\n\n\n<p style='background-color:#D3D3D3;'>${email} 님의 임시 비밀번호 : <b>${temporaryPW}</b></p>\n\n<hr/><small>With Som 개발자 dongduk.withsom@gmail.com</small>")
             Toast.makeText(this, "임시 비밀번호를 메일로 전송했습니다.", Toast.LENGTH_SHORT).show()
         } else {
             Toast.makeText(this, "존재하지 않는 이메일입니다.\n다시 확인해 주세요.", Toast.LENGTH_SHORT).show()

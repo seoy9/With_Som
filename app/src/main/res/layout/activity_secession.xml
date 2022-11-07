@@ -124,7 +124,8 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/btn_search_secession"
         app:layout_constraintTop_toTopOf="@+id/guideline4"
-        app:layout_constraintVertical_bias="0.5" />
+        app:layout_constraintVertical_bias="0.5"
+        android:backgroundTint="@color/dongduk"/>
 
     <ImageView
         android:id="@+id/imageView11"

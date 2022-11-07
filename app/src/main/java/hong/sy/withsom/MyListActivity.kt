@@ -51,7 +51,9 @@ class MyListActivity : AppCompatActivity() {
 
     override fun onRestart() {
         super.onRestart()
-        classList.cl
+        classList.clear()
+        applicationList.clear()
+        applicationClassList.clear()
         myClassList()
         myApplicationList()
         setting()

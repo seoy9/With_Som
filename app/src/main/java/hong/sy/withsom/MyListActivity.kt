@@ -40,6 +40,9 @@ class MyListActivity : AppCompatActivity() {
         binding = ActivityMyListBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+//        myClassAdapter = MyListRecyclerViewAdapter(this)
+//        myApplicationAdapter = MyListRecyclerViewAdapter(this)
+
         myClassList()
         myApplicationList()
 
@@ -50,27 +53,11 @@ class MyListActivity : AppCompatActivity() {
 
     }
 
-//    override fun onStart() {
-//        super.onStart()
-//        classList.clear()
-//        applicationList.clear()
-//        applicationClassList.clear()
-//        myClassList()
-//        myApplicationList()
-//    }
-
-    override fun onRestart() {
-        super.onRestart()
-//        classList.clear()
-//        applicationList.clear()
-//        applicationClassList.clear()
-        myClassAdapter.datas.clear()
-        myApplicationAdapter.datas.clear()
-//        myClassList()
-//        myApplicationList()
-
-        myApplicationAdapter.notifyDataSetChanged()
-        myClassAdapter.notifyDataSetChanged()
+    override fun onResume() {
+        super.onResume()
+        classList.clear()
+        applicationList.clear()
+        applicationClassList.clear()
     }
 
     private fun setting() {

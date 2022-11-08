@@ -33,6 +33,22 @@ class ClassesActivity : AppCompatActivity() {
         buttonSetting()
     }
 
+    override fun onRestart() {
+        super.onRestart()
+        datas.clear()
+        classRecyclerViewAdapter = ClassRecyclerViewAdapter(this)
+        binding.rvClasses.adapter = classRecyclerViewAdapter
+
+        datas.add("취미")
+        datas.add("공부")
+        datas.add("운동")
+        datas.add("자격증")
+        datas.add("대회")
+        datas.add("기타")
+        classRecyclerViewAdapter.datas = datas
+        classRecyclerViewAdapter.notifyDataSetChanged()
+    }
+
     private fun initRecycler() {
         classRecyclerViewAdapter = ClassRecyclerViewAdapter(this)
         binding.rvClasses.adapter = classRecyclerViewAdapter
@@ -42,6 +58,7 @@ class ClassesActivity : AppCompatActivity() {
         datas.add("운동")
         datas.add("자격증")
         datas.add("대회")
+        datas.add("기타")
         classRecyclerViewAdapter.datas = datas
         classRecyclerViewAdapter.notifyDataSetChanged()
 

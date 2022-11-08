@@ -50,7 +50,7 @@ class ClassLeaderActivity : AppCompatActivity() {
             total += "리더 소개 : " + leaderContent
             classData.leaderContent = leaderContent
 
-            Toast.makeText(this, total, Toast.LENGTH_LONG).show()
+            //Toast.makeText(this, total, Toast.LENGTH_LONG).show()
 
             id = System.currentTimeMillis().toInt()
 

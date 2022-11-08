@@ -66,8 +66,23 @@ class ClassRecyclerViewAdapter(private val context: Context) : RecyclerView.Adap
 
                             for(t in type!!.split(", ")) {
                                 if(t == item) {
-                                    val c = ClassData(cid!!, name!!, type, content!!, location!!, currentNum!!, totalNum!!, member!!, schedule!!, scheduleDetail!!, leaderID!!, leaderContent!!)
-                                    classList.add(c)
+                                    if(currentNum != totalNum) {
+                                        val c = ClassData(
+                                            cid!!,
+                                            name!!,
+                                            type,
+                                            content!!,
+                                            location!!,
+                                            currentNum!!,
+                                            totalNum!!,
+                                            member!!,
+                                            schedule!!,
+                                            scheduleDetail!!,
+                                            leaderID!!,
+                                            leaderContent!!
+                                        )
+                                        classList.add(c)
+                                    }
                                 }
                             }
                         }

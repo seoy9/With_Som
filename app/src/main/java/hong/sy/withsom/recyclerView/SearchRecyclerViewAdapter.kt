@@ -74,12 +74,6 @@ class SearchRecyclerViewAdapter(private val datas: ArrayList<ClassData>, private
 
             itemView.setOnClickListener {
                 val intent = Intent(context, ClassDetailActivity::class.java)
-//                intent.putExtra("title", item.name)
-//                intent.putExtra("leader", item.leaderID)
-//                    //putExtra("leader_img", item.imgLeader)
-//                intent.putExtra("location", item.location)
-//                intent.putExtra("schedule", item.schedule)
-//                intent.putExtra("num", item.totalNum)
                 intent.putExtra("data", item as Serializable)
                 intent.putExtra("where", "search")
                 context.startActivity(intent)

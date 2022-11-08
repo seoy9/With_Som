@@ -57,7 +57,7 @@ class ClassTypeActivity : AppCompatActivity() {
                     }
 
                     if(checked == "") {
-                        checked = "미정"
+                        checked = "선택 안 함"
                     } else {
                         checked = checked.subSequence(0, checked.length - 2).toString()
                     }
@@ -69,6 +69,10 @@ class ClassTypeActivity : AppCompatActivity() {
 
         binding.btnClassTypeNext.setOnClickListener {
             var type = binding.tvTypeChecked.text.toString()
+
+            if(type == "선택 안 함") {
+                type = "기타"
+            }
 
             total += "모임 종류 : " + type + "\n"
             classData.type = type

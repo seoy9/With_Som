@@ -20,6 +20,7 @@ import hong.sy.withsom.databinding.ActivityMyListBinding
 import hong.sy.withsom.login.SharedPreferenceManager
 import hong.sy.withsom.recyclerView.MyListRecyclerViewAdapter
 import hong.sy.withsom.recyclerView.SearchRecyclerViewAdapter
+import java.io.Serializable
 import java.util.*
 
 class MyListActivity : AppCompatActivity() {
@@ -49,14 +50,27 @@ class MyListActivity : AppCompatActivity() {
 
     }
 
+//    override fun onStart() {
+//        super.onStart()
+//        classList.clear()
+//        applicationList.clear()
+//        applicationClassList.clear()
+//        myClassList()
+//        myApplicationList()
+//    }
+
     override fun onRestart() {
         super.onRestart()
-        classList.clear()
-        applicationList.clear()
-        applicationClassList.clear()
-        myClassList()
-        myApplicationList()
-        setting()
+//        classList.clear()
+//        applicationList.clear()
+//        applicationClassList.clear()
+        myClassAdapter.datas.clear()
+        myApplicationAdapter.datas.clear()
+//        myClassList()
+//        myApplicationList()
+
+        myApplicationAdapter.notifyDataSetChanged()
+        myClassAdapter.notifyDataSetChanged()
     }
 
     private fun setting() {
@@ -107,6 +121,7 @@ class MyListActivity : AppCompatActivity() {
     }
 
     private fun myApplicationList() {
+        applicationList.clear()
         val stNum = SharedPreferenceManager.getUserEmail(this).subSequence(0, 8).toString()
         val myRef = database.getReference("applications")
         myRef.addValueEventListener(object: ValueEventListener {
@@ -132,68 +147,57 @@ class MyListActivity : AppCompatActivity() {
     }
 
     private fun myApplicationClassList() {
-        //for(application in applicationList) {
-            val myRef = database.getReference("classes")
-            myRef.addValueEventListener(object : ValueEventListener {
-                override fun onDataChange(snapshot: DataSnapshot) {
-                    if (snapshot.exists()) {
-                        for (classSnapshot in snapshot.children) {
-                            val cid = classSnapshot.child("cid").getValue(Int::class.java)
-                            val name = classSnapshot.child("name").getValue(String::class.java)
-                            val type = classSnapshot.child("type").getValue(String::class.java)
-                            val content =
-                                classSnapshot.child("content").getValue(String::class.java)
-                            val location =
-                                classSnapshot.child("location").getValue(String::class.java)
-                            val currentNum =
-                                classSnapshot.child("currentNum").getValue(Int::class.java)
-                            val totalNum = classSnapshot.child("totalNum").getValue(Int::class.java)
-                            val member = classSnapshot.child("member").getValue(String::class.java)
-                            val schedule =
-                                classSnapshot.child("schedule").getValue(String::class.java)
-                            val scheduleDetail =
-                                classSnapshot.child("scheduleDetail").getValue(String::class.java)
-                            val leaderID =
-                                classSnapshot.child("leaderID").getValue(String::class.java)
-                            val leaderContent =
-                                classSnapshot.child("leaderContent").getValue(String::class.java)
+        applicationClassList.clear()
+        val myRef = database.getReference("classes")
+        myRef.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if (snapshot.exists()) {
+                    for (classSnapshot in snapshot.children) {
+                        val cid = classSnapshot.child("cid").getValue(Int::class.java)
+                        val name = classSnapshot.child("name").getValue(String::class.java)
+                        val type = classSnapshot.child("type").getValue(String::class.java)
+                        val content = classSnapshot.child("content").getValue(String::class.java)
+                        val location = classSnapshot.child("location").getValue(String::class.java)
+                        val currentNum = classSnapshot.child("currentNum").getValue(Int::class.java)
+                        val totalNum = classSnapshot.child("totalNum").getValue(Int::class.java)
+                        val member = classSnapshot.child("member").getValue(String::class.java)
+                        val schedule = classSnapshot.child("schedule").getValue(String::class.java)
+                        val scheduleDetail = classSnapshot.child("scheduleDetail").getValue(String::class.java)
+                        val leaderID = classSnapshot.child("leaderID").getValue(String::class.java)
+                        val leaderContent = classSnapshot.child("leaderContent").getValue(String::class.java)
 
-                            if(applicationList.contains(cid!!)) {
-                                val c = ClassData(
-                                    cid,
-                                    name!!,
-                                    type!!,
-                                    content!!,
-                                    location!!,
-                                    currentNum!!,
-                                    totalNum!!,
-                                    member!!,
-                                    schedule!!,
-                                    scheduleDetail!!,
-                                    leaderID!!,
-                                    leaderContent!!
-                                )
-                                applicationClassList.add(c)
-                            }
+                        if(applicationList.contains(cid!!)) {
+                            val c = ClassData(cid, name!!, type!!, content!!, location!!, currentNum!!, totalNum!!, member!!, schedule!!, scheduleDetail!!, leaderID!!, leaderContent!!)
+                            applicationClassList.add(c)
                         }
-                        myApplicationAdapterSetting()
                     }
+                    myApplicationAdapterSetting()
                 }
+            }
 
-                override fun onCancelled(error: DatabaseError) {
-                }
-            })
+            override fun onCancelled(error: DatabaseError) {
+            }
+        })
     }
 
     private fun myApplicationAdapterSetting() {
         myApplicationAdapter = MyListRecyclerViewAdapter(this)
         binding.rvMyapplication.adapter = myApplicationAdapter
         myApplicationAdapter.datas = applicationClassList
-        myApplicationAdapter.where = "myApplication"
         myApplicationAdapter.notifyDataSetChanged()
+
+        myApplicationAdapter.setOnItemClickListener(object : MyListRecyclerViewAdapter.OnItemClickListener{
+            override fun onItemClick(v: View, data: ClassData, pos: Int) {
+                val intent = Intent(this@MyListActivity, ClassDetailActivity::class.java)
+                intent.putExtra("data", data as Serializable)
+                intent.putExtra("where", "myApplication")
+                startActivity(intent)
+            }
+        })
     }
 
     private fun myClassList() {
+        classList.clear()
         val email = SharedPreferenceManager.getUserEmail(this)
         val myRef = database.getReference("classes")
         myRef.addValueEventListener(object: ValueEventListener {
@@ -231,7 +235,15 @@ class MyListActivity : AppCompatActivity() {
         myClassAdapter = MyListRecyclerViewAdapter(this)
         binding.rvMyclass.adapter = myClassAdapter
         myClassAdapter.datas = classList
-        myClassAdapter.where = "myClass"
         myClassAdapter.notifyDataSetChanged()
+
+        myClassAdapter.setOnItemClickListener(object : MyListRecyclerViewAdapter.OnItemClickListener{
+            override fun onItemClick(v: View, data: ClassData, pos: Int) {
+                val intent = Intent(this@MyListActivity, ClassDetailActivity::class.java)
+                intent.putExtra("data", data as Serializable)
+                intent.putExtra("where", "myClass")
+                startActivity(intent)
+            }
+        })
     }
 }

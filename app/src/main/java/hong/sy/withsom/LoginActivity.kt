@@ -159,11 +159,11 @@ class LoginActivity : AppCompatActivity() {
     private fun result() {
         if (isHave && isCorrect) {
             SharedPreferenceManager.setUserEmail(this, binding.edLoginEmail.text.toString())
+            SharedPreferenceManager.setUserName(this, name)
 
             if (binding.checkBoxAutologin.isChecked) {
                 SharedPreferenceManager.setUserId(this, binding.edLoginEmail.text.toString())
                 SharedPreferenceManager.setUserPass(this, binding.edLoginPw.text.toString())
-                SharedPreferenceManager.setUserName(this, name)
             }
 
             Toast.makeText(this, "${name}님 로그인되었습니다.", Toast.LENGTH_SHORT).show()

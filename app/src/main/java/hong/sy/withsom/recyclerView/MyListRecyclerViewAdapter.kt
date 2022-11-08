@@ -2,11 +2,13 @@ package hong.sy.withsom.recyclerView
 
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -31,17 +33,30 @@ class MyListRecyclerViewAdapter(private val context: Context) : RecyclerView.Ada
         private val tv_num : TextView = itemView.findViewById(R.id.tv_num_search)
 
         fun bind(item : ClassData) {
-            //img_leader.setImageResource(item.imgLeader)
             tv_title.text = item.name
             tv_type.text = item.type
             tv_schedule.text = item.schedule
-            tv_num.text = "정원 " + item.currentNum.toString() + "/" + item.totalNum.toString() + "명"
 
-            itemView.setOnClickListener {
-                val intent = Intent(context, ClassDetailActivity::class.java)
-                intent.putExtra("data", item as Serializable)
-                intent.putExtra("where", where)
-                context.startActivity(intent)
+            if(item.currentNum == item.totalNum) {
+                tv_num.text = "정원 마감"
+                tv_num.setTextColor(Color.parseColor("#CC0000"))
+            } else {
+                tv_num.text =
+                    "정원 " + item.currentNum.toString() + "/" + item.totalNum.toString() + "명"
+            }
+
+//            itemView.setOnClickListener {
+//                val intent = Intent(context, ClassDetailActivity::class.java)
+//                intent.putExtra("data", item as Serializable)
+//                intent.putExtra("where", where)
+//                context.startActivity(intent)
+//            }
+            val pos = adapterPosition
+            if(pos!= RecyclerView.NO_POSITION)
+            {
+                itemView.setOnClickListener {
+                    listener?.onItemClick(itemView,item,pos)
+                }
             }
         }
 
@@ -78,5 +93,15 @@ class MyListRecyclerViewAdapter(private val context: Context) : RecyclerView.Ada
     override fun onBindViewHolder(holder: MyListViewHolder, position: Int) {
         holder.bindLeaderImg(datas[position])
         holder.bind(datas[position])
+    }
+
+    interface OnItemClickListener{
+        fun onItemClick(v:View, data: ClassData, pos : Int)
+    }
+
+    private var listener : OnItemClickListener? = null
+
+    fun setOnItemClickListener(listener : OnItemClickListener) {
+        this.listener = listener
     }
 }

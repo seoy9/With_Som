@@ -291,9 +291,9 @@ class SignUpActivity : AppCompatActivity() {
             val certificationNum = RandomString().getRandomCertificationNum()
 
             GMailSender().sendEmail(
-                "20181033@dongduk.ac.kr",
+                email,
                 "이메일 인증번호입니다.",
-                "<img src='https://s3.us-west-2.amazonaws.com/secure.notion-static.com/c914e239-ba64-474b-b066-d556061030f3/logo.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20221107%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221107T004323Z&X-Amz-Expires=86400&X-Amz-Signature=3464e7a25057098bec92b232f8a20e60a6fd807d57127c2c25d3573c1dd43c47&X-Amz-SignedHeaders=host&response-content-disposition=filename%3D%22logo.png%22&x-id=GetObject' alt='With Som 로고' width='20%' height='20%'><h3><b>[이메일 인증]</b></h3>\n\n안녕하세요. With Som입니다.\n\n요청하신 아래 인증번호를 진행 중인 화면에 입력하여 이메일 인증을 완료해주세요.\n\n만약, 이메일 인증을 요청하지 않은 경우 <a href='mailto:dongduk.withsom@gmail.com' style='color:#0000FF;'>dongduk.withsom@gmail.com</a>으로 알려주시기 바랍니다.\n\n\n<p style='background-color:#D3D3D3;'>${email} 님의 인증번호 : <b>${certificationNum}</b></p>\n\n<hr/><small>With Som 개발자 dongduk.withsom@gmail.com</small>"
+                "<img src='https://s3.us-west-2.amazonaws.com/secure.notion-static.com/25f0a70e-8fca-4b29-a561-c727e2c35dc0/logo.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20221108%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221108T022020Z&X-Amz-Expires=86400&X-Amz-Signature=4aa649fe3bbdb32c11e07de61e4c54d56b7a0c1f5aa13052ac5618945226d96e&X-Amz-SignedHeaders=host&response-content-disposition=filename%3D%22logo.png%22&x-id=GetObject' alt='With Som 로고' width='20%' height='20%'><h3><b>[이메일 인증]</b></h3>\n\n안녕하세요. With Som입니다.\n\n요청하신 아래 인증번호를 진행 중인 화면에 입력하여 이메일 인증을 완료해주세요.\n\n만약, 이메일 인증을 요청하지 않은 경우 <a href='mailto:dongduk.withsom@gmail.com' style='color:#0000FF;'>dongduk.withsom@gmail.com</a>으로 알려주시기 바랍니다.\n\n\n<p style='background-color:#D3D3D3;'>${email} 님의 인증번호 : <b>${certificationNum}</b></p>\n\n<hr/><small>With Som 개발자 dongduk.withsom@gmail.com</small>"
             )
             Toast.makeText(this, "인증번호를 메일로 전송했습니다.", Toast.LENGTH_SHORT).show()
 

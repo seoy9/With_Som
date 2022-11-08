@@ -18,7 +18,6 @@ import java.util.*
 class SearchActivity : AppCompatActivity() {
     lateinit var binding: ActivitySearchBinding
 
-//    var searchAdapter: SearchRecyclerViewAdapter = SearchRecyclerViewAdapter(ArrayList<ClassData>(), this)
     lateinit var searchAdapter: SearchRecyclerViewAdapter
     val classList = ArrayList<ClassData>()
 
@@ -29,8 +28,6 @@ class SearchActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         initRecycler()
-
-        //buttonSetting()
     }
 
     private fun initRecycler() {
@@ -53,8 +50,23 @@ class SearchActivity : AppCompatActivity() {
                         val leaderID = classSnapshot.child("leaderID").getValue(String::class.java)
                         val leaderContent = classSnapshot.child("leaderContent").getValue(String::class.java)
 
-                        val c = ClassData(cid!!, name!!, type!!, content!!, location!!, currentNum!!, totalNum!!, member!!, schedule!!, scheduleDetail!!, leaderID!!, leaderContent!!)
-                        classList.add(c)
+                        if(totalNum != currentNum) {
+                            val c = ClassData(
+                                cid!!,
+                                name!!,
+                                type!!,
+                                content!!,
+                                location!!,
+                                currentNum!!,
+                                totalNum!!,
+                                member!!,
+                                schedule!!,
+                                scheduleDetail!!,
+                                leaderID!!,
+                                leaderContent!!
+                            )
+                            classList.add(c)
+                        }
                     }
                     searchAdapterSetting()
                 }

@@ -214,6 +214,7 @@
         android:layout_height="wrap_content"
         android:text="신청하기"
         android:textStyle="bold"
+        android:visibility="visible"
         app:layout_constraintBottom_toTopOf="@+id/guideline4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -229,19 +230,21 @@
         app:layout_constraintBottom_toTopOf="@+id/guideline4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline41" />
+        app:layout_constraintTop_toTopOf="@+id/guideline41"
+        android:enabled="false"/>
 
     <Button
         android:id="@+id/btn_class_add_num"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="현재 인원(+)"
+        android:text="현재 인원(+/-)"
         android:visibility="invisible"
         app:layout_constraintBottom_toTopOf="@+id/guideline4"
         app:layout_constraintEnd_toStartOf="@+id/btn_class_correction"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline41" />
+        app:layout_constraintTop_toTopOf="@+id/guideline41"
+        android:enabled="false"/>
 
     <Button
         android:id="@+id/btn_class_correction"
@@ -253,7 +256,8 @@
         app:layout_constraintEnd_toStartOf="@+id/btn_class_delete"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/btn_class_add_num"
-        app:layout_constraintTop_toTopOf="@+id/guideline41" />
+        app:layout_constraintTop_toTopOf="@+id/guideline41"
+        android:enabled="false"/>
 
     <Button
         android:id="@+id/btn_class_delete"
@@ -265,6 +269,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/btn_class_correction"
-        app:layout_constraintTop_toTopOf="@+id/guideline41" />
+        app:layout_constraintTop_toTopOf="@+id/guideline41"
+        android:enabled="false"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

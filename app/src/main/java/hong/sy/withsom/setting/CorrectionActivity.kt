@@ -152,7 +152,6 @@ class CorrectionActivity : AppCompatActivity() {
 
     private fun result(name: String, depart: String) {
         if (isHave) {
-            Toast.makeText(this, SharedPreferenceManager.getUserEmail(this), Toast.LENGTH_SHORT).show()
             binding.tvCorrectionEmail.text = SharedPreferenceManager.getUserEmail(this)
             binding.edCorrectionName.setText(name)
             binding.edCorrectionDepart.setText(depart)

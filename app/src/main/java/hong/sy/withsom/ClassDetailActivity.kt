@@ -61,6 +61,16 @@ class ClassDetailActivity : AppCompatActivity() {
         buttonSetting()
     }
 
+    override fun onBackPressed() {
+        super.onBackPressed()
+
+        if(where == "createClass") {
+            val intent = Intent(this, ClassesActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+    }
+
     private fun initUserData() {
         val myRef = database.getReference("users")
         myRef.addValueEventListener(object: ValueEventListener {

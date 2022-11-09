@@ -42,6 +42,7 @@ class LoginActivity : AppCompatActivity() {
         buttonSetting()
 
         if(SharedPreferenceManager.getUserId(this).isNullOrBlank() || SharedPreferenceManager.getUserPass(this).isNullOrBlank()) {
+            SharedPreferenceManager.clearUser(this)
             login()
         } else {
             Toast.makeText(this, "${SharedPreferenceManager.getUserId(this)}님 자동로그인 되었습니다.", Toast.LENGTH_SHORT).show()

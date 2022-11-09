@@ -37,6 +37,7 @@ class CheckEmailActivity : AppCompatActivity() {
             if(binding.edCheckCertification.text.toString() == certificationNum) {
                 Toast.makeText(this, "메일 인증 완료", Toast.LENGTH_SHORT).show()
 
+                finishAffinity()
                 val intent = Intent(this, SignUpImageActivity::class.java)
                 intent.putExtra("user", user as Serializable)
                 startActivity(intent)

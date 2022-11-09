@@ -366,14 +366,6 @@ class ClassDetailActivity : AppCompatActivity() {
         }
     }
 
-    private fun refresh() {
-        val intent = this.intent
-        finish()
-        overridePendingTransition(0, 0)
-        startActivity(intent)
-        overridePendingTransition(0, 0)
-    }
-
     private fun myApplicationList() {
         val stNum = SharedPreferenceManager.getUserEmail(this).subSequence(0, 8).toString()
         val myRef = database.getReference("applications")

@@ -12,4 +12,6 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
+    <string name="secession_content">정말 탈퇴하시나요?\n\n탈퇴하시면 모든 생성한 모임이 삭제되고,\n신청이 취소됩니다.\n생성한 모임 신청자에게는 모임 삭제 메일이 보내집니다.</string>
+
 </resources>

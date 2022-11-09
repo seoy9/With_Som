@@ -39,18 +39,18 @@ class SignUpImageActivity : AppCompatActivity() {
         binding.btnSignupDone.setOnClickListener {
             user.profile = selectedImage
 
-            Thread {
+//            Thread {
                 myRef.child(user.stNum).setValue(user)
 
-                this.runOnUiThread {
+                //this.runOnUiThread {
                     Toast.makeText(this@SignUpImageActivity, "회원가입 완료", Toast.LENGTH_SHORT).show()
-                }
+                //}
 
                 //finishAffinity()
                 val intent = Intent(this@SignUpImageActivity, LoginActivity::class.java)
                 startActivity(intent)
                 finish()
-            }.start()
+//            }.start()
         }
 
         binding.btnFoundation.setOnClickListener {

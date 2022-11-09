@@ -24,6 +24,8 @@ class SearchActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        overridePendingTransition(0, 0)
+
         binding = ActivitySearchBinding.inflate(layoutInflater)
         setContentView(binding.root)
 

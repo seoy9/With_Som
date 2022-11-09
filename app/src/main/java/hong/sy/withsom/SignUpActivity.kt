@@ -266,11 +266,11 @@ class SignUpActivity : AppCompatActivity() {
 
                         if(id == email) {
                             isHave = true
-                            isCheckExtension(isHave)
                             break
                         }
                     }
                     isCheckExtension(isHave)
+                    isHave = false
                 }
             }
 
@@ -280,7 +280,10 @@ class SignUpActivity : AppCompatActivity() {
     }
 
     private fun isCheckExtension(isHave: Boolean) {
-        if(!isHave) {
+        if(isHave) {
+            binding.edEmail.backgroundTintList = ContextCompat.getColorStateList(applicationContext, R.color.red)
+            Toast.makeText(this, "이미 존재하는 계정입니다.", Toast.LENGTH_SHORT).show()
+        } else {
             val email = binding.edEmail.text.toString()
             val pw = binding.edPw.text.toString()
             val name = binding.edName.text.toString()
@@ -301,9 +304,6 @@ class SignUpActivity : AppCompatActivity() {
             intent.putExtra("certificationNum", certificationNum)
             intent.putExtra("user", user as Serializable)
             startActivity(intent)
-        } else {
-            binding.edEmail.backgroundTintList = ContextCompat.getColorStateList(applicationContext, R.color.red)
-            Toast.makeText(this, "이미 존재하는 계정입니다.", Toast.LENGTH_SHORT).show()
         }
     }
 }

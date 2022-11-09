@@ -16,6 +16,8 @@ class SettingActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        overridePendingTransition(0, 0)
+
         binding = ActivitySettingBinding.inflate(layoutInflater)
         setContentView(binding.root)
 

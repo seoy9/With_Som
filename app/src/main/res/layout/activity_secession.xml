@@ -142,7 +142,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:gravity="center"
-        android:text="정말 탈퇴하시나요?"
+        android:text="@string/secession_content"
         android:textColor="@color/black"
         app:layout_constraintBottom_toTopOf="@+id/guideline27"
         app:layout_constraintEnd_toStartOf="@+id/guideline29"

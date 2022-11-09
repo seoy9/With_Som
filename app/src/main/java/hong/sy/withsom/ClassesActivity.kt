@@ -3,6 +3,7 @@ package hong.sy.withsom
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
@@ -22,6 +23,8 @@ class ClassesActivity : AppCompatActivity() {
     private var datas = ArrayList<String>()
     private lateinit var binding: ActivityClassesBinding
 
+    private var backPressedTime : Long = 0
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -33,6 +36,20 @@ class ClassesActivity : AppCompatActivity() {
         initRecycler()
 
         buttonSetting()
+    }
+
+    override fun onBackPressed() {
+        if(System.currentTimeMillis() > backPressedTime + 2500) {
+            backPressedTime = System.currentTimeMillis()
+
+            Toast.makeText(this, "한 번 더 누르면 앱이 종료됩니다.", Toast.LENGTH_SHORT).show()
+
+            return
+        }
+
+        if(System.currentTimeMillis() <= backPressedTime + 2500) {
+            finishAffinity()
+        }
     }
 
     override fun onRestart() {

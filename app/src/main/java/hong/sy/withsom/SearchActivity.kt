@@ -21,6 +21,8 @@ class SearchActivity : AppCompatActivity() {
     lateinit var searchAdapter: SearchRecyclerViewAdapter
     val classList = ArrayList<ClassData>()
 
+    private var backPressedTime : Long = 0
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -30,6 +32,20 @@ class SearchActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         initRecycler()
+    }
+
+    override fun onBackPressed() {
+        if(System.currentTimeMillis() > backPressedTime + 2500) {
+            backPressedTime = System.currentTimeMillis()
+
+            Toast.makeText(this, "한 번 더 누르면 앱이 종료됩니다.", Toast.LENGTH_SHORT).show()
+
+            return
+        }
+
+        if(System.currentTimeMillis() <= backPressedTime + 2500) {
+            finishAffinity()
+        }
     }
 
     private fun initRecycler() {

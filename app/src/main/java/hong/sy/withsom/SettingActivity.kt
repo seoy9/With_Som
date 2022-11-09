@@ -3,6 +3,7 @@ package hong.sy.withsom
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import hong.sy.withsom.databinding.ActivitySettingBinding
 import hong.sy.withsom.login.SharedPreferenceManager
 import hong.sy.withsom.setting.CorrectionActivity
@@ -13,6 +14,8 @@ import hong.sy.withsom.setting.SecessionActivity
 class SettingActivity : AppCompatActivity() {
     lateinit var binding: ActivitySettingBinding
 
+    private var backPressedTime : Long = 0
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -22,6 +25,20 @@ class SettingActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         buttonSetting()
+    }
+
+    override fun onBackPressed() {
+        if(System.currentTimeMillis() > backPressedTime + 2500) {
+            backPressedTime = System.currentTimeMillis()
+
+            Toast.makeText(this, "한 번 더 누르면 앱이 종료됩니다.", Toast.LENGTH_SHORT).show()
+
+            return
+        }
+
+        if(System.currentTimeMillis() <= backPressedTime + 2500) {
+            finishAffinity()
+        }
     }
 
     private fun buttonSetting() {

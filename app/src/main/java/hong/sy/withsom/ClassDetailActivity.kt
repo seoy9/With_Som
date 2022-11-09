@@ -102,33 +102,60 @@ class ClassDetailActivity : AppCompatActivity() {
        val id = SharedPreferenceManager.getUserEmail(this)
 
         if(id == classData.leaderID) {
-            binding.btnApplication.visibility = View.INVISIBLE
-            binding.btnApplication.setEnabled(false)
-            binding.btnClassAddNum.visibility = View.VISIBLE
-            binding.btnClassAddNum.setEnabled(true)
-            binding.btnClassCorrection.visibility = View.VISIBLE
-            binding.btnClassCorrection.setEnabled(true)
             binding.btnClassDelete.visibility = View.VISIBLE
             binding.btnClassDelete.setEnabled(true)
+            binding.btnClassCorrection.visibility = View.VISIBLE
+            binding.btnClassCorrection.setEnabled(true)
+            binding.btnClassAddNum.visibility = View.VISIBLE
+            binding.btnClassAddNum.setEnabled(true)
+            binding.btnApplication.visibility = View.INVISIBLE
+            binding.btnApplication.setEnabled(false)
+            binding.btnApplicationCancel.visibility = View.INVISIBLE
+            binding.btnApplicationCancel.setEnabled(false)
         } else if(applicationList.contains(classData.cid)) {
+            binding.btnClassDelete.visibility = View.INVISIBLE
+            binding.btnClassDelete.setEnabled(false)
+            binding.btnClassCorrection.visibility = View.INVISIBLE
+            binding.btnClassCorrection.setEnabled(false)
+            binding.btnClassAddNum.visibility = View.INVISIBLE
+            binding.btnClassAddNum.setEnabled(false)
             binding.btnApplication.visibility = View.INVISIBLE
             binding.btnApplication.setEnabled(false)
             binding.btnApplicationCancel.visibility = View.VISIBLE
             binding.btnApplicationCancel.setEnabled(true)
         } else if(where == "myApplication") {
+            binding.btnClassDelete.visibility = View.INVISIBLE
+            binding.btnClassDelete.setEnabled(false)
+            binding.btnClassCorrection.visibility = View.INVISIBLE
+            binding.btnClassCorrection.setEnabled(false)
+            binding.btnClassAddNum.visibility = View.INVISIBLE
+            binding.btnClassAddNum.setEnabled(false)
             binding.btnApplication.visibility = View.INVISIBLE
             binding.btnApplication.setEnabled(false)
             binding.btnApplicationCancel.visibility = View.VISIBLE
             binding.btnApplicationCancel.setEnabled(true)
         } else if(where == "myClass" || where == "createClass") {
-            binding.btnApplication.visibility = View.INVISIBLE
-            binding.btnApplication.setEnabled(false)
-            binding.btnClassAddNum.visibility = View.VISIBLE
-            binding.btnClassAddNum.setEnabled(true)
-            binding.btnClassCorrection.visibility = View.VISIBLE
-            binding.btnClassCorrection.setEnabled(true)
             binding.btnClassDelete.visibility = View.VISIBLE
             binding.btnClassDelete.setEnabled(true)
+            binding.btnClassCorrection.visibility = View.VISIBLE
+            binding.btnClassCorrection.setEnabled(true)
+            binding.btnClassAddNum.visibility = View.VISIBLE
+            binding.btnClassAddNum.setEnabled(true)
+            binding.btnApplication.visibility = View.INVISIBLE
+            binding.btnApplication.setEnabled(false)
+            binding.btnApplicationCancel.visibility = View.INVISIBLE
+            binding.btnApplicationCancel.setEnabled(false)
+        } else {
+            binding.btnClassDelete.visibility = View.INVISIBLE
+            binding.btnClassDelete.setEnabled(false)
+            binding.btnClassCorrection.visibility = View.INVISIBLE
+            binding.btnClassCorrection.setEnabled(false)
+            binding.btnClassAddNum.visibility = View.INVISIBLE
+            binding.btnClassAddNum.setEnabled(false)
+            binding.btnApplication.visibility = View.VISIBLE
+            binding.btnApplication.setEnabled(true)
+            binding.btnApplicationCancel.visibility = View.INVISIBLE
+            binding.btnApplicationCancel.setEnabled(false)
         }
     }
 
@@ -261,7 +288,7 @@ class ClassDetailActivity : AppCompatActivity() {
                 finish()
             }
 
-            builder.setPositiveButton("신청", listener)
+            builder.setPositiveButton("철회", listener)
             builder.setNegativeButton("취소", null)
 
             builder.show()

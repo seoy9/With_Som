@@ -25,6 +25,7 @@ class CorrectionActivity : AppCompatActivity() {
     private val database = Firebase.database
     private val myRef = database.getReference("users")
     private var isHave = false
+    private var profile = R.drawable.foundation
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,20 +41,25 @@ class CorrectionActivity : AppCompatActivity() {
     }
 
     private fun buttonSetting() {
+
         binding.btnCorrectionFoundation.setOnClickListener {
             binding.imgCorrection.setImageResource(R.drawable.foundation)
+            profile = R.drawable.foundation
         }
 
         binding.btnCorrectionSimbol.setOnClickListener {
             binding.imgCorrection.setImageResource(R.drawable.simbol)
+            profile = R.drawable.simbol
         }
 
         binding.btnCorrectionSince.setOnClickListener {
             binding.imgCorrection.setImageResource(R.drawable.since)
+            profile = R.drawable.since
         }
 
         binding.btnCorrectionVision.setOnClickListener {
             binding.imgCorrection.setImageResource(R.drawable.vision)
+            profile = R.drawable.vision
         }
 
         binding.btnCorrectionDone.setOnClickListener {
@@ -67,31 +73,29 @@ class CorrectionActivity : AppCompatActivity() {
                 Toast.makeText(this, "비밀번호가 다릅니다. 확인해주세요.", Toast.LENGTH_SHORT).show()
                 binding.edCorrectionRePw.backgroundTintList = ContextCompat.getColorStateList(applicationContext, R.color.red)
             } else {
-                val postListener: ValueEventListener = object : ValueEventListener {
-                    override fun onDataChange(dataSnapshot: DataSnapshot) {
-                        for (postSnapshot in dataSnapshot.getChildren()) {
-                            if (postSnapshot.child("email").getValue(String::class.java) != null) {
-                                val e = postSnapshot.child("email").getValue(String::class.java)
+                myRef.addValueEventListener(object: ValueEventListener {
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        if(snapshot.exists()) {
+                            for(userSnapshot in snapshot.children) {
+                                val e = userSnapshot.child("email").getValue(String::class.java)
 
-                                if(email == e) {
-                                    val uid = postSnapshot.child("uid").getValue(String::class.java)
+                                if (email == e) {
+                                    val uid = userSnapshot.child("uid").getValue(String::class.java)
                                     myRef.child(uid!!).child("name").setValue(name)
                                     myRef.child(uid).child("depart").setValue(depart)
-                                    if(pw != "" && repw != "") {
+                                    myRef.child(uid).child("profile").setValue(profile)
+                                    if (pw != "" && repw != "") {
                                         myRef.child(uid).child("pw").setValue(pw)
                                     }
+                                    break
                                 }
                             }
-                            break
                         }
                     }
 
-                    override fun onCancelled(databaseError: DatabaseError) {
-                        Log.w("FirebaseDatabase", "onCancelled", databaseError.toException())
+                    override fun onCancelled(error: DatabaseError) {
                     }
-                }
-                val sortbyAge: Query = database.getReference().child("users").orderByChild("users")
-                sortbyAge.addListenerForSingleValueEvent(postListener)
+                })
 
                 Toast.makeText(this, "수정 완료", Toast.LENGTH_LONG).show()
                 finish()
@@ -137,8 +141,9 @@ class CorrectionActivity : AppCompatActivity() {
                         if(email == e) {
                             name = userSnapshot.child("name").getValue(String::class.java)!!
                             depart = userSnapshot.child("depart").getValue(String::class.java)!!
+                            profile = userSnapshot.child("profile").getValue(Int::class.java)!!
                             isHave = true
-                            result(name, depart)
+                            result(name, depart, profile)
                             break
                         }
                     }
@@ -150,11 +155,12 @@ class CorrectionActivity : AppCompatActivity() {
         })
     }
 
-    private fun result(name: String, depart: String) {
+    private fun result(name: String, depart: String, profile: Int) {
         if (isHave) {
             binding.tvCorrectionEmail.text = SharedPreferenceManager.getUserEmail(this)
             binding.edCorrectionName.setText(name)
             binding.edCorrectionDepart.setText(depart)
+            binding.imgCorrection.setImageResource(profile)
         }
     }
 

@@ -149,6 +149,7 @@ class LoginActivity : AppCompatActivity() {
                         }
                     }
                 }
+                result()
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -157,23 +158,46 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun result() {
-        if (isHave && isCorrect) {
-            SharedPreferenceManager.setUserEmail(this, binding.edLoginEmail.text.toString())
-            SharedPreferenceManager.setUserName(this, name)
+//        if (isHave && isCorrect) {
+//            SharedPreferenceManager.setUserEmail(this, binding.edLoginEmail.text.toString())
+//            SharedPreferenceManager.setUserName(this, name)
+//
+//            if (binding.checkBoxAutologin.isChecked) {
+//                SharedPreferenceManager.setUserId(this, binding.edLoginEmail.text.toString())
+//                SharedPreferenceManager.setUserPass(this, binding.edLoginPw.text.toString())
+//            }
+//
+//            Toast.makeText(this, "${name}님 로그인되었습니다.", Toast.LENGTH_SHORT).show()
+//
+//            val intent = Intent(this, MainActivity::class.java)
+//            startActivity(intent)
+//            finish()
+//            finishAffinity()
+//        } else if(isHave && !isCorrect) {
+//            Toast.makeText(this, "비밀번호가 다릅니다.", Toast.LENGTH_SHORT).show()
+//        } else {
+//            Toast.makeText(this, "존재하지 않는 계정입니다.", Toast.LENGTH_SHORT).show()
+//        }
 
-            if (binding.checkBoxAutologin.isChecked) {
-                SharedPreferenceManager.setUserId(this, binding.edLoginEmail.text.toString())
-                SharedPreferenceManager.setUserPass(this, binding.edLoginPw.text.toString())
+        if(isHave) {
+            if(isCorrect) {
+                SharedPreferenceManager.setUserEmail(this, binding.edLoginEmail.text.toString())
+                SharedPreferenceManager.setUserName(this, name)
+
+                if (binding.checkBoxAutologin.isChecked) {
+                    SharedPreferenceManager.setUserId(this, binding.edLoginEmail.text.toString())
+                    SharedPreferenceManager.setUserPass(this, binding.edLoginPw.text.toString())
+                }
+
+                Toast.makeText(this, "${name}님 로그인되었습니다.", Toast.LENGTH_SHORT).show()
+
+                finishAffinity()
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
+                finish()
+            } else {
+                Toast.makeText(this, "비밀번호가 다릅니다.", Toast.LENGTH_SHORT).show()
             }
-
-            Toast.makeText(this, "${name}님 로그인되었습니다.", Toast.LENGTH_SHORT).show()
-
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
-            finish()
-            finishAffinity()
-        } else if(isHave && !isCorrect) {
-            Toast.makeText(this, "비밀번호가 다릅니다.", Toast.LENGTH_SHORT).show()
         } else {
             Toast.makeText(this, "존재하지 않는 계정입니다.", Toast.LENGTH_SHORT).show()
         }

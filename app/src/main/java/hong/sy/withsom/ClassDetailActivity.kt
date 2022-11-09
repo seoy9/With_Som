@@ -184,7 +184,7 @@ class ClassDetailActivity : AppCompatActivity() {
                 GMailSender().sendEmail(
                     classData.leaderID,
                     "'${classData.name}'에 신청자가 있습니다.",
-                    "<img src='https://s3.us-west-2.amazonaws.com/secure.notion-static.com/25f0a70e-8fca-4b29-a561-c727e2c35dc0/logo.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20221108%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221108T022020Z&X-Amz-Expires=86400&X-Amz-Signature=4aa649fe3bbdb32c11e07de61e4c54d56b7a0c1f5aa13052ac5618945226d96e&X-Amz-SignedHeaders=host&response-content-disposition=filename%3D%22logo.png%22&x-id=GetObject' alt='With Som 로고' width='20%' height='20%'><h3><b>[${classData.name} 신청]</b></h3>\n\n안녕하세요. With Som입니다.\n\n'${classData.name}'에 <b>${stNum} ${name}</b>님께서 신청하셨습니다.\n\n\n<p style='background-color:#D3D3D3;'>${name} 님의 이메일 : ${email}\n\n신청 멘트 : ${reason}</p>\n\n<hr/><small>With Som 개발자 dongduk.withsom@gmail.com</small>"
+                    "<img src='https://s3.us-west-2.amazonaws.com/secure.notion-static.com/2d69e720-0c5b-41c9-9893-54b5ab975a96/logo.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20221109%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221109T042603Z&X-Amz-Expires=86400&X-Amz-Signature=f8df2991060c06b0a194a5a7e254add92dd239cf8188dc7c0041e37a070903a9&X-Amz-SignedHeaders=host&response-content-disposition=filename%3D%22logo.png%22&x-id=GetObject' alt='With Som 로고' width='20%' height='20%'><h3><b>[${classData.name} 신청]</b></h3>\n\n안녕하세요. With Som입니다.\n\n'${classData.name}'에 <b>${stNum} ${name}</b>님께서 신청하셨습니다.\n\n\n<p style='background-color:#D3D3D3;'>${name} 님의 이메일 : ${email}\n\n신청 멘트 : ${reason}</p>\n\n<hr/><small>With Som 개발자 dongduk.withsom@gmail.com</small>"
                 )
 
                 Toast.makeText(this, "신청되었습니다.", Toast.LENGTH_SHORT).show()
@@ -244,7 +244,7 @@ class ClassDetailActivity : AppCompatActivity() {
                 GMailSender().sendEmail(
                     classData.leaderID,
                     "'${classData.name}'에 취소자가 있습니다.",
-                    "<img src='https://s3.us-west-2.amazonaws.com/secure.notion-static.com/25f0a70e-8fca-4b29-a561-c727e2c35dc0/logo.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20221108%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221108T022020Z&X-Amz-Expires=86400&X-Amz-Signature=4aa649fe3bbdb32c11e07de61e4c54d56b7a0c1f5aa13052ac5618945226d96e&X-Amz-SignedHeaders=host&response-content-disposition=filename%3D%22logo.png%22&x-id=GetObject' alt='With Som 로고' width='20%' height='20%'><h3><b>[${classData.name} 신청 취소]</b></h3>\n\n안녕하세요. With Som입니다.\n\n'${classData.name}'에 <b>${stNum} ${name}</b>님께서 취소하셨습니다.\n\n\n<p style='background-color:#D3D3D3;'>${name} 님의 이메일 : ${email}\n\n취소 사유 : ${reason}</p>\n\n<hr/><small>With Som 개발자 dongduk.withsom@gmail.com</small>"
+                    "<img src='https://s3.us-west-2.amazonaws.com/secure.notion-static.com/2d69e720-0c5b-41c9-9893-54b5ab975a96/logo.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20221109%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221109T042603Z&X-Amz-Expires=86400&X-Amz-Signature=f8df2991060c06b0a194a5a7e254add92dd239cf8188dc7c0041e37a070903a9&X-Amz-SignedHeaders=host&response-content-disposition=filename%3D%22logo.png%22&x-id=GetObject' alt='With Som 로고' width='20%' height='20%'><h3><b>[${classData.name} 신청 취소]</b></h3>\n\n안녕하세요. With Som입니다.\n\n'${classData.name}'에 <b>${stNum} ${name}</b>님께서 취소하셨습니다.\n\n\n<p style='background-color:#D3D3D3;'>${name} 님의 이메일 : ${email}\n\n취소 사유 : ${reason}</p>\n\n<hr/><small>With Som 개발자 dongduk.withsom@gmail.com</small>"
                 )
 
                 Toast.makeText(this, "철회되었습니다.", Toast.LENGTH_SHORT).show()
@@ -312,17 +312,32 @@ class ClassDetailActivity : AppCompatActivity() {
         }
 
         binding.btnClassDelete.setOnClickListener {
-            val builder = AlertDialog.Builder(this)
+            val builder = AlertDialog.Builder(this@ClassDetailActivity)
             builder.setTitle("모임을 삭제하시겠습니까?")
-                .setMessage("삭제하시면 모임 신청자들에게 삭제 메일이 보내집니다.")
-                .setPositiveButton("삭제",
-                    DialogInterface.OnClickListener{ dialog, id ->
-                        deleteMail()
+            builder.setMessage("삭제하시면 모임 신청자들에게 삭제 메일이 보내집니다.")
 
-                        Toast.makeText(this@ClassDetailActivity, "모임이 삭제되었습니다.", Toast.LENGTH_SHORT).show()
-                        finish()
-                    })
-                .setNegativeButton("취소", null)
+            val v1 = layoutInflater.inflate(R.layout.dialog_edit, null)
+            builder.setView(v1)
+
+            val edit: MultiAutoCompleteTextView? = v1.findViewById(R.id.edit_correction)
+            edit!!.setHint("삭제 사유에 대해 작성해주세요.")
+
+            val listener = DialogInterface.OnClickListener { p0, p1 ->
+                val alert = p0 as AlertDialog
+                val edit: MultiAutoCompleteTextView? =
+                    alert.findViewById(R.id.edit_correction)
+
+                val reason = edit!!.text.toString()
+
+                deleteMail(reason)
+
+                Toast.makeText(this@ClassDetailActivity, "모임이 삭제되었습니다.", Toast.LENGTH_SHORT).show()
+                finish()
+            }
+
+            builder.setPositiveButton("신청", listener)
+            builder.setNegativeButton("취소", null)
+
             builder.show()
         }
 
@@ -384,7 +399,7 @@ class ClassDetailActivity : AppCompatActivity() {
         })
     }
 
-    private fun deleteMail() {
+    private fun deleteMail(reason: String) {
         val myRef = database.getReference("applications")
         myRef.addValueEventListener(object: ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -403,7 +418,7 @@ class ClassDetailActivity : AppCompatActivity() {
                                 GMailSender().sendEmail(
                                     email,
                                     "'${classData.name}' 모임이 삭제되었습니다.",
-                                    "<img src='https://s3.us-west-2.amazonaws.com/secure.notion-static.com/25f0a70e-8fca-4b29-a561-c727e2c35dc0/logo.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20221108%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221108T022020Z&X-Amz-Expires=86400&X-Amz-Signature=4aa649fe3bbdb32c11e07de61e4c54d56b7a0c1f5aa13052ac5618945226d96e&X-Amz-SignedHeaders=host&response-content-disposition=filename%3D%22logo.png%22&x-id=GetObject' alt='With Som 로고' width='20%' height='20%'><h3><b>[${classData.name} 모임 삭제]</b></h3>\n\n안녕하세요. With Som입니다.\n\n'${classData.name}' 모임이 <b>삭제</b>되었습니다.\n\n<hr/><small>With Som 개발자 dongduk.withsom@gmail.com</small>"
+                                    "<img src='https://s3.us-west-2.amazonaws.com/secure.notion-static.com/2d69e720-0c5b-41c9-9893-54b5ab975a96/logo.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20221109%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221109T042603Z&X-Amz-Expires=86400&X-Amz-Signature=f8df2991060c06b0a194a5a7e254add92dd239cf8188dc7c0041e37a070903a9&X-Amz-SignedHeaders=host&response-content-disposition=filename%3D%22logo.png%22&x-id=GetObject' alt='With Som 로고' width='20%' height='20%'><h3><b>[${classData.name} 모임 삭제]</b></h3>\n\n안녕하세요. With Som입니다.\n\n'${classData.name}' 모임이 <b>삭제</b>되었습니다.\n\n\n<p style='background-color:#D3D3D3;'>삭제 사유 : ${reason}</p>\n\n<hr/><small>With Som 개발자 dongduk.withsom@gmail.com</small>"
                                 )
                             }
                         }

@@ -47,7 +47,6 @@ class FindPwActivity : AppCompatActivity() {
                 binding.edEmailFindPw.backgroundTintList = ContextCompat.getColorStateList(applicationContext, R.color.black)
                 Toast.makeText(this, "동덕 이메일만 가능합니다.\n이메일을 확인해주세요.", Toast.LENGTH_SHORT).show()
             } else {
-
                 isEmailExistence()
             }
         }
@@ -109,7 +108,8 @@ class FindPwActivity : AppCompatActivity() {
             GMailSender().sendEmail(
                 email,
                 "임시 비밀번호입니다.",
-                "<img src='https://s3.us-west-2.amazonaws.com/secure.notion-static.com/25f0a70e-8fca-4b29-a561-c727e2c35dc0/logo.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20221108%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221108T022020Z&X-Amz-Expires=86400&X-Amz-Signature=4aa649fe3bbdb32c11e07de61e4c54d56b7a0c1f5aa13052ac5618945226d96e&X-Amz-SignedHeaders=host&response-content-disposition=filename%3D%22logo.png%22&x-id=GetObject' alt='With Som 로고' width='20%' height='20%'><h3><b>[로그인 비밀번호 초기화]</b></h3>\n\n현재 보드리는 비밀번호는 임시로 제공되는 비밀번호입니다.\n\n로그인 후 '개인정보 수정'에서 비밀번호를 변경하고 사용하시길 바랍니다.\n\n\n<p style='background-color:#D3D3D3;'>${email} 님의 임시 비밀번호 : <b>${temporaryPW}</b></p>\n\n<hr/><small>With Som 개발자 dongduk.withsom@gmail.com</small>")
+                "<img src='https://s3.us-west-2.amazonaws.com/secure.notion-static.com/2d69e720-0c5b-41c9-9893-54b5ab975a96/logo.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20221109%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221109T042603Z&X-Amz-Expires=86400&X-Amz-Signature=f8df2991060c06b0a194a5a7e254add92dd239cf8188dc7c0041e37a070903a9&X-Amz-SignedHeaders=host&response-content-disposition=filename%3D%22logo.png%22&x-id=GetObject' alt='With Som 로고' width='20%' height='20%'><h3><b>[로그인 비밀번호 초기화]</b></h3>\n\n현재 보드리는 비밀번호는 임시로 제공되는 비밀번호입니다.\n\n로그인 후 '개인정보 수정'에서 비밀번호를 변경하고 사용하시길 바랍니다.\n\n\n<p style='background-color:#D3D3D3;'>${email} 님의 임시 비밀번호 : <b>${temporaryPW}</b></p>\n\n<hr/><small>With Som 개발자 dongduk.withsom@gmail.com</small>")
+
             Toast.makeText(this, "임시 비밀번호를 메일로 전송했습니다.", Toast.LENGTH_SHORT).show()
         } else {
             Toast.makeText(this, "존재하지 않는 이메일입니다.\n다시 확인해 주세요.", Toast.LENGTH_SHORT).show()

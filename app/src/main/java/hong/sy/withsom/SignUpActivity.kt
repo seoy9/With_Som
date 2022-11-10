@@ -269,9 +269,8 @@ class SignUpActivity : AppCompatActivity() {
                             break
                         }
                     }
-                    isCheckExtension(isHave)
-                    isHave = false
                 }
+                isCheckExtension(isHave)
             }
 
             override fun onCancelled(error: DatabaseError) {

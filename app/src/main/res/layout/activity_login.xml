@@ -47,26 +47,11 @@
         app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/round_box" />
 
-    <Button
-        android:id="@+id/btn_login_done"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="로그인"
-        android:textStyle="bold"
-        android:backgroundTint="@color/nonButton"
-        app:layout_constraintBottom_toTopOf="@+id/guideline2"
-        app:layout_constraintEnd_toStartOf="@+id/guideline4"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="@+id/guideline3"
-        app:layout_constraintTop_toTopOf="@+id/guideline1"
-        app:layout_constraintVertical_bias="0.9"
-        android:enabled="false"/>
-
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="로그인"
+        android:text="@string/login_title"
         android:textColor="@color/black"
         android:textSize="25sp"
         android:textStyle="bold"
@@ -83,7 +68,7 @@
         android:layout_height="wrap_content"
         android:ems="11"
         android:gravity="center"
-        android:hint="이메일"
+        android:hint="@string/login_id_hint"
         android:inputType="textEmailAddress"
         app:layout_constraintBottom_toTopOf="@+id/ed_login_pw"
         app:layout_constraintEnd_toStartOf="@+id/guideline4"
@@ -97,7 +82,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:gravity="center"
-        android:hint="비밀번호"
+        android:hint="@string/login_pw_hint"
         android:inputType="textPassword"
         app:layout_constraintBottom_toTopOf="@+id/checkBox_autologin"
         app:layout_constraintEnd_toStartOf="@+id/guideline4"
@@ -110,7 +95,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="12dp"
-        android:text="자동로그인"
+        android:text="@string/login_auto"
         app:layout_constraintBaseline_toBaselineOf="@+id/tv_find_pw"
         app:layout_constraintBottom_toTopOf="@+id/btn_login_done"
         app:layout_constraintEnd_toStartOf="@+id/tv_find_pw"
@@ -121,11 +106,26 @@
         android:id="@+id/tv_find_pw"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="비밀번호 찾기"
+        android:text="@string/login_find_pw"
         android:textAllCaps="false"
         app:layout_constraintBottom_toTopOf="@+id/btn_login_done"
         app:layout_constraintEnd_toStartOf="@+id/guideline4"
         app:layout_constraintStart_toEndOf="@+id/checkBox_autologin"
         app:layout_constraintTop_toBottomOf="@id/ed_login_pw" />
+
+    <Button
+        android:id="@+id/btn_login_done"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/nonButton"
+        android:enabled="false"
+        android:text="@string/login_button"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/guideline2"
+        app:layout_constraintEnd_toStartOf="@+id/guideline4"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/guideline3"
+        app:layout_constraintTop_toTopOf="@+id/guideline1"
+        app:layout_constraintVertical_bias="0.9" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

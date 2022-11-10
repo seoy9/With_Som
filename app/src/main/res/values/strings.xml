@@ -10,8 +10,168 @@
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 
+    <!-- button -->
+    <string name="next_button">다음</string>
+    <string name="done_button">완료</string>
+    <string name="login_button">로그인</string>
+    <string name="signup_button">회원가입</string>
+
+
+    <!-- CheckEmail -->
+    <string name="check_email_title">이메일 확인</string>
+    <string name="check_email_content">메일로 전송된 인증번호를 작성해주세요.</string>
+    <string name="check_email_hint">인증번호</string>
+    <string name="check_email_button">인증하기</string>
+
+    <!-- ClassContent -->
+    <string name="class_content_title">모임 소개</string>
+    <string name="class_content_hint">모임 소개를 작성해 주세요!\n\nex) 솜솜이를 덕질하는 모임</string>
+
+    <!-- ClassCorrection -->
+    <string name="class_correction_content">수정 원하는 곳을 터치해주세요.</string>
+    <string name="class_correction_button">수정 완료</string>
+
+    <!-- ClassLeader -->
+    <string name="class_leader_title">리더 소개</string>
+    <string name="class_leader_hint">리더를 소개해 주세요!\n\nex) 솜솜이를 대박적으로 사랑하는 학우</string>
+
+    <!-- ClassLocation -->
+    <string name="class_location_title">모임 위치</string>
+    <string name="class_location_hint">모임 위치를 작성해 주세요!\n\nex) 백주년기념관 2층\n미정</string>
+
+    <!-- ClassMember -->
+    <string name="class_member_title">모집 대상</string>
+    <string name="class_member_hint">모집 대상을 작성해 주세요!\n\nex) 솜솜이를 사랑하는 모두</string>
+
+    <!-- ClassName -->
+    <string name="class_name_title">모임 이름</string>
+    <string name="class_name_hint">모임 이름을 작성해 주세요!\n\nex) 솜솜덕질</string>
+
+    <!-- ClassNumber -->
+    <string name="class_number_title">모집 인원</string>
+    <string name="class_number_hint">모집 인원을 작성해 주세요!\n\nex) 10</string>
+
+    <!-- ClassSchedule -->
+    <string name="class_schedule_title">모임 일정</string>
+    <string name="class_schedule_checked">선택 안 함</string>
+    <string name="class_schedule_check_button">요일 선택</string>
+    <string name="class_schedule_hint">모임 일정 상세 소개를 작성해 주세요!\n\nex)\n 매주 월요일이지만,\n사정에 따라 일정이 변경될 수 있습니다.</string>
+
+    <!-- ClassType -->
+    <string name="class_type_title">모임 종류</string>
+    <string name="class_type_checked">선택 안 함</string>
+    <string name="class_type_check_button">종류 선택</string>
+
+    <!-- Correction -->
+    <string name="correction_email">이메일</string>
+    <string name="correction_email_default">20221234@dongduk.ac.kr</string>
+    <string name="correction_name">이름</string>
+    <string name="correction_name_hint">김솜솜</string>
+    <string name="correction_dept">학과</string>
+    <string name="correction_dept_hint">솜솜어학과</string>
+    <string name="correction_pw">비밀번호</string>
+    <string name="correction_repw">비밀번호 확인</string>
+    <string name="correction_button">수정</string>
+
+    <!-- FindPW -->
+    <string name="find_pw_title">비밀번호 찾기</string>
+    <string name="find_pw_hint">이메일</string>
+    <string name="find_pw_button">임시 비밀번호 발급받기</string>
+
+    <!-- Information -->
+    <string name="information_content">안녕하세요! With Som 개발자 홍서연입니다. :)\n동문 간 교류가 활성화되길 바라는 마음에\n앱을 만들게 되었습니다.\n사용 중 오류 혹은 새로운 아이디어가 있으신 분들은\n문의 보내주세요.\n민주 동덕!</string>
+
+    <!-- Inquiry -->
+    <string name="inquiry_hint">문의 내용을 작성해 주세요!\n\n답변이 필요한 문의의 경우,\n이메일로 답변이 전송됩니다.</string>
+    <string name="inquiry_button">문의하기</string>
+
+    <!-- Login -->
+    <string name="login_title">로그인</string>
+    <string name="login_id_hint">이메일</string>
+    <string name="login_pw_hint">비밀번호</string>
+    <string name="login_auto">자동로그인</string>
+    <string name="login_find_pw">비밀번호 찾기</string>
+
+    <!-- Main -->
+    <string name="main_notice_title">공지</string>
+    <string name="main_notice_ex">2022-2 문제해결형 Co-Teaching 강...</string>
+    <string name="main_notice_more">더보기 ▶</string>
+    <string name="main_hot">#HOT</string>
+
+    <!-- ClassDetail -->
+    <string name="class_detail_name_leader_ex">솜솜덕질\n20221234 김솜솜</string>
+    <string name="class_detail_location_ex">위치</string>
+    <string name="class_detail_schedule_ex">시간</string>
+    <string name="class_detail_number_ex">인원</string>
+    <string name="class_detail_application_button">신청하기</string>
+    <string name="class_detail_application_cancle_button">취소하기</string>
+    <string name="class_detail_change_current_number_button">현재 인원(+/-)</string>
+    <string name="class_detail_correction_class_button">수정하기</string>
+    <string name="class_detail_delete_class_button">삭제하기</string>
+
+    <!-- MyList -->
+    <string name="mylist_my_class">내 모임</string>
+    <string name="mylist_my_application">신청한 모임</string>
+
+    <!-- NoticeDetail -->
+    <string name="notice_detail_title_ex">공지사항</string>
+    <string name="notice_detail_date_ex">2022-10-25</string>
+    <string name="notice_detail_content_ex">이것은 공지사항입니다.이것은 공지사항입니다.이것은 공지사항입니다.이것은 공지사항입니다.이것은 공지사항입니다.</string>
+
+    <!-- Secession -->
     <string name="secession_content">정말 탈퇴하시나요?\n\n탈퇴하시면 모든 생성한 모임이 삭제되고,\n신청이 취소됩니다.\n생성한 모임 신청자에게는 모임 삭제 메일이 보내집니다.</string>
+    <string name="secession_button">탈퇴하기</string>
+
+    <!-- Setting -->
+    <string name="setting_logout_button">로그아웃</string>
+    <string name="setting_correction_button">개인정보 수정</string>
+    <string name="setting_notice_button">공지사항</string>
+    <string name="setting_inquiry_button">With Som 문의</string>
+    <string name="setting_information">With Som 정보</string>
+    <string name="setting_secession_button">회원 탈퇴</string>
+    
+    <!-- SignUp -->
+    <string name="sign_up_title">회원가입</string>
+    <string name="sign_up_name">이름</string>
+    <string name="sign_up_name_hint">김솜솜</string>
+    <string name="sign_up_stnum">학번</string>
+    <string name="sign_up_stnum_hint">20221234</string>
+    <string name="sign_up_depart">학과</string>
+    <string name="sign_up_depart_hint">솜솜어학과</string>
+    <string name="sign_up_email">이메일</string>
+    <string name="sign_up_email_hint">20221234@dongduk.ac.kr</string>
+    <string name="sign_up_pw">비밀번호</string>
+    <string name="sign_up_pw_hint">8자리 이상</string>
+    <string name="sign_up_repw">비밀번호 확인</string>
+    <string name="sign_up_privacy_checkbox">이용약관 및 개인정보 취급방침에 동의합니다.</string>
+    <string name="sign_up_check_email_button">이메일 인증번호 받기</string>
+
+    <!-- SignUpImage -->
+    <string name="sign_up_image_title">프로필 이미지 선택</string>
+
+    <!-- ClassBannerItem -->
+    <string name="class_banner_item_name_ex">솜솜덕질</string>
+    <string name="class_banner_item_line">|</string>
+    <string name="class_banner_item_type_ex">취미</string>
+    <string name="class_banner_item_content_ex">솜솜이를 덕질해보자!</string>
+
+    <!-- ClassRecycler_Classes -->
+    <string name="recycler_classes_tag_ex"># 종류</string>
+
+    <!-- ClassRecycler_detail -->
+    <string name="recycler_detail_title_ex">리더 소개</string>
+    <string name="recycler_detail_content_ex">리더!!</string>
+
+    <!-- ClassRecycler_search -->
+    <string name="recycler_search_name_ex">솜솜덕질</string>
+    <string name="recycler_search_type_ex">취미</string>
+    <string name="recycler_search_line">|</string>
+    <string name="recycler_search_schedule_ex">매일</string>
+    <string name="recycler_search_number_ex">정원 5/100명</string>
+
+    <!-- NoticeRecyclerItem -->
+    <string name="recycler_notice_title">공지</string>
+    <string name="recycler_notice_date">2022-10-25</string>
 
 </resources>

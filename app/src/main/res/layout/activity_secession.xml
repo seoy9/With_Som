@@ -162,7 +162,7 @@
         android:id="@+id/btn_secession_done"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="탈퇴하기"
+        android:text="@string/secession_button"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/guideline4"
         app:layout_constraintEnd_toStartOf="@+id/guideline29"

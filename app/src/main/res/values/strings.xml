@@ -130,7 +130,7 @@
     <string name="setting_inquiry_button">With Som 문의</string>
     <string name="setting_information">With Som 정보</string>
     <string name="setting_secession_button">회원 탈퇴</string>
-    
+
     <!-- SignUp -->
     <string name="sign_up_title">회원가입</string>
     <string name="sign_up_name">이름</string>

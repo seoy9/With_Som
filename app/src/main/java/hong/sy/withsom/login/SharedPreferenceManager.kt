@@ -10,7 +10,7 @@ object SharedPreferenceManager {
         val prefs : SharedPreferences = context.getSharedPreferences(MY_ACCOUNT, Context.MODE_PRIVATE)
         val editor : SharedPreferences.Editor = prefs.edit()
         editor.putString("MY_ID", input)
-        editor.commit()
+        editor.apply()
     }
 
     fun getUserId(context: Context): String {
@@ -22,7 +22,7 @@ object SharedPreferenceManager {
         val prefs : SharedPreferences = context.getSharedPreferences(MY_ACCOUNT, Context.MODE_PRIVATE)
         val editor : SharedPreferences.Editor = prefs.edit()
         editor.putString("MY_PASS", input)
-        editor.commit()
+        editor.apply()
     }
 
     fun getUserPass(context: Context): String {
@@ -34,7 +34,7 @@ object SharedPreferenceManager {
         val prefs : SharedPreferences = context.getSharedPreferences(MY_ACCOUNT, Context.MODE_PRIVATE)
         val editor : SharedPreferences.Editor = prefs.edit()
         editor.putString("MY_EMAIL", input)
-        editor.commit()
+        editor.apply()
     }
 
     fun getUserEmail(context: Context): String {
@@ -46,7 +46,7 @@ object SharedPreferenceManager {
         val prefs : SharedPreferences = context.getSharedPreferences(MY_ACCOUNT, Context.MODE_PRIVATE)
         val editor : SharedPreferences.Editor = prefs.edit()
         editor.putString("MY_NAME", input)
-        editor.commit()
+        editor.apply()
     }
 
     fun getUserName(context: Context): String {
@@ -58,6 +58,6 @@ object SharedPreferenceManager {
         val prefs : SharedPreferences = context.getSharedPreferences(MY_ACCOUNT, Context.MODE_PRIVATE)
         val editor : SharedPreferences.Editor = prefs.edit()
         editor.clear()
-        editor.commit()
+        editor.apply()
     }
 }

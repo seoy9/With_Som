@@ -190,6 +190,7 @@
         android:enabled="false"
         android:text="@string/next_button"
         android:textStyle="bold"
+        app:cornerRadius="15dp"
         app:layout_constraintBottom_toTopOf="@+id/guideline4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"

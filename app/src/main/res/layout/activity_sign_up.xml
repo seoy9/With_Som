@@ -300,6 +300,7 @@
         android:layout_height="wrap_content"
         android:text="@string/sign_up_check_email_button"
         android:textStyle="bold"
+        app:cornerRadius="15dp"
         app:layout_constraintBottom_toTopOf="@+id/guideline2"
         app:layout_constraintEnd_toStartOf="@+id/guideline4"
         app:layout_constraintStart_toStartOf="@+id/guideline3"

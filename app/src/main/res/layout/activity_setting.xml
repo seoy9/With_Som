@@ -98,6 +98,7 @@
         android:layout_height="wrap_content"
         android:text="@string/setting_logout_button"
         android:textStyle="bold"
+        app:cornerRadius="15dp"
         app:layout_constraintBottom_toTopOf="@+id/btn_correction"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -108,13 +109,18 @@
         android:id="@+id/btn_correction"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:backgroundTint="@color/white"
         android:text="@string/setting_correction_button"
+        android:textColor="@color/dongduk"
         android:textStyle="bold"
+        app:cornerRadius="15dp"
         app:layout_constraintBottom_toTopOf="@+id/btn_notice"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_logout" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_logout"
+        app:strokeColor="@color/dongduk"
+        app:strokeWidth="2dp" />
 
     <Button
         android:id="@+id/btn_notice"
@@ -122,6 +128,7 @@
         android:layout_height="wrap_content"
         android:text="@string/setting_notice_button"
         android:textStyle="bold"
+        app:cornerRadius="15dp"
         app:layout_constraintBottom_toTopOf="@+id/btn_inquiry"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -132,13 +139,18 @@
         android:id="@+id/btn_inquiry"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:backgroundTint="@color/white"
         android:text="@string/setting_inquiry_button"
+        android:textColor="@color/dongduk"
         android:textStyle="bold"
+        app:cornerRadius="15dp"
         app:layout_constraintBottom_toTopOf="@+id/btn_information"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_notice" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_notice"
+        app:strokeColor="@color/dongduk"
+        app:strokeWidth="2dp" />
 
     <Button
         android:id="@+id/btn_information"
@@ -146,6 +158,7 @@
         android:layout_height="wrap_content"
         android:text="@string/setting_information"
         android:textStyle="bold"
+        app:cornerRadius="15dp"
         app:layout_constraintBottom_toTopOf="@+id/btn_secession"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -156,12 +169,17 @@
         android:id="@+id/btn_secession"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:backgroundTint="@color/white"
         android:text="@string/setting_secession_button"
+        android:textColor="@color/dongduk"
         android:textStyle="bold"
+        app:cornerRadius="15dp"
         app:layout_constraintBottom_toTopOf="@+id/guideline4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_information" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_information"
+        app:strokeColor="@color/dongduk"
+        app:strokeWidth="2dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

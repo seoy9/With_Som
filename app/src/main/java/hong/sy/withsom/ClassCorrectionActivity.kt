@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.MultiAutoCompleteTextView
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -123,6 +124,8 @@ class ClassCorrectionActivity : AppCompatActivity() {
 
                             if(classData.cid == cid) {
                                 myRef.child(cid.toString()).setValue(classData)
+
+                                Toast.makeText(this@ClassCorrectionActivity, "수정 완료", Toast.LENGTH_SHORT).show()
 
                                 val intent = Intent(this@ClassCorrectionActivity, ClassDetailActivity::class.java)
                                 intent.putExtra("data", classData)

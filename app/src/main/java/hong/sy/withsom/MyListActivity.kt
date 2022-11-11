@@ -47,8 +47,33 @@ class MyListActivity : AppCompatActivity() {
 
     }
 
-    override fun onResume() {
-        super.onResume()
+//    override fun onPause() {
+//        super.onPause()
+////        classList.clear()
+////        applicationList.clear()
+////        applicationClassList.clear()
+//        myClassList()
+//        myApplicationList()
+//
+//    }
+//
+//    override fun onResume() {
+//        super.onResume()
+////        myClassList()
+////        myApplicationList()
+//        classList.clear()
+//        applicationList.clear()
+//        applicationClassList.clear()
+//    }
+
+    override fun onRestart() {
+        super.onRestart()
+        myClassList()
+        myApplicationList()
+    }
+
+    override fun onStop() {
+        super.onStop()
         classList.clear()
         applicationList.clear()
         applicationClassList.clear()

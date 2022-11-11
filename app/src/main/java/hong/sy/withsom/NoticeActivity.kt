@@ -8,7 +8,6 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
-import hong.sy.withsom.data.ClassData
 import hong.sy.withsom.data.NoticeData
 import hong.sy.withsom.databinding.ActivityNoticeBinding
 import hong.sy.withsom.recyclerView.NoticeRecyclerViewAdapter

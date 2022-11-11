@@ -3,8 +3,6 @@ package hong.sy.withsom.setting
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
-import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
 import android.widget.Toast
@@ -14,7 +12,6 @@ import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import hong.sy.withsom.*
-import hong.sy.withsom.data.ClassData
 import hong.sy.withsom.databinding.ActivitySecessionBinding
 import hong.sy.withsom.login.SharedPreferenceManager
 import hong.sy.withsom.mail.GMailSender

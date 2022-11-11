@@ -6,8 +6,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.MultiAutoCompleteTextView
-import android.widget.NumberPicker
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -18,7 +16,6 @@ import hong.sy.withsom.data.ClassData
 import hong.sy.withsom.data.DetailData
 import hong.sy.withsom.databinding.ActivityClassCorrectionBinding
 import hong.sy.withsom.recyclerView.CorrectionRecyclerViewAdapter
-import hong.sy.withsom.recyclerView.DetailRecyclerViewAdapter
 import hong.sy.withsom.recyclerView.HorizontalItemDecorator
 import hong.sy.withsom.recyclerView.VerticalItemDecorator
 import java.util.*

@@ -9,9 +9,7 @@ import android.widget.Toast
 import androidx.core.content.ContextCompat
 import hong.sy.withsom.data.UserData
 import hong.sy.withsom.databinding.ActivityCheckEmailBinding
-import hong.sy.withsom.random.RandomString
 import java.io.Serializable
-import java.util.Random
 
 class CheckEmailActivity : AppCompatActivity() {
     lateinit var binding: ActivityCheckEmailBinding

@@ -177,48 +177,48 @@
         app:layout_constraintEnd_toStartOf="@+id/guideline38"
         app:layout_constraintStart_toStartOf="@+id/guideline37"
         app:layout_constraintTop_toTopOf="@+id/guideline1"
-        app:srcCompat="@drawable/simbol" />
+        app:srcCompat="@drawable/som_smile" />
 
     <ImageButton
-        android:id="@+id/btn_correction_foundation"
+        android:id="@+id/btn_correction_som_smile"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:background="@drawable/foundation"
+        android:background="@drawable/som_smile"
         app:layout_constraintBottom_toTopOf="@+id/guideline32"
-        app:layout_constraintEnd_toStartOf="@+id/btn_correction_simbol"
+        app:layout_constraintEnd_toStartOf="@+id/btn_correction_som_kirakira"
         app:layout_constraintStart_toStartOf="@+id/guideline37"
         app:layout_constraintTop_toTopOf="@+id/guideline31" />
 
     <ImageButton
-        android:id="@+id/btn_correction_simbol"
+        android:id="@+id/btn_correction_som_kirakira"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:background="@drawable/simbol"
+        android:background="@drawable/som_kirakira"
         app:layout_constraintBottom_toTopOf="@+id/guideline32"
-        app:layout_constraintEnd_toStartOf="@+id/btn_correction_vision"
+        app:layout_constraintEnd_toStartOf="@+id/btn_correction_som_sumglass"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/btn_correction_foundation"
+        app:layout_constraintStart_toEndOf="@+id/btn_correction_som_smile"
         app:layout_constraintTop_toTopOf="@+id/guideline31" />
 
     <ImageButton
-        android:id="@+id/btn_correction_since"
+        android:id="@+id/btn_correction_som_laugh"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:background="@drawable/since"
+        android:background="@drawable/som_laugh"
         app:layout_constraintBottom_toTopOf="@+id/guideline32"
         app:layout_constraintEnd_toStartOf="@+id/guideline38"
-        app:layout_constraintStart_toEndOf="@+id/btn_correction_vision"
+        app:layout_constraintStart_toEndOf="@+id/btn_correction_som_sumglass"
         app:layout_constraintTop_toTopOf="@+id/guideline31" />
 
     <ImageButton
-        android:id="@+id/btn_correction_vision"
+        android:id="@+id/btn_correction_som_sumglass"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:background="@drawable/vision"
+        android:background="@drawable/som_sunglass"
         app:layout_constraintBottom_toTopOf="@+id/guideline32"
-        app:layout_constraintEnd_toStartOf="@+id/btn_correction_since"
+        app:layout_constraintEnd_toStartOf="@+id/btn_correction_som_laugh"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/btn_correction_simbol"
+        app:layout_constraintStart_toEndOf="@+id/btn_correction_som_kirakira"
         app:layout_constraintTop_toTopOf="@+id/guideline31" />
 
     <TextView

@@ -5,19 +5,16 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.Query
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import hong.sy.withsom.*
 import hong.sy.withsom.databinding.ActivityCorrectionBinding
 import hong.sy.withsom.login.SharedPreferenceManager
-import hong.sy.withsom.mail.GMailSender
 
 class CorrectionActivity : AppCompatActivity() {
     lateinit var binding: ActivityCorrectionBinding
@@ -25,7 +22,7 @@ class CorrectionActivity : AppCompatActivity() {
     private val database = Firebase.database
     private val myRef = database.getReference("users")
     private var isHave = false
-    private var profile = R.drawable.foundation
+    private var profile = R.drawable.som_default
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,24 +39,24 @@ class CorrectionActivity : AppCompatActivity() {
 
     private fun buttonSetting() {
 
-        binding.btnCorrectionFoundation.setOnClickListener {
-            binding.imgCorrection.setImageResource(R.drawable.foundation)
-            profile = R.drawable.foundation
+        binding.btnCorrectionSomSmile.setOnClickListener {
+            binding.imgCorrection.setImageResource(R.drawable.som_smile)
+            profile = R.drawable.som_smile
         }
 
-        binding.btnCorrectionSimbol.setOnClickListener {
-            binding.imgCorrection.setImageResource(R.drawable.simbol)
-            profile = R.drawable.simbol
+        binding.btnCorrectionSomKirakira.setOnClickListener {
+            binding.imgCorrection.setImageResource(R.drawable.som_kirakira)
+            profile = R.drawable.som_kirakira
         }
 
-        binding.btnCorrectionSince.setOnClickListener {
-            binding.imgCorrection.setImageResource(R.drawable.since)
-            profile = R.drawable.since
+        binding.btnCorrectionSomSumglass.setOnClickListener {
+            binding.imgCorrection.setImageResource(R.drawable.som_sunglass)
+            profile = R.drawable.som_sunglass
         }
 
-        binding.btnCorrectionVision.setOnClickListener {
-            binding.imgCorrection.setImageResource(R.drawable.vision)
-            profile = R.drawable.vision
+        binding.btnCorrectionSomLaugh.setOnClickListener {
+            binding.imgCorrection.setImageResource(R.drawable.som_laugh)
+            profile = R.drawable.som_laugh
         }
 
         binding.btnCorrectionDone.setOnClickListener {

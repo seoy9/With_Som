@@ -1,24 +1,20 @@
 package hong.sy.withsom.recyclerView
 
 import android.content.Context
-import android.content.Intent
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
-import hong.sy.withsom.ClassDetailActivity
 import hong.sy.withsom.R
 import hong.sy.withsom.data.ClassData
-import java.io.Serializable
 import java.util.*
 
 class MyListRecyclerViewAdapter(private val context: Context) : RecyclerView.Adapter<MyListRecyclerViewAdapter.MyListViewHolder>() {

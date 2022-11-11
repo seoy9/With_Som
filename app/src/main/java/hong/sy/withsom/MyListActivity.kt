@@ -4,12 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
-import androidx.fragment.app.FragmentActivity
-import androidx.fragment.app.FragmentStatePagerAdapter
-import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
-import com.google.android.material.tabs.TabLayoutMediator
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
@@ -19,7 +14,6 @@ import hong.sy.withsom.data.ClassData
 import hong.sy.withsom.databinding.ActivityMyListBinding
 import hong.sy.withsom.login.SharedPreferenceManager
 import hong.sy.withsom.recyclerView.MyListRecyclerViewAdapter
-import hong.sy.withsom.recyclerView.SearchRecyclerViewAdapter
 import java.io.Serializable
 import java.util.*
 

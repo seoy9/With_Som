@@ -4,14 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.ValueEventListener
-import com.google.firebase.database.ktx.database
-import com.google.firebase.ktx.Firebase
 import hong.sy.withsom.createclass.ClassNameActivity
-import hong.sy.withsom.createclass.ClassScheduleActivity
-import hong.sy.withsom.data.ClassData
 import hong.sy.withsom.databinding.ActivityClassesBinding
 import hong.sy.withsom.recyclerView.ClassRecyclerViewAdapter
 import hong.sy.withsom.recyclerView.HorizontalItemDecorator

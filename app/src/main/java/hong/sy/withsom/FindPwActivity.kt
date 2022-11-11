@@ -1,21 +1,17 @@
 package hong.sy.withsom
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.Query
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import hong.sy.withsom.databinding.ActivityFindPwBinding
-import hong.sy.withsom.login.SharedPreferenceManager
 import hong.sy.withsom.mail.GMailSender
 import hong.sy.withsom.random.RandomString
 

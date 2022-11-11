@@ -4,10 +4,7 @@ import android.content.DialogInterface
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
 import androidx.appcompat.app.AlertDialog
-import androidx.core.content.ContextCompat
 import hong.sy.withsom.ClassesActivity
 import hong.sy.withsom.MainActivity
 import hong.sy.withsom.SearchActivity

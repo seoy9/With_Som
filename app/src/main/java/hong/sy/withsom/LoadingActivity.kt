@@ -4,9 +4,6 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
-import com.google.firebase.database.ktx.database
-import com.google.firebase.ktx.Firebase
-import hong.sy.withsom.data.UserData
 import hong.sy.withsom.databinding.ActivityLoadingBinding
 import hong.sy.withsom.login.SharedPreferenceManager
 

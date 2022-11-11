@@ -1,22 +1,17 @@
 package hong.sy.withsom.createclass
 
-import android.R
 import android.content.DialogInterface
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.widget.ArrayAdapter
-import android.widget.Spinner
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
 import hong.sy.withsom.*
 import hong.sy.withsom.data.ClassData
 import hong.sy.withsom.databinding.ActivityClassScheduleBinding
 import java.io.Serializable
-import java.util.*
 
 class ClassScheduleActivity : AppCompatActivity() {
     lateinit var binding: ActivityClassScheduleBinding

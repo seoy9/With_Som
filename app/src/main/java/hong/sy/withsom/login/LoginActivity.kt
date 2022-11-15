@@ -12,8 +12,10 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import hong.sy.withsom.LoadingActivity
 import hong.sy.withsom.MainActivity
 import hong.sy.withsom.R
+import hong.sy.withsom.classList.ClassesActivity
 import hong.sy.withsom.databinding.ActivityLoginBinding
 
 
@@ -27,6 +29,8 @@ class LoginActivity : AppCompatActivity() {
     private var isHave = false
     private var isCorrect = false
     lateinit var name: String
+
+    private var backPressedTime : Long = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,6 +51,12 @@ class LoginActivity : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
+    }
+
+    override fun onBackPressed() {
+        val intent = Intent(this, LoadingActivity::class.java)
+        startActivity(intent)
+        finish()
     }
 
     private fun login() {

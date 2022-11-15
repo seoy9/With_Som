@@ -22,7 +22,7 @@ import java.io.Serializable
 class SignUpActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySignUpBinding
 
-//    private var isHave = false
+    private var isHave = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -324,22 +324,20 @@ class SignUpActivity : AppCompatActivity() {
 
     private fun isEmailExistence() {
         val id = binding.edEmail.text.toString()
-        var isHave = false
         val database = Firebase.database
         val myRef = database.getReference("users")
         myRef.addValueEventListener(object: ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if(snapshot.exists()) {
-                    for(userSnapshot in snapshot.children) {
+                    for (userSnapshot in snapshot.children) {
                         val email = userSnapshot.child("email").getValue(String::class.java)
 
-                        if(id == email) {
+                        if (id == email) {
                             isHave = true
-                            break
                         }
                     }
                 }
-                isCheckExtension(isHave)
+                isCheckExtension()
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -347,12 +345,13 @@ class SignUpActivity : AppCompatActivity() {
         })
     }
 
-    private fun isCheckExtension(isHave: Boolean) {
+    private fun isCheckExtension() {
         if(isHave) {
             binding.edEmail.backgroundTintList = ContextCompat.getColorStateList(applicationContext,
                 R.color.red
             )
             Toast.makeText(this, "이미 존재하는 계정입니다.", Toast.LENGTH_SHORT).show()
+            isHave = false
         } else {
             val email = binding.edEmail.text.toString()
             val pw = binding.edPw.text.toString()

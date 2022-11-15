@@ -377,6 +377,8 @@ class ClassDetailActivity : AppCompatActivity() {
                 deleteMail(reason)
 
                 Toast.makeText(this@ClassDetailActivity, "모임이 삭제되었습니다.", Toast.LENGTH_SHORT).show()
+                val intent = Intent(this@ClassDetailActivity, ClassesActivity::class.java)
+                startActivity(intent)
                 finish()
             }
 

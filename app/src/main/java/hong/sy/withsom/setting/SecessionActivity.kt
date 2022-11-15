@@ -12,6 +12,7 @@ import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import hong.sy.withsom.*
+import hong.sy.withsom.classList.ClassesActivity
 import hong.sy.withsom.databinding.ActivitySecessionBinding
 import hong.sy.withsom.login.SharedPreferenceManager
 import hong.sy.withsom.mail.GMailSender

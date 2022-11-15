@@ -1,9 +1,12 @@
-package hong.sy.withsom
+package hong.sy.withsom.classList
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import hong.sy.withsom.MainActivity
+import hong.sy.withsom.SearchActivity
+import hong.sy.withsom.setting.SettingActivity
 import hong.sy.withsom.createclass.ClassNameActivity
 import hong.sy.withsom.databinding.ActivityClassesBinding
 import hong.sy.withsom.recyclerView.ClassRecyclerViewAdapter

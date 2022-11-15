@@ -29,14 +29,14 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ClassCorrectionActivity"
+            android:name=".classList.ClassCorrectionActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".MyListActivity"
+            android:name=".classList.MyListActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -99,28 +99,28 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".CheckEmailActivity"
+            android:name=".signup.CheckEmailActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".FindPwActivity"
+            android:name=".login.FindPwActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".NoticeDetailActivity"
+            android:name=".notice.NoticeDetailActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".NoticeActivity"
+            android:name=".notice.NoticeActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -139,25 +139,25 @@
             android:name=".setting.CorrectionActivity"
             android:exported="false" />
         <activity
-            android:name=".SettingActivity"
+            android:name=".setting.SettingActivity"
             android:exported="false" />
         <activity
-            android:name=".ClassDetailActivity"
+            android:name=".classList.ClassDetailActivity"
             android:exported="false" />
         <activity
             android:name=".SearchActivity"
             android:exported="false" />
         <activity
-            android:name=".ClassesActivity"
+            android:name=".classList.ClassesActivity"
             android:exported="false" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".login.LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".SignUpImageActivity"
+            android:name=".signup.SignUpImageActivity"
             android:exported="false" />
         <activity
-            android:name=".SignUpActivity"
+            android:name=".signup.SignUpActivity"
             android:exported="false" />
         <activity
             android:name=".LoadingActivity"

@@ -9,8 +9,11 @@ import androidx.core.content.ContextCompat
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import hong.sy.withsom.*
+import hong.sy.withsom.classList.ClassDetailActivity
+import hong.sy.withsom.classList.ClassesActivity
 import hong.sy.withsom.data.ClassData
 import hong.sy.withsom.databinding.ActivityClassLeaderBinding
+import hong.sy.withsom.setting.SettingActivity
 import java.io.Serializable
 
 class ClassLeaderActivity : AppCompatActivity() {

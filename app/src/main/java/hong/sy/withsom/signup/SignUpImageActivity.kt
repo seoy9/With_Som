@@ -1,4 +1,4 @@
-package hong.sy.withsom
+package hong.sy.withsom.signup
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -6,6 +6,8 @@ import android.os.Bundle
 import android.widget.Toast
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import hong.sy.withsom.login.LoginActivity
+import hong.sy.withsom.R
 import hong.sy.withsom.data.UserData
 import hong.sy.withsom.databinding.ActivitySignUpImageBinding
 
@@ -36,9 +38,10 @@ class SignUpImageActivity : AppCompatActivity() {
 
             Toast.makeText(this@SignUpImageActivity, "회원가입 완료", Toast.LENGTH_SHORT).show()
 
-                val intent = Intent(this@SignUpImageActivity, LoginActivity::class.java)
-                startActivity(intent)
-                finish()
+            finishAffinity()
+            val intent = Intent(this@SignUpImageActivity, LoginActivity::class.java)
+            startActivity(intent)
+            finish()
         }
 
         binding.btnSomSmile.setOnClickListener {

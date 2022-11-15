@@ -1,15 +1,16 @@
-package hong.sy.withsom
+package hong.sy.withsom.setting
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import hong.sy.withsom.LoadingActivity
+import hong.sy.withsom.MainActivity
+import hong.sy.withsom.SearchActivity
+import hong.sy.withsom.classList.ClassesActivity
 import hong.sy.withsom.databinding.ActivitySettingBinding
 import hong.sy.withsom.login.SharedPreferenceManager
-import hong.sy.withsom.setting.CorrectionActivity
-import hong.sy.withsom.setting.InformationActivity
-import hong.sy.withsom.setting.InquiryActivity
-import hong.sy.withsom.setting.SecessionActivity
+import hong.sy.withsom.notice.NoticeActivity
 
 class SettingActivity : AppCompatActivity() {
     lateinit var binding: ActivitySettingBinding

@@ -13,9 +13,14 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import hong.sy.withsom.classList.ClassDetailActivity
+import hong.sy.withsom.classList.ClassesActivity
 import hong.sy.withsom.data.ClassData
 import hong.sy.withsom.data.NoticeData
 import hong.sy.withsom.databinding.ActivityMainBinding
+import hong.sy.withsom.notice.NoticeActivity
+import hong.sy.withsom.notice.NoticeDetailActivity
+import hong.sy.withsom.setting.SettingActivity
 import hong.sy.withsom.viewPager2.ClassViewPagerAdapter
 import hong.sy.withsom.viewPager2.NoticeViewPagerAdapter
 import java.io.Serializable

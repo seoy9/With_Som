@@ -1,4 +1,4 @@
-package hong.sy.withsom
+package hong.sy.withsom.classList
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -10,6 +10,9 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import hong.sy.withsom.MainActivity
+import hong.sy.withsom.SearchActivity
+import hong.sy.withsom.setting.SettingActivity
 import hong.sy.withsom.data.ClassData
 import hong.sy.withsom.databinding.ActivityMyListBinding
 import hong.sy.withsom.login.SharedPreferenceManager
@@ -46,25 +49,6 @@ class MyListActivity : AppCompatActivity() {
         setting()
 
     }
-
-//    override fun onPause() {
-//        super.onPause()
-////        classList.clear()
-////        applicationList.clear()
-////        applicationClassList.clear()
-//        myClassList()
-//        myApplicationList()
-//
-//    }
-//
-//    override fun onResume() {
-//        super.onResume()
-////        myClassList()
-////        myApplicationList()
-//        classList.clear()
-//        applicationList.clear()
-//        applicationClassList.clear()
-//    }
 
     override fun onRestart() {
         super.onRestart()

@@ -1,4 +1,4 @@
-package hong.sy.withsom
+package hong.sy.withsom.classList
 
 import android.content.DialogInterface
 import android.content.Intent
@@ -14,6 +14,10 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import hong.sy.withsom.MainActivity
+import hong.sy.withsom.R
+import hong.sy.withsom.SearchActivity
+import hong.sy.withsom.setting.SettingActivity
 import hong.sy.withsom.data.ApplicationData
 import hong.sy.withsom.data.ClassData
 import hong.sy.withsom.data.DetailData
@@ -59,6 +63,8 @@ class ClassDetailActivity : AppCompatActivity() {
         initRecycler()
 
         buttonSetting()
+
+        isShowButton()
     }
 
     override fun onBackPressed() {
@@ -221,7 +227,7 @@ class ClassDetailActivity : AppCompatActivity() {
                 GMailSender().sendEmail(
                     classData.leaderID,
                     "'${classData.name}'에 신청자가 있습니다.",
-                    "<img src='https://s3.us-west-2.amazonaws.com/secure.notion-static.com/2d69e720-0c5b-41c9-9893-54b5ab975a96/logo.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20221109%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221109T042603Z&X-Amz-Expires=86400&X-Amz-Signature=f8df2991060c06b0a194a5a7e254add92dd239cf8188dc7c0041e37a070903a9&X-Amz-SignedHeaders=host&response-content-disposition=filename%3D%22logo.png%22&x-id=GetObject' alt='With Som 로고' width='20%' height='20%'><h3><b>[${classData.name} 신청]</b></h3>\n\n안녕하세요. With Som입니다.\n\n'${classData.name}'에 <b>${stNum} ${name}</b>님께서 신청하셨습니다.\n\n\n<p style='background-color:#D3D3D3;'>${name} 님의 이메일 : ${email}\n\n신청 멘트 : ${reason}</p>\n\n<hr/><small>With Som 개발자 dongduk.withsom@gmail.com</small>"
+                    "<img src='https://s3.us-west-2.amazonaws.com/secure.notion-static.com/2d69e720-0c5b-41c9-9893-54b5ab975a96/logo.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20221114%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221114T051746Z&X-Amz-Expires=86400&X-Amz-Signature=e6face4b2f5831a7ab8051945fad5ac13309458b8231252b7740ae348e66c409&X-Amz-SignedHeaders=host&response-content-disposition=filename%3D%22logo.png%22&x-id=GetObject' alt='With Som 로고' width='20%' height='20%'><h3><b>[${classData.name} 신청]</b></h3>\n\n안녕하세요. With Som입니다.\n\n'${classData.name}'에 <b>${stNum} ${name}</b>님께서 신청하셨습니다.\n\n\n<p style='background-color:#D3D3D3;'>${name} 님의 이메일 : ${email}\n\n신청 멘트 : ${reason}</p>\n\n<hr/><small>With Som 개발자 dongduk.withsom@gmail.com</small>"
                 )
 
                 Toast.makeText(this, "신청되었습니다.", Toast.LENGTH_SHORT).show()
@@ -281,11 +287,13 @@ class ClassDetailActivity : AppCompatActivity() {
                 GMailSender().sendEmail(
                     classData.leaderID,
                     "'${classData.name}'에 취소자가 있습니다.",
-                    "<img src='https://s3.us-west-2.amazonaws.com/secure.notion-static.com/2d69e720-0c5b-41c9-9893-54b5ab975a96/logo.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20221109%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221109T042603Z&X-Amz-Expires=86400&X-Amz-Signature=f8df2991060c06b0a194a5a7e254add92dd239cf8188dc7c0041e37a070903a9&X-Amz-SignedHeaders=host&response-content-disposition=filename%3D%22logo.png%22&x-id=GetObject' alt='With Som 로고' width='20%' height='20%'><h3><b>[${classData.name} 신청 취소]</b></h3>\n\n안녕하세요. With Som입니다.\n\n'${classData.name}'에 <b>${stNum} ${name}</b>님께서 취소하셨습니다.\n\n\n<p style='background-color:#D3D3D3;'>${name} 님의 이메일 : ${email}\n\n취소 사유 : ${reason}</p>\n\n<hr/><small>With Som 개발자 dongduk.withsom@gmail.com</small>"
+                    "<img src='https://s3.us-west-2.amazonaws.com/secure.notion-static.com/2d69e720-0c5b-41c9-9893-54b5ab975a96/logo.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20221114%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221114T051746Z&X-Amz-Expires=86400&X-Amz-Signature=e6face4b2f5831a7ab8051945fad5ac13309458b8231252b7740ae348e66c409&X-Amz-SignedHeaders=host&response-content-disposition=filename%3D%22logo.png%22&x-id=GetObject' alt='With Som 로고' width='20%' height='20%'><h3><b>[${classData.name} 신청 취소]</b></h3>\n\n안녕하세요. With Som입니다.\n\n'${classData.name}'에 <b>${stNum} ${name}</b>님께서 취소하셨습니다.\n\n\n<p style='background-color:#D3D3D3;'>${name} 님의 이메일 : ${email}\n\n취소 사유 : ${reason}</p>\n\n<hr/><small>With Som 개발자 dongduk.withsom@gmail.com</small>"
                 )
 
                 Toast.makeText(this, "철회되었습니다.", Toast.LENGTH_SHORT).show()
                 finish()
+                val intent = Intent(this, ClassesActivity::class.java)
+                startActivity(intent)
             }
 
             builder.setPositiveButton("철회", listener)
@@ -447,7 +455,7 @@ class ClassDetailActivity : AppCompatActivity() {
                                 GMailSender().sendEmail(
                                     email,
                                     "'${classData.name}' 모임이 삭제되었습니다.",
-                                    "<img src='https://s3.us-west-2.amazonaws.com/secure.notion-static.com/2d69e720-0c5b-41c9-9893-54b5ab975a96/logo.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20221109%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221109T042603Z&X-Amz-Expires=86400&X-Amz-Signature=f8df2991060c06b0a194a5a7e254add92dd239cf8188dc7c0041e37a070903a9&X-Amz-SignedHeaders=host&response-content-disposition=filename%3D%22logo.png%22&x-id=GetObject' alt='With Som 로고' width='20%' height='20%'><h3><b>[${classData.name} 모임 삭제]</b></h3>\n\n안녕하세요. With Som입니다.\n\n'${classData.name}' 모임이 <b>삭제</b>되었습니다.\n\n\n<p style='background-color:#D3D3D3;'>삭제 사유 : ${reason}</p>\n\n<hr/><small>With Som 개발자 dongduk.withsom@gmail.com</small>"
+                                    "<img src='https://s3.us-west-2.amazonaws.com/secure.notion-static.com/2d69e720-0c5b-41c9-9893-54b5ab975a96/logo.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20221114%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221114T051746Z&X-Amz-Expires=86400&X-Amz-Signature=e6face4b2f5831a7ab8051945fad5ac13309458b8231252b7740ae348e66c409&X-Amz-SignedHeaders=host&response-content-disposition=filename%3D%22logo.png%22&x-id=GetObject' alt='With Som 로고' width='20%' height='20%'><h3><b>[${classData.name} 모임 삭제]</b></h3>\n\n안녕하세요. With Som입니다.\n\n'${classData.name}' 모임이 <b>삭제</b>되었습니다.\n\n\n<p style='background-color:#D3D3D3;'>삭제 사유 : ${reason}</p>\n\n<hr/><small>With Som 개발자 dongduk.withsom@gmail.com</small>"
                                 )
                             }
                         }

@@ -1,4 +1,4 @@
-package hong.sy.withsom
+package hong.sy.withsom.notice
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -8,6 +8,10 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import hong.sy.withsom.classList.ClassesActivity
+import hong.sy.withsom.MainActivity
+import hong.sy.withsom.SearchActivity
+import hong.sy.withsom.setting.SettingActivity
 import hong.sy.withsom.data.NoticeData
 import hong.sy.withsom.databinding.ActivityNoticeBinding
 import hong.sy.withsom.recyclerView.NoticeRecyclerViewAdapter

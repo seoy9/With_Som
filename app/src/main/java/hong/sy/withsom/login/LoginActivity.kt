@@ -1,4 +1,4 @@
-package hong.sy.withsom
+package hong.sy.withsom.login
 
 import android.content.Intent
 import android.os.Bundle
@@ -12,8 +12,9 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import hong.sy.withsom.MainActivity
+import hong.sy.withsom.R
 import hong.sy.withsom.databinding.ActivityLoginBinding
-import hong.sy.withsom.login.SharedPreferenceManager
 
 
 class LoginActivity : AppCompatActivity() {
@@ -53,8 +54,12 @@ class LoginActivity : AppCompatActivity() {
             val regex = "(\\d+)@dongduk.ac.kr".toRegex()
 
             if(!(binding.edLoginEmail.text.toString().matches(regex))) {
-                binding.edLoginEmail.backgroundTintList = ContextCompat.getColorStateList(applicationContext, R.color.red)
-                binding.edLoginPw.backgroundTintList = ContextCompat.getColorStateList(applicationContext, R.color.black)
+                binding.edLoginEmail.backgroundTintList = ContextCompat.getColorStateList(applicationContext,
+                    R.color.red
+                )
+                binding.edLoginPw.backgroundTintList = ContextCompat.getColorStateList(applicationContext,
+                    R.color.black
+                )
                 Toast.makeText(this, "이메일을 확인해주세요.", Toast.LENGTH_SHORT).show()
             }
             else {
@@ -77,7 +82,9 @@ class LoginActivity : AppCompatActivity() {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) { }
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                binding.edLoginEmail.backgroundTintList = ContextCompat.getColorStateList(applicationContext, R.color.black)
+                binding.edLoginEmail.backgroundTintList = ContextCompat.getColorStateList(applicationContext,
+                    R.color.black
+                )
 
                 if (p0 != null) {
                     if(p0.length >= 22) {
@@ -88,10 +95,14 @@ class LoginActivity : AppCompatActivity() {
                 }
 
                 if(isIDdone && isPWdone) {
-                    binding.btnLoginDone.backgroundTintList = ContextCompat.getColorStateList(applicationContext, R.color.dongduk)
+                    binding.btnLoginDone.backgroundTintList = ContextCompat.getColorStateList(applicationContext,
+                        R.color.dongduk
+                    )
                     binding.btnLoginDone.setEnabled(true)
                 } else {
-                    binding.btnLoginDone.backgroundTintList = ContextCompat.getColorStateList(applicationContext, R.color.nonButton)
+                    binding.btnLoginDone.backgroundTintList = ContextCompat.getColorStateList(applicationContext,
+                        R.color.nonButton
+                    )
                     binding.btnLoginDone.setEnabled(false)
                 }
             }
@@ -112,10 +123,14 @@ class LoginActivity : AppCompatActivity() {
                 }
 
                 if(isIDdone && isPWdone) {
-                    binding.btnLoginDone.backgroundTintList = ContextCompat.getColorStateList(applicationContext, R.color.dongduk)
+                    binding.btnLoginDone.backgroundTintList = ContextCompat.getColorStateList(applicationContext,
+                        R.color.dongduk
+                    )
                     binding.btnLoginDone.setEnabled(true)
                 } else {
-                    binding.btnLoginDone.backgroundTintList = ContextCompat.getColorStateList(applicationContext, R.color.nonButton)
+                    binding.btnLoginDone.backgroundTintList = ContextCompat.getColorStateList(applicationContext,
+                        R.color.nonButton
+                    )
                     binding.btnLoginDone.setEnabled(false)
                 }
             }

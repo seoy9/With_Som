@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import hong.sy.withsom.NoticeDetailActivity
+import hong.sy.withsom.notice.NoticeDetailActivity
 import hong.sy.withsom.R
 import hong.sy.withsom.data.NoticeData
 import java.io.Serializable

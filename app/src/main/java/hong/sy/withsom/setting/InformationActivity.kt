@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import hong.sy.withsom.*
+import hong.sy.withsom.classList.ClassesActivity
 import hong.sy.withsom.databinding.ActivityInformationBinding
 
 class InformationActivity : AppCompatActivity() {

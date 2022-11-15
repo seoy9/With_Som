@@ -5,10 +5,10 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.appcompat.app.AlertDialog
-import hong.sy.withsom.ClassesActivity
+import hong.sy.withsom.classList.ClassesActivity
 import hong.sy.withsom.MainActivity
 import hong.sy.withsom.SearchActivity
-import hong.sy.withsom.SettingActivity
+import hong.sy.withsom.setting.SettingActivity
 import hong.sy.withsom.data.ClassData
 import hong.sy.withsom.databinding.ActivityClassTypeBinding
 import java.io.Serializable

@@ -7,8 +7,10 @@ import android.text.Editable
 import android.text.TextWatcher
 import androidx.core.content.ContextCompat
 import hong.sy.withsom.*
+import hong.sy.withsom.classList.ClassesActivity
 import hong.sy.withsom.data.ClassData
 import hong.sy.withsom.databinding.ActivityClassMemberBinding
+import hong.sy.withsom.setting.SettingActivity
 import java.io.Serializable
 
 class ClassMemberActivity : AppCompatActivity() {

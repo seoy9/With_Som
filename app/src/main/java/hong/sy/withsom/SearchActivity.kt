@@ -10,9 +10,11 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import hong.sy.withsom.classList.ClassesActivity
 import hong.sy.withsom.data.ClassData
 import hong.sy.withsom.databinding.ActivitySearchBinding
 import hong.sy.withsom.recyclerView.SearchRecyclerViewAdapter
+import hong.sy.withsom.setting.SettingActivity
 import java.util.*
 
 class SearchActivity : AppCompatActivity() {

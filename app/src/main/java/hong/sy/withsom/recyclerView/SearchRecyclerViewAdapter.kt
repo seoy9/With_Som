@@ -16,7 +16,7 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
-import hong.sy.withsom.ClassDetailActivity
+import hong.sy.withsom.classList.ClassDetailActivity
 import hong.sy.withsom.R
 import hong.sy.withsom.data.ClassData
 import java.io.Serializable

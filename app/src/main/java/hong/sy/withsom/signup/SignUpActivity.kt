@@ -1,4 +1,4 @@
-package hong.sy.withsom
+package hong.sy.withsom.signup
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -12,6 +12,7 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import hong.sy.withsom.R
 import hong.sy.withsom.data.UserData
 import hong.sy.withsom.databinding.ActivitySignUpBinding
 import hong.sy.withsom.mail.GMailSender
@@ -58,45 +59,69 @@ class SignUpActivity : AppCompatActivity() {
         var isFalse = false
 
         if(name.isNullOrBlank()) {
-            binding.edName.backgroundTintList = ContextCompat.getColorStateList(applicationContext, R.color.red)
+            binding.edName.backgroundTintList = ContextCompat.getColorStateList(applicationContext,
+                R.color.red
+            )
             isFalse = true
         } else {
-            binding.edName.backgroundTintList = ContextCompat.getColorStateList(applicationContext, R.color.black)
+            binding.edName.backgroundTintList = ContextCompat.getColorStateList(applicationContext,
+                R.color.black
+            )
         }
 
         if(stNum.isNullOrBlank()) {
-            binding.edStNum.backgroundTintList = ContextCompat.getColorStateList(applicationContext, R.color.red)
+            binding.edStNum.backgroundTintList = ContextCompat.getColorStateList(applicationContext,
+                R.color.red
+            )
             isFalse = true
         } else {
-            binding.edStNum.backgroundTintList = ContextCompat.getColorStateList(applicationContext, R.color.black)
+            binding.edStNum.backgroundTintList = ContextCompat.getColorStateList(applicationContext,
+                R.color.black
+            )
         }
 
         if(depart.isNullOrBlank()) {
-            binding.edDepart.backgroundTintList = ContextCompat.getColorStateList(applicationContext, R.color.red)
+            binding.edDepart.backgroundTintList = ContextCompat.getColorStateList(applicationContext,
+                R.color.red
+            )
             isFalse = true
         } else {
-            binding.edDepart.backgroundTintList = ContextCompat.getColorStateList(applicationContext, R.color.black)
+            binding.edDepart.backgroundTintList = ContextCompat.getColorStateList(applicationContext,
+                R.color.black
+            )
         }
 
         if(email.isNullOrBlank()) {
-            binding.edEmail.backgroundTintList = ContextCompat.getColorStateList(applicationContext, R.color.red)
+            binding.edEmail.backgroundTintList = ContextCompat.getColorStateList(applicationContext,
+                R.color.red
+            )
             isFalse = true
         } else {
-            binding.edEmail.backgroundTintList = ContextCompat.getColorStateList(applicationContext, R.color.black)
+            binding.edEmail.backgroundTintList = ContextCompat.getColorStateList(applicationContext,
+                R.color.black
+            )
         }
 
         if(pw.isNullOrBlank()) {
-            binding.edPw.backgroundTintList = ContextCompat.getColorStateList(applicationContext, R.color.red)
+            binding.edPw.backgroundTintList = ContextCompat.getColorStateList(applicationContext,
+                R.color.red
+            )
             isFalse = true
         } else {
-            binding.edPw.backgroundTintList = ContextCompat.getColorStateList(applicationContext, R.color.black)
+            binding.edPw.backgroundTintList = ContextCompat.getColorStateList(applicationContext,
+                R.color.black
+            )
         }
 
         if(repw.isNullOrBlank()) {
-            binding.edPwCheck.backgroundTintList = ContextCompat.getColorStateList(applicationContext, R.color.red)
+            binding.edPwCheck.backgroundTintList = ContextCompat.getColorStateList(applicationContext,
+                R.color.red
+            )
             isFalse = true
         } else {
-            binding.edPwCheck.backgroundTintList = ContextCompat.getColorStateList(applicationContext, R.color.black)
+            binding.edPwCheck.backgroundTintList = ContextCompat.getColorStateList(applicationContext,
+                R.color.black
+            )
         }
 
         if(isFalse) {
@@ -104,12 +129,24 @@ class SignUpActivity : AppCompatActivity() {
             return false
         }
 
-        binding.edName.backgroundTintList = ContextCompat.getColorStateList(applicationContext, R.color.black)
-        binding.edStNum.backgroundTintList = ContextCompat.getColorStateList(applicationContext, R.color.black)
-        binding.edDepart.backgroundTintList = ContextCompat.getColorStateList(applicationContext, R.color.black)
-        binding.edEmail.backgroundTintList = ContextCompat.getColorStateList(applicationContext, R.color.black)
-        binding.edPw.backgroundTintList = ContextCompat.getColorStateList(applicationContext, R.color.black)
-        binding.edPwCheck.backgroundTintList = ContextCompat.getColorStateList(applicationContext, R.color.black)
+        binding.edName.backgroundTintList = ContextCompat.getColorStateList(applicationContext,
+            R.color.black
+        )
+        binding.edStNum.backgroundTintList = ContextCompat.getColorStateList(applicationContext,
+            R.color.black
+        )
+        binding.edDepart.backgroundTintList = ContextCompat.getColorStateList(applicationContext,
+            R.color.black
+        )
+        binding.edEmail.backgroundTintList = ContextCompat.getColorStateList(applicationContext,
+            R.color.black
+        )
+        binding.edPw.backgroundTintList = ContextCompat.getColorStateList(applicationContext,
+            R.color.black
+        )
+        binding.edPwCheck.backgroundTintList = ContextCompat.getColorStateList(applicationContext,
+            R.color.black
+        )
 
         return true
     }
@@ -119,11 +156,15 @@ class SignUpActivity : AppCompatActivity() {
 
         if(stNum.length != 8) {
             Toast.makeText(this, "학번을 확인해주세요.", Toast.LENGTH_SHORT).show()
-            binding.edStNum.backgroundTintList = ContextCompat.getColorStateList(applicationContext, R.color.red)
+            binding.edStNum.backgroundTintList = ContextCompat.getColorStateList(applicationContext,
+                R.color.red
+            )
             return false
         }
 
-        binding.edStNum.backgroundTintList = ContextCompat.getColorStateList(applicationContext, R.color.black)
+        binding.edStNum.backgroundTintList = ContextCompat.getColorStateList(applicationContext,
+            R.color.black
+        )
         return true
     }
 
@@ -131,12 +172,16 @@ class SignUpActivity : AppCompatActivity() {
         val pw = binding.edPw.text.toString()
 
         if(pw.length < 8) {
-            binding.edPw.backgroundTintList = ContextCompat.getColorStateList(applicationContext, R.color.red)
+            binding.edPw.backgroundTintList = ContextCompat.getColorStateList(applicationContext,
+                R.color.red
+            )
             Toast.makeText(this, "비밀번호는 8자리 이상이어야 합니다.", Toast.LENGTH_SHORT).show()
             return false
         }
 
-        binding.edPw.backgroundTintList = ContextCompat.getColorStateList(applicationContext, R.color.black)
+        binding.edPw.backgroundTintList = ContextCompat.getColorStateList(applicationContext,
+            R.color.black
+        )
         return true
     }
 
@@ -145,12 +190,16 @@ class SignUpActivity : AppCompatActivity() {
         val repw = binding.edPwCheck.text.toString()
 
         if(pw != repw) {
-            binding.edPwCheck.backgroundTintList = ContextCompat.getColorStateList(applicationContext, R.color.red)
+            binding.edPwCheck.backgroundTintList = ContextCompat.getColorStateList(applicationContext,
+                R.color.red
+            )
             Toast.makeText(this, "비밀번호를 확인해주세요.", Toast.LENGTH_SHORT).show()
             return false
         }
 
-        binding.edPwCheck.backgroundTintList = ContextCompat.getColorStateList(applicationContext, R.color.black)
+        binding.edPwCheck.backgroundTintList = ContextCompat.getColorStateList(applicationContext,
+            R.color.black
+        )
         return true
     }
 
@@ -167,13 +216,17 @@ class SignUpActivity : AppCompatActivity() {
 
     private fun checkEmail() : Boolean {
         if(!binding.edEmail.text.toString().contains("@dongduk.ac.kr")) {
-            binding.edEmail.backgroundTintList = ContextCompat.getColorStateList(applicationContext, R.color.red)
+            binding.edEmail.backgroundTintList = ContextCompat.getColorStateList(applicationContext,
+                R.color.red
+            )
             Toast.makeText(this, "동덕여대 이메일을 사용해주세요.", Toast.LENGTH_SHORT).show()
             return false
         }
 
         if(binding.edEmail.text.toString().length != 22) {
-            binding.edEmail.backgroundTintList = ContextCompat.getColorStateList(applicationContext, R.color.red)
+            binding.edEmail.backgroundTintList = ContextCompat.getColorStateList(applicationContext,
+                R.color.red
+            )
             Toast.makeText(this, "이메일을 확인해주세요.", Toast.LENGTH_SHORT).show()
             return false
         }
@@ -182,12 +235,16 @@ class SignUpActivity : AppCompatActivity() {
         val regex = "(\\d+)".toRegex()
 
         if(!(stnNum.matches(regex))) {
-            binding.edEmail.backgroundTintList = ContextCompat.getColorStateList(applicationContext, R.color.red)
+            binding.edEmail.backgroundTintList = ContextCompat.getColorStateList(applicationContext,
+                R.color.red
+            )
             Toast.makeText(this, "이메일을 확인해주세요.", Toast.LENGTH_SHORT).show()
             return false
         }
 
-        binding.edEmail.backgroundTintList = ContextCompat.getColorStateList(applicationContext, R.color.black)
+        binding.edEmail.backgroundTintList = ContextCompat.getColorStateList(applicationContext,
+            R.color.black
+        )
         return true
     }
 
@@ -198,7 +255,9 @@ class SignUpActivity : AppCompatActivity() {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) { }
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                binding.edName.backgroundTintList = ContextCompat.getColorStateList(applicationContext, R.color.black)
+                binding.edName.backgroundTintList = ContextCompat.getColorStateList(applicationContext,
+                    R.color.black
+                )
             }
         })
 
@@ -208,7 +267,9 @@ class SignUpActivity : AppCompatActivity() {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) { }
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                binding.edStNum.backgroundTintList = ContextCompat.getColorStateList(applicationContext, R.color.black)
+                binding.edStNum.backgroundTintList = ContextCompat.getColorStateList(applicationContext,
+                    R.color.black
+                )
             }
         })
 
@@ -218,7 +279,9 @@ class SignUpActivity : AppCompatActivity() {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) { }
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                binding.edDepart.backgroundTintList = ContextCompat.getColorStateList(applicationContext, R.color.black)
+                binding.edDepart.backgroundTintList = ContextCompat.getColorStateList(applicationContext,
+                    R.color.black
+                )
             }
         })
 
@@ -228,7 +291,9 @@ class SignUpActivity : AppCompatActivity() {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) { }
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                binding.edEmail.backgroundTintList = ContextCompat.getColorStateList(applicationContext, R.color.black)
+                binding.edEmail.backgroundTintList = ContextCompat.getColorStateList(applicationContext,
+                    R.color.black
+                )
             }
         })
 
@@ -238,7 +303,9 @@ class SignUpActivity : AppCompatActivity() {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) { }
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                binding.edPw.backgroundTintList = ContextCompat.getColorStateList(applicationContext, R.color.black)
+                binding.edPw.backgroundTintList = ContextCompat.getColorStateList(applicationContext,
+                    R.color.black
+                )
             }
         })
 
@@ -248,7 +315,9 @@ class SignUpActivity : AppCompatActivity() {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) { }
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                binding.edPwCheck.backgroundTintList = ContextCompat.getColorStateList(applicationContext, R.color.black)
+                binding.edPwCheck.backgroundTintList = ContextCompat.getColorStateList(applicationContext,
+                    R.color.black
+                )
             }
         })
     }
@@ -280,7 +349,9 @@ class SignUpActivity : AppCompatActivity() {
 
     private fun isCheckExtension(isHave: Boolean) {
         if(isHave) {
-            binding.edEmail.backgroundTintList = ContextCompat.getColorStateList(applicationContext, R.color.red)
+            binding.edEmail.backgroundTintList = ContextCompat.getColorStateList(applicationContext,
+                R.color.red
+            )
             Toast.makeText(this, "이미 존재하는 계정입니다.", Toast.LENGTH_SHORT).show()
         } else {
             val email = binding.edEmail.text.toString()
@@ -295,7 +366,7 @@ class SignUpActivity : AppCompatActivity() {
             GMailSender().sendEmail(
                 email,
                 "이메일 인증번호입니다.",
-                "<img src='https://s3.us-west-2.amazonaws.com/secure.notion-static.com/2d69e720-0c5b-41c9-9893-54b5ab975a96/logo.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20221109%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221109T042603Z&X-Amz-Expires=86400&X-Amz-Signature=f8df2991060c06b0a194a5a7e254add92dd239cf8188dc7c0041e37a070903a9&X-Amz-SignedHeaders=host&response-content-disposition=filename%3D%22logo.png%22&x-id=GetObject' alt='With Som 로고' width='20%' height='20%'><h3><b>[이메일 인증]</b></h3>\n\n안녕하세요. With Som입니다.\n\n요청하신 아래 인증번호를 진행 중인 화면에 입력하여 이메일 인증을 완료해주세요.\n\n만약, 이메일 인증을 요청하지 않은 경우 <a href='mailto:dongduk.withsom@gmail.com' style='color:#0000FF;'>dongduk.withsom@gmail.com</a>으로 알려주시기 바랍니다.\n\n\n<p style='background-color:#D3D3D3;'>${email} 님의 인증번호 : <b>${certificationNum}</b></p>\n\n<hr/><small>With Som 개발자 dongduk.withsom@gmail.com</small>"
+                "<img src='https://s3.us-west-2.amazonaws.com/secure.notion-static.com/2d69e720-0c5b-41c9-9893-54b5ab975a96/logo.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20221114%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221114T051746Z&X-Amz-Expires=86400&X-Amz-Signature=e6face4b2f5831a7ab8051945fad5ac13309458b8231252b7740ae348e66c409&X-Amz-SignedHeaders=host&response-content-disposition=filename%3D%22logo.png%22&x-id=GetObject' alt='With Som 로고' width='20%' height='20%'><h3><b>[이메일 인증]</b></h3>\n\n안녕하세요. With Som입니다.\n\n요청하신 아래 인증번호를 진행 중인 화면에 입력하여 이메일 인증을 완료해주세요.\n\n만약, 이메일 인증을 요청하지 않은 경우 <a href='mailto:dongduk.withsom@gmail.com' style='color:#0000FF;'>dongduk.withsom@gmail.com</a>으로 알려주시기 바랍니다.\n\n\n<p style='background-color:#D3D3D3;'>${email} 님의 인증번호 : <b>${certificationNum}</b></p>\n\n<hr/><small>With Som 개발자 dongduk.withsom@gmail.com</small>"
             )
             Toast.makeText(this, "인증번호를 메일로 전송했습니다.", Toast.LENGTH_SHORT).show()
 

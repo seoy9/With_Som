@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import hong.sy.withsom.*
+import hong.sy.withsom.classList.ClassesActivity
 import hong.sy.withsom.databinding.ActivityInquiryBinding
 import hong.sy.withsom.login.SharedPreferenceManager
 import hong.sy.withsom.mail.GMailSender

@@ -1,8 +1,12 @@
-package hong.sy.withsom
+package hong.sy.withsom.notice
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import hong.sy.withsom.classList.ClassesActivity
+import hong.sy.withsom.MainActivity
+import hong.sy.withsom.SearchActivity
+import hong.sy.withsom.setting.SettingActivity
 import hong.sy.withsom.data.NoticeData
 import hong.sy.withsom.databinding.ActivityNoticeDetailBinding
 

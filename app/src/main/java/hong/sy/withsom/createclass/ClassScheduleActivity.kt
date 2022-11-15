@@ -9,8 +9,10 @@ import android.text.TextWatcher
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
 import hong.sy.withsom.*
+import hong.sy.withsom.classList.ClassesActivity
 import hong.sy.withsom.data.ClassData
 import hong.sy.withsom.databinding.ActivityClassScheduleBinding
+import hong.sy.withsom.setting.SettingActivity
 import java.io.Serializable
 
 class ClassScheduleActivity : AppCompatActivity() {

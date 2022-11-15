@@ -1,4 +1,4 @@
-package hong.sy.withsom
+package hong.sy.withsom.login
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -11,6 +11,7 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import hong.sy.withsom.R
 import hong.sy.withsom.databinding.ActivityFindPwBinding
 import hong.sy.withsom.mail.GMailSender
 import hong.sy.withsom.random.RandomString
@@ -39,8 +40,12 @@ class FindPwActivity : AppCompatActivity() {
             val regex = "(\\d+)@dongduk.ac.kr".toRegex()
 
             if(!(binding.edEmailFindPw.text.toString().matches(regex))) {
-                binding.edEmailFindPw.backgroundTintList = ContextCompat.getColorStateList(applicationContext, R.color.red)
-                binding.edEmailFindPw.backgroundTintList = ContextCompat.getColorStateList(applicationContext, R.color.black)
+                binding.edEmailFindPw.backgroundTintList = ContextCompat.getColorStateList(applicationContext,
+                    R.color.red
+                )
+                binding.edEmailFindPw.backgroundTintList = ContextCompat.getColorStateList(applicationContext,
+                    R.color.black
+                )
                 Toast.makeText(this, "동덕 이메일만 가능합니다.\n이메일을 확인해주세요.", Toast.LENGTH_SHORT).show()
             } else {
                 isEmailExistence()
@@ -59,13 +64,19 @@ class FindPwActivity : AppCompatActivity() {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) { }
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                binding.edEmailFindPw.backgroundTintList = ContextCompat.getColorStateList(applicationContext, R.color.black)
+                binding.edEmailFindPw.backgroundTintList = ContextCompat.getColorStateList(applicationContext,
+                    R.color.black
+                )
 
                 if (p0.toString().length == 22) {
-                    binding.btnFindPw.backgroundTintList = ContextCompat.getColorStateList(applicationContext, R.color.dongduk)
+                    binding.btnFindPw.backgroundTintList = ContextCompat.getColorStateList(applicationContext,
+                        R.color.dongduk
+                    )
                     binding.btnFindPw.setEnabled(true)
                 } else {
-                    binding.btnFindPw.backgroundTintList = ContextCompat.getColorStateList(applicationContext, R.color.nonButton)
+                    binding.btnFindPw.backgroundTintList = ContextCompat.getColorStateList(applicationContext,
+                        R.color.nonButton
+                    )
                     binding.btnFindPw.setEnabled(false)
                 }
             }

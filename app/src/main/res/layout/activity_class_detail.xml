@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ClassDetailActivity">
+    tools:context=".classList.ClassDetailActivity">
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline1"
@@ -214,12 +214,13 @@
         android:layout_height="wrap_content"
         android:text="@string/class_detail_application_button"
         android:textStyle="bold"
-        android:visibility="visible"
+        android:visibility="invisible"
         app:cornerRadius="15dp"
         app:layout_constraintBottom_toTopOf="@+id/guideline4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline41" />
+        app:layout_constraintTop_toTopOf="@+id/guideline41"
+        tools:visibility="invisible" />
 
     <Button
         android:id="@+id/btn_application_cancel"

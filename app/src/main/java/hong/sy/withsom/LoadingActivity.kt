@@ -5,7 +5,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import hong.sy.withsom.databinding.ActivityLoadingBinding
+import hong.sy.withsom.login.LoginActivity
 import hong.sy.withsom.login.SharedPreferenceManager
+import hong.sy.withsom.signup.SignUpActivity
 
 class LoadingActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoadingBinding

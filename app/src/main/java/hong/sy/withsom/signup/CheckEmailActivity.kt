@@ -1,4 +1,4 @@
-package hong.sy.withsom
+package hong.sy.withsom.signup
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -7,6 +7,7 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.widget.Toast
 import androidx.core.content.ContextCompat
+import hong.sy.withsom.R
 import hong.sy.withsom.data.UserData
 import hong.sy.withsom.databinding.ActivityCheckEmailBinding
 import java.io.Serializable
@@ -55,10 +56,14 @@ class CheckEmailActivity : AppCompatActivity() {
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
                 if (p0 != null) {
                     if(p0.length >= 4) {
-                        binding.btnCheckEmail.backgroundTintList = ContextCompat.getColorStateList(applicationContext, R.color.dongduk)
+                        binding.btnCheckEmail.backgroundTintList = ContextCompat.getColorStateList(applicationContext,
+                            R.color.dongduk
+                        )
                         binding.btnCheckEmail.setEnabled(true)
                     } else {
-                        binding.btnCheckEmail.backgroundTintList = ContextCompat.getColorStateList(applicationContext, R.color.nonButton)
+                        binding.btnCheckEmail.backgroundTintList = ContextCompat.getColorStateList(applicationContext,
+                            R.color.nonButton
+                        )
                         binding.btnCheckEmail.setEnabled(false)
                     }
                 }

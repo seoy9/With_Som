@@ -17,8 +17,8 @@ import hong.sy.withsom.R
 import hong.sy.withsom.data.ClassData
 import java.util.*
 
-class MyListRecyclerViewAdapter(private val context: Context) : RecyclerView.Adapter<MyListRecyclerViewAdapter.MyListViewHolder>() {
-    var datas = ArrayList<ClassData>()
+class MyListRecyclerViewAdapter(private val context: Context, private var datas: ArrayList<ClassData>) : RecyclerView.Adapter<MyListRecyclerViewAdapter.MyListViewHolder>() {
+    var list = datas
     var where = ""
 
     inner class MyListViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -84,11 +84,11 @@ class MyListRecyclerViewAdapter(private val context: Context) : RecyclerView.Ada
         return MyListViewHolder(view)
     }
 
-    override fun getItemCount(): Int  = datas.size
+    override fun getItemCount(): Int  = list.size
 
     override fun onBindViewHolder(holder: MyListViewHolder, position: Int) {
-        holder.bindLeaderImg(datas[position])
-        holder.bind(datas[position])
+        holder.bindLeaderImg(list[position])
+        holder.bind(list[position])
     }
 
     interface OnItemClickListener{

@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import com.google.android.material.tabs.TabLayout
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -31,36 +32,52 @@ class MyListActivity : AppCompatActivity() {
 
     private val database = Firebase.database
 
+    private var index = -1
+    var isBack = false
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = ActivityMyListBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-//        myClassAdapter = MyListRecyclerViewAdapter(this)
-//        myApplicationAdapter = MyListRecyclerViewAdapter(this)
+        myClassAdapter = MyListRecyclerViewAdapter(this, classList)
+        myApplicationAdapter = MyListRecyclerViewAdapter(this, applicationClassList)
+
+        binding.rvMyclass.adapter = myClassAdapter
+        binding.rvMyapplication.adapter = myApplicationAdapter
 
         myClassList()
         myApplicationList()
+
+//        myApplicationAdapterSetting()
+//        myClassAdapterSetting()
 
         binding.rvMyclass.visibility = View.VISIBLE
         binding.rvMyapplication.visibility = View.INVISIBLE
 
         setting()
 
+        val where = intent.getStringExtra("where")
+
     }
 
     override fun onRestart() {
         super.onRestart()
-        myClassList()
-        myApplicationList()
-    }
+        Toast.makeText(this, "onRestart/${isBack}", Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, "${isBack}", Toast.LENGTH_SHORT).show()
 
-    override fun onStop() {
-        super.onStop()
-        classList.clear()
-        applicationList.clear()
-        applicationClassList.clear()
+        val tempApplication = onlyApplicationList()
+
+        if(isBack == false && index != -1) {
+            Toast.makeText(this, "${index}", Toast.LENGTH_SHORT).show()
+            applicationClassList.removeAt(index)
+            myApplicationAdapter.notifyDataSetChanged()
+            Toast.makeText(this, "${myApplicationAdapter.list.size}", Toast.LENGTH_SHORT).show()
+        }
+
+        index = -1
+        isBack = false
     }
 
     private fun setting() {
@@ -110,8 +127,71 @@ class MyListActivity : AppCompatActivity() {
         }
     }
 
+    private fun onlyApplicationList() {
+        val list = ArrayList<Int>()
+        val stNum = SharedPreferenceManager.getUserEmail(this).subSequence(0, 8).toString()
+        val myRef = database.getReference("applications")
+
+        myRef.addValueEventListener(object: ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if(snapshot.exists()) {
+                    for(applicationSnapshot in snapshot.children) {
+                        for (snapshot in applicationSnapshot.children) {
+                            val cid = snapshot.child("cid").getValue(Int::class.java)
+                            val stN = snapshot.child("stNum").getValue(String::class.java)
+
+                            if (stNum == stN!!) {
+                                list.add(cid!!)
+                            }
+                        }
+                    }
+                    onlyApplicationClassList(list)
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+            }
+        })
+    }
+    private fun onlyApplicationClassList(list : ArrayList<Int>) {
+        val clist = ArrayList<ClassData>()
+        val myRef = database.getReference("classes")
+        myRef.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if (snapshot.exists()) {
+                    for (classSnapshot in snapshot.children) {
+                        val cid = classSnapshot.child("cid").getValue(Int::class.java)
+                        val name = classSnapshot.child("name").getValue(String::class.java)
+                        val type = classSnapshot.child("type").getValue(String::class.java)
+                        val content = classSnapshot.child("content").getValue(String::class.java)
+                        val location = classSnapshot.child("location").getValue(String::class.java)
+                        val currentNum = classSnapshot.child("currentNum").getValue(Int::class.java)
+                        val totalNum = classSnapshot.child("totalNum").getValue(Int::class.java)
+                        val member = classSnapshot.child("member").getValue(String::class.java)
+                        val schedule = classSnapshot.child("schedule").getValue(String::class.java)
+                        val scheduleDetail = classSnapshot.child("scheduleDetail").getValue(String::class.java)
+                        val leaderID = classSnapshot.child("leaderID").getValue(String::class.java)
+                        val leaderContent = classSnapshot.child("leaderContent").getValue(String::class.java)
+
+                        if(list.contains(cid!!)) {
+                            val c = ClassData(cid, name!!, type!!, content!!, location!!, currentNum!!, totalNum!!, member!!, schedule!!, scheduleDetail!!, leaderID!!, leaderContent!!)
+                            clist.add(c)
+                        }
+                    }
+                    returnList(clist)
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+            }
+        })
+    }
+
+    private fun returnList(clist : ArrayList<ClassData>) : ArrayList<ClassData> {
+        return clist
+    }
+
     private fun myApplicationList() {
-        applicationList.clear()
         val stNum = SharedPreferenceManager.getUserEmail(this).subSequence(0, 8).toString()
         val myRef = database.getReference("applications")
         myRef.addValueEventListener(object: ValueEventListener {
@@ -137,7 +217,6 @@ class MyListActivity : AppCompatActivity() {
     }
 
     private fun myApplicationClassList() {
-        applicationClassList.clear()
         val myRef = database.getReference("classes")
         myRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -171,9 +250,10 @@ class MyListActivity : AppCompatActivity() {
     }
 
     private fun myApplicationAdapterSetting() {
-        myApplicationAdapter = MyListRecyclerViewAdapter(this)
-        binding.rvMyapplication.adapter = myApplicationAdapter
-        myApplicationAdapter.datas = applicationClassList
+//        myApplicationAdapter = MyListRecyclerViewAdapter(this)
+//        myApplicationAdapter = MyListRecyclerViewAdapter(this, applicationClassList)
+//        binding.rvMyapplication.adapter = myApplicationAdapter
+//        myApplicationAdapter.datas = applicationClassList
         myApplicationAdapter.notifyDataSetChanged()
 
         myApplicationAdapter.setOnItemClickListener(object : MyListRecyclerViewAdapter.OnItemClickListener{
@@ -181,6 +261,7 @@ class MyListActivity : AppCompatActivity() {
                 val intent = Intent(this@MyListActivity, ClassDetailActivity::class.java)
                 intent.putExtra("data", data as Serializable)
                 intent.putExtra("where", "myApplication")
+                index = pos
                 startActivity(intent)
             }
         })
@@ -222,9 +303,10 @@ class MyListActivity : AppCompatActivity() {
     }
 
     private fun myClassAdapterSetting() {
-        myClassAdapter = MyListRecyclerViewAdapter(this)
-        binding.rvMyclass.adapter = myClassAdapter
-        myClassAdapter.datas = classList
+//        myClassAdapter = MyListRecyclerViewAdapter(this)
+//        myClassAdapter = MyListRecyclerViewAdapter(this, classList)
+//        binding.rvMyclass.adapter = myClassAdapter
+//        myClassAdapter.datas = classList
         myClassAdapter.notifyDataSetChanged()
 
         myClassAdapter.setOnItemClickListener(object : MyListRecyclerViewAdapter.OnItemClickListener{
@@ -232,6 +314,7 @@ class MyListActivity : AppCompatActivity() {
                 val intent = Intent(this@MyListActivity, ClassDetailActivity::class.java)
                 intent.putExtra("data", data as Serializable)
                 intent.putExtra("where", "myClass")
+                index = pos
                 startActivity(intent)
             }
         })

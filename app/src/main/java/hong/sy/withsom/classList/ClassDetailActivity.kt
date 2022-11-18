@@ -75,6 +75,8 @@ class ClassDetailActivity : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
+
+        MyListActivity().isBack = true
     }
 
     private fun initUserData() {
@@ -291,9 +293,21 @@ class ClassDetailActivity : AppCompatActivity() {
                 )
 
                 Toast.makeText(this, "철회되었습니다.", Toast.LENGTH_SHORT).show()
+
                 finish()
-                val intent = Intent(this, ClassesActivity::class.java)
-                startActivity(intent)
+//                val intent = Intent(this, ClassesActivity::class.java)
+//                startActivity(intent)
+
+//                if(where == "myApplication") {
+//                    finishAffinity()
+//                    val intent = Intent(this, MyListActivity::class.java)
+//                    intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
+//                    intent.putExtra("where", "application")
+//                    startActivity(intent)
+//                    finish()
+//                } else {
+//                    finish()
+//                }
             }
 
             builder.setPositiveButton("철회", listener)
